@@ -2,7 +2,7 @@ package Parkeersimulator;
 
 import javax.swing.*;
 import java.awt.*;
-//test1
+
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
     private int numberOfFloors;
@@ -53,6 +53,7 @@ public class SimulatorView extends JFrame {
             return null;
         }
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
+
     }
 
     public boolean setCarAt(Location location, Car car) {
@@ -82,8 +83,9 @@ public class SimulatorView extends JFrame {
         if (car == null) {
             return null;
         }
-        cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
-        car.setLocation(null);
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+            car.setLocation(null);
+
         numberOfOpenSpots++;
         return car;
     }
