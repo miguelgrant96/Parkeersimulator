@@ -2,7 +2,7 @@ package Parkeersimulator;
 
 import javax.swing.*;
 import java.awt.*;
-
+//
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
     private int numberOfFloors;
