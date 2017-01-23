@@ -53,42 +53,41 @@ public class SimulatorView extends JFrame {
             return null;
         }
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
-
     }
 
     public boolean setCarAt(Location location, Car car) {
-            if (!locationIsValid(location)) {
-                return false;
-            }
-            Car oldCar = getCarAt(location);
-            if (oldCar == null) {
-                if (car instanceof ParkingPassCar) {
-                    cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
-                } else {
-                    cars[location.getFloor()+1][location.getRow()][location.getPlace()] = car;
-                }
-
-                car.setLocation(location);
-                numberOfOpenSpots--;
-                return true;
-            }
+        if (!locationIsValid(location)) {
             return false;
+        }
+        Car oldCar = getCarAt(location);
+        if (oldCar == null) {
+            if (car instanceof ParkingPassCar) {
+               cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
+            } else {
+                cars[location.getFloor()+1][location.getRow()][location.getPlace()] = car;
+            }
+            car.setLocation(location);
+            numberOfOpenSpots--;
+            return true;
+        }
+        return false;
     }
 
     public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
+
         Car car = getCarAt(location);
-        if (car == null) {
-            return null;
-        }
+            if (car == null) {
+                return null;
+            }
             cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
             car.setLocation(null);
 
-        numberOfOpenSpots++;
-        return car;
-    }
+            numberOfOpenSpots++;
+            return car;
+        }
 
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
