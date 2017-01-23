@@ -1,4 +1,6 @@
-package Parkeersimulator;
+package Models;
+
+import Parkeersimulator.Location;
 
 import java.awt.*;
 
