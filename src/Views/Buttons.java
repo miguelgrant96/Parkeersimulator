@@ -25,7 +25,7 @@ import java.awt.event.ActionListener;
 
     public static JButton start, stop, add1, add100;
 
-    public Buttons(Simulator simulator) {
+    public Buttons(SimulatorController simulator) {
 
         JPanel optionsPane = new JPanel();
         optionsPane.setLayout(new FlowLayout());
