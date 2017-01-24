@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.*;
-import Parkeersimulator.Location;
 import Views.SimulatorView;
 
 import java.util.Random;
@@ -9,7 +8,7 @@ import java.util.Random;
 /**
  * Created by Arjen on 23-1-2017.
  */
-public class CarQueueController {
+public class CarQueueController extends AbstractController{
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -18,6 +17,7 @@ public class CarQueueController {
 
     private SimulatorView simulatorView;
     private TimeController timeController;
+    private Garage garage;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -31,30 +31,31 @@ public class CarQueueController {
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
 
-    public CarQueueController(SimulatorView simulatorView, TimeController timeController) {
-        this.simulatorView = simulatorView;
-        this.timeController = timeController;
+    public CarQueueController(Simulator simulator) {
+        super(simulator);
+        garage = simulator.getGarage() ;
+        timeController = simulator.getTijd();
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
     }
 
-    protected void handleEntrance(){
+    public void handleEntrance(){
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
     }
 
-    protected void handleExit(){
+    public void handleExit(){
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
     }
 
-    private void carsReadyToLeave(){
+    public void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
-        Car car = simulatorView.getFirstLeavingCar();
+        Car car = garage.getFirstLeavingCar();
         while (car!=null) {
             if (car.getHasToPay()){
                 car.setIsPaying(true);
@@ -63,11 +64,11 @@ public class CarQueueController {
             else {
                 carLeavesSpot(car);
             }
-            car = simulatorView.getFirstLeavingCar();
+            car = garage.getFirstLeavingCar();
         }
     }
 
-    protected int getNumberOfCars(int weekDay, int weekend){
+    public int getNumberOfCars(int weekDay, int weekend){
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
@@ -102,13 +103,13 @@ public class CarQueueController {
     }
 
     private void carLeavesSpot(Car car){
-        simulatorView.removeCarAt(car.getLocation());
+        garage.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
     }
 
 
 
-    protected void addArrivingCars(int numberOfCars, String type){
+    private void addArrivingCars(int numberOfCars, String type){
         // Add the cars to the back of the queue.
         switch(type) {
             case AD_HOC:
@@ -136,11 +137,11 @@ public class CarQueueController {
         int i = 0;
         // Remove car from the front of the queue and assign to a parking space.
         while (queue.carsInQueue() > 0 &&
-                simulatorView.getNumberOfOpenSpots() > 0 &&
+                garage.getNumberOfOpenSpots() > 0 &&
                 i < enterSpeed) {
             Car car = queue.removeCar();
-            Location freeLocation = simulatorView.getFirstFreeLocation();
-            simulatorView.setCarAt(freeLocation, car);
+            Simulator.Location freeLocation = garage.getFirstFreeLocation();
+            garage.setCarAt(freeLocation, car);
             i++;
         }
     }
