@@ -24,7 +24,7 @@ public class SimulatorView extends AbstractView {
 
     public SimulatorView(Simulator simulator) {
         super(simulator);
-        garage = simulator.getGarage();
+        garage = simulator.getGarageController();
         carParkView = new CarParkView();
         stats = simulator.getGarageStats();
   //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
@@ -107,7 +107,7 @@ public class SimulatorView extends AbstractView {
                 for(int row = 0; row < garage.getNumberOfRows(); row++) {
                     for(int place = 0; place < garage.getNumberOfPlaces(); place++) {
                         Simulator.Location location = new Simulator.Location(floor, row, place);
-                        Car car = simulator.getGarage().getCarAt(location);
+                        Car car = simulator.getGarageController().getCarAt(location);
                         if (floor == 0) {
                             Color color = car == null ? Color.yellow : car.getColor();
                             drawPlace(graphics, location, color);

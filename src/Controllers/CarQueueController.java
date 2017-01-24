@@ -14,8 +14,6 @@ public class CarQueueController extends AbstractController{
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
-
-    private SimulatorView simulatorView;
     private TimeController timeController;
     private Garage garage;
 
@@ -33,8 +31,8 @@ public class CarQueueController extends AbstractController{
 
     public CarQueueController(Simulator simulator) {
         super(simulator);
-        garage = simulator.getGarage() ;
-        timeController = simulator.getTijd();
+        garage = simulator.getGarageController() ;
+        timeController = simulator.getTimeController();
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();

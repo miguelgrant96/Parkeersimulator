@@ -5,12 +5,10 @@ import Models.*;
 import java.awt.*;
 
 public class BuildGUI extends JFrame {
-    // audio files
 
     private Simulator simulator;
     private SimulatorView simulatorView;
     private PieView pieView;
-    //private SimulatorController simulatorController;
     private AbstractController simController;
 
 
