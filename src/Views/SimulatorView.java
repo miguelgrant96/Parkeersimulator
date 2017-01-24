@@ -1,12 +1,10 @@
 package Views;
 
-import Controllers.SimulatorController;
 import Controllers.TimeController;
 import Models.Car;
 import Models.Garage;
+import Models.GarageStats;
 import Models.Simulator;
-import Parkeersimulator.Location;
-import Models.ParkingPassCar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,26 +12,28 @@ import java.awt.*;
 public class SimulatorView extends AbstractView {
     //extra uitbreiding op de GUI tijd en omzet
     private final String TIME_TEKST = "Tijd: ";
-    private final String OMZET_TEKST = "Omzet: ";
+    private final String BEZETTING = "Bezetting: ";
 
     private CarParkView carParkView;
  //   private JLabel time;
- //   private JLabel omzet;
+    private JLabel bezetting;
     private Container contentPane;
     private TimeController klok;
     private Garage garage;
+    private GarageStats stats;
 
     public SimulatorView(Simulator simulator) {
         super(simulator);
         garage = simulator.getGarage();
         carParkView = new CarParkView();
+        stats = simulator.getGarageStats();
   //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
-  //      omzet = new JLabel(OMZET_TEKST, JLabel.CENTER);
+        bezetting = new JLabel(BEZETTING, JLabel.CENTER);
         //  contentPane = getContentPane();
 
         add(carParkView, BorderLayout.CENTER);
    //     add(time, BorderLayout.NORTH);
-  //      add(omzet, BorderLayout.SOUTH);
+        add(bezetting, BorderLayout.SOUTH);
         setVisible(true);
 
   //      updateView();
@@ -42,6 +42,18 @@ public class SimulatorView extends AbstractView {
     public void updateView() {
   //      time.setText(TIME_TEKST + klok.getTime());
         carParkView.updateView();
+    }
+
+    public void showStatus(Garage garage)
+    {
+        if(!isVisible()) {
+            setVisible(true);
+        }
+
+        stats.countFinished();
+        stats.reset();
+        bezetting.setText(BEZETTING + stats.getPopulationDetails(garage));
+
     }
 
 
@@ -94,7 +106,7 @@ public class SimulatorView extends AbstractView {
             for(int floor = 0; floor < garage.getNumberOfFloors(); floor++) {
                 for(int row = 0; row < garage.getNumberOfRows(); row++) {
                     for(int place = 0; place < garage.getNumberOfPlaces(); place++) {
-                        Location location = new Location(floor, row, place);
+                        Simulator.Location location = new Simulator.Location(floor, row, place);
                         Car car = simulator.getGarage().getCarAt(location);
                         if (floor == 0) {
                             Color color = car == null ? Color.yellow : car.getColor();
@@ -113,7 +125,7 @@ public class SimulatorView extends AbstractView {
         /**
          * Paint a place on this car park view in a given color.
          */
-        private void drawPlace(Graphics graphics, Location location, Color color) {
+        private void drawPlace(Graphics graphics, Simulator.Location location, Color color) {
             graphics.setColor(color);
             graphics.fillRect(
                     location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,

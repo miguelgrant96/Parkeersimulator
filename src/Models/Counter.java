@@ -1,4 +1,4 @@
-package Parkeersimulator;
+package Models;
 
 /**
  * Created by Bessel on 1/23/2017.

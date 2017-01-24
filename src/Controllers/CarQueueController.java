@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.*;
-import Parkeersimulator.Location;
 import Views.SimulatorView;
 
 import java.util.Random;
@@ -141,7 +140,7 @@ public class CarQueueController extends AbstractController{
                 garage.getNumberOfOpenSpots() > 0 &&
                 i < enterSpeed) {
             Car car = queue.removeCar();
-            Location freeLocation = garage.getFirstFreeLocation();
+            Simulator.Location freeLocation = garage.getFirstFreeLocation();
             garage.setCarAt(freeLocation, car);
             i++;
         }
