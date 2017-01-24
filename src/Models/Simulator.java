@@ -26,7 +26,7 @@ public class Simulator extends AbstractModel {
 
     }
 
-    public Garage getGarage(){
+    public Garage getGarageController(){
         return garage;
     }
 
@@ -34,7 +34,7 @@ public class Simulator extends AbstractModel {
         return stats;
     }
 
-    public TimeController getTijd(){
+    public TimeController getTimeController(){
         return timeController;
     }
     public boolean isRunning(){
@@ -43,7 +43,8 @@ public class Simulator extends AbstractModel {
 
 
     public void run() {
-        for (int i = 0; i < 10000; i++) {
+        running = true;
+        while(running){
             tick();
             notifyViews();
         }
