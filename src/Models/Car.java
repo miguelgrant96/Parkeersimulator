@@ -1,12 +1,10 @@
 package Models;
 
-import Parkeersimulator.Location;
-
 import java.awt.*;
 
 public abstract class Car {
 
-    private Location location;
+    private Simulator.Location location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
@@ -18,11 +16,11 @@ public abstract class Car {
 
     }
 
-    public Location getLocation() {
+    public Simulator.Location getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(Simulator.Location location) {
         this.location = location;
     }
 
