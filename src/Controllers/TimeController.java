@@ -9,7 +9,7 @@ public class TimeController {
     private int hour = 0;
     private int minute = 0;
 
-    protected void advanceTime(){
+    public void advanceTime(){
         // Advance the time by one minute.
         minute++;
         while (minute > 59) {
@@ -29,5 +29,10 @@ public class TimeController {
     public int GetDay()
     {
         return this.day;
+    }
+
+    //return de tijd in hh:mm format
+    public String getTime(){
+        return hour + ":" + minute;
     }
 }

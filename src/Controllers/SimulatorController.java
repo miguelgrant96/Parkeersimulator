@@ -1,48 +1,53 @@
 package Controllers;
 
 
+import Models.Garage;
+import Models.Simulator;
 import Views.SimulatorView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.sql.Time;
 
-public class SimulatorController extends JFrame {
+public class SimulatorController extends AbstractController implements ActionListener{
 
-    private int stepNumber;
-
-
-    private TimeController timeController;
-    private CarQueueController carQueueController;
-    private SimulatorView simulatorView;
-
-    private boolean running;
     private Timer guiRunTimer, guiAddTimer;
     private int guiAddCounter = 100;
+    private JButton start, stop, add1, add100;
 
-    private int tickPause = 100;
-
-
-
-    public SimulatorController() {
-
-        simulatorView = new SimulatorView(3, 6, 30);
-        timeController = new TimeController();
-        carQueueController = new CarQueueController(simulatorView, timeController);
-
-        buttons();
+    public SimulatorController(Simulator simulator) {
+        super(simulator);
+        setSize(250, 50);
+        setLayout(new GridLayout(0,1));
+        start = new JButton("start");
+        stop = new JButton("stop");
+        add1 = new JButton("add1");
+        add100 = new JButton("add100");
+        add(start);
+        add(stop);
+        add(add1);
+        add(add100);
+        setVisible(true);
+        //buttons();
     }
-
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==start){
+            simulator.run();
+        }
+        if(e.getSource()==add1){
+            simulator.add1();
+        }
+        if(e.getSource()==add100){
+            simulator.add1();
+        }
+        if(e.getSource()==stop){
+            simulator.stoprunning();
+        }
+    }
+}
+ /*
     public void buttons() {
-        JFrame frame = new JFrame();
-
-        JPanel optionPane = new JPanel();
-
-        JButton start = new JButton("start");
-        JButton stop = new JButton("stop");
-        JButton add1 = new JButton("add1");
-        JButton add100 = new JButton("add100");
-        JTextArea stepcount = new JTextArea();
-        stepcount.setText("Step: "+stepNumber);
 
 
 
@@ -53,7 +58,7 @@ public class SimulatorController extends JFrame {
                 guiRunTimer = new Timer(15, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        add1();
+                        simulator.add1();
                     }
                 });
                 guiRunTimer.setRepeats(true);
@@ -65,8 +70,8 @@ public class SimulatorController extends JFrame {
         stop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(running) {
-                    stoprunning();
+                if(simulator.isRunning()) {
+                    simulator.stoprunning();
                 }else{
                     guiRunTimer.setRepeats(false);
                 }
@@ -76,7 +81,7 @@ public class SimulatorController extends JFrame {
         add1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                add1();
+                simulator.add1();
             }
         });
         // Dit zooitje is momenteel alleen om het werkend te hebben ^^
@@ -87,7 +92,7 @@ public class SimulatorController extends JFrame {
                 guiAddTimer = new Timer(15, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        tick();
+                        simulator.tick();
                         System.out.println(guiAddCounter);
                         guiAddCounter--;
                         if(guiAddCounter != 0){
@@ -113,50 +118,7 @@ public class SimulatorController extends JFrame {
         frame.setVisible(true);
     }
 
-
-    public void run() {
-        running = true;
-        while(running){
-            tick();
-        }
-    }
-
-    public void stoprunning() {
-        this.running = false;
-    }
-
-    public void add1() {
-        tick();
-    }
-
-    public void tick() {
-        stepNumber++;
-        timeController.advanceTime();
-        carQueueController.handleExit();
-        updateViews();
-        // Pause.
-        try {
-            Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        carQueueController.handleEntrance();
-    }
+*/
 
 
 
-
-
-
-
-
-
-
-    private void updateViews(){
-        simulatorView.tick();
-        // Update the car park view.
-        simulatorView.updateView();
-    }
-
-
-}
