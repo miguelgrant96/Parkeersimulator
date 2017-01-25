@@ -10,7 +10,7 @@ public class BetaalAutomaat {
     private AdHocCar car;
 
     public BetaalAutomaat(){
-        kostenTotaal = getTimeParked() * kostenPM;
+        kostenTotaal = (getTimeParked() * kostenPM) + kostenTotaal;
     }
 
     private int getTimeParked(){
