@@ -4,7 +4,7 @@ import java.awt.*;
 
 public abstract class Car {
 
-    private Simulator.Location location;
+    private Location location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
@@ -16,11 +16,11 @@ public abstract class Car {
 
     }
 
-    public Simulator.Location getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(Simulator.Location location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
