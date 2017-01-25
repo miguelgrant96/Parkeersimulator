@@ -6,24 +6,27 @@ import java.awt.*;
 
 public class BuildGUI extends JFrame {
 
-    private Simulator simulator;
+    private SimulatorController simulatorController;
     private SimulatorView simulatorView;
     private PieView pieView;
+    private ButtonView buttons;
     private AbstractController simController;
 
 
     public BuildGUI() {
-        simulator = new Simulator();
-        simController = new SimulatorController(simulator);
-        simulatorView = new SimulatorView(simulator);
-        pieView = new PieView(simulator);
+
+        simulatorController = new SimulatorController();
+        simulatorView = new SimulatorView(simulatorController);
+        pieView = new PieView(simulatorController);
+        buttons = new ButtonView(simulatorController);
 
         //Set title
         setTitle("Parkeergarage");
         setLayout(new BorderLayout());
 
-        getContentPane().add(simController, BorderLayout.WEST);
+        getContentPane().add(simulatorController, BorderLayout.WEST);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
+        getContentPane().add(buttons, BorderLayout.WEST);
         JPanel pane = new JPanel();
         pane.setLayout(new BorderLayout());
         pane.add(pieView,BorderLayout.NORTH);
@@ -33,7 +36,7 @@ public class BuildGUI extends JFrame {
 
         setVisible(true);
         setResizable(false);
-        simulator.run();
+        simulatorController.run();
 
     }
 
