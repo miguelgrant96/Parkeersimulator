@@ -1,4 +1,6 @@
 package Models;
+import Controllers.CarController;
+
 import java.util.HashMap;
 
 /**
@@ -25,11 +27,11 @@ public class GarageStats {
      * Get details of what is in the field.
      * @return A string describing what is in the field.
      */
-    public String getPopulationDetails(Garage garage)
+    public String getPopulationDetails(CarController carController)
     {
         StringBuffer buffer = new StringBuffer();
         if(!countsValid) {
-            generateCounts(garage);
+            generateCounts(carController);
         }
         for(Class<?> key : counters.keySet()) {
             Counter info = counters.get(key);
@@ -90,12 +92,12 @@ public class GarageStats {
      * I.e., should it continue to run.
      * @return true If there is more than one species alive.
      */
-    public boolean isViable(Garage garage)
+    public boolean isViable(CarController carController)
     {
         // How many counts are non-zero.
         int nonZero = 0;
         if(!countsValid) {
-            generateCounts(garage);
+            generateCounts(carController);
         }
         for(Class<?> key : counters.keySet()) {
             Counter info = counters.get(key);
@@ -111,14 +113,14 @@ public class GarageStats {
      * These are not kept up to date as foxes and rabbits
      * are placed in the field, but only when a request
      * is made for the information.
-     * @param field The field to generate the stats for.
+     * @param carController The field to generate the stats for.
      */
-    private void generateCounts(Garage garage) {
+    private void generateCounts(CarController carController) {
         reset();
-        for (int floor = 0; floor < garage.getNumberOfFloors(); floor++) {
-            for (int rows = 0; rows < garage.getNumberOfRows(); rows++) {
-                for (int places = 0; places < garage.getNumberOfPlaces(); places++) {
-                    Object car = garage.getCarAt(floor, rows, places);
+        for (int floor = 0; floor < carController.getNumberOfFloors(); floor++) {
+            for (int rows = 0; rows < carController.getNumberOfRows(); rows++) {
+                for (int places = 0; places < carController.getNumberOfPlaces(); places++) {
+                    Object car = carController.getCarAt(floor, rows, places);
                     if (car != null) {
                         incrementCount(car.getClass());
                     }

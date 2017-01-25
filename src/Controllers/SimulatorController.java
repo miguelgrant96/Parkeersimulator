@@ -1,95 +1,81 @@
 package Controllers;
 
-import Models.Simulator;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import Models.*;
+import Views.AbstractView;
+
 
 public class SimulatorController extends AbstractController {
 
-    private Timer guiRunTimer, guiAddTimer;
-    private int guiAddCounter = 100;
-    private JButton start, stop, add1, add100;
 
-    public SimulatorController(Simulator simulator) {
-        super(simulator);
-        setSize(250, 50);
-        setLayout(new GridLayout(0,1));
 
-        startButton();
-        stopButton();
-        add1Button();
-        add100Button();
+    private TimeController timeController;
+    private CarQueueController carQueueController;
+    private CarController carController;
+    private GarageStats stats;
 
-        add(start);
-        add(stop);
-        add(add1);
-        add(add100);
-        setVisible(true);
-    }
-    private void stopButton(){
-        stop = new JButton("stop");
-        stop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(simulator.isRunning()) {
-                    simulator.stoprunning();
-                }else{
-                    guiRunTimer.setRepeats(false);
-                }
-            }
-        });
+    // private int stepNumber;
+    private boolean running;
+    private int tickPause = 100;
+
+    public SimulatorController( ) {
+        carController = new CarController(3, 6, 30);
+        timeController = new TimeController();
+        carQueueController = new CarQueueController(this);
+        stats = new GarageStats();
     }
 
-    private void startButton() {
-        start = new JButton("start");
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                guiRunTimer = new Timer(15, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        simulator.add1();
-                    }
-                });
-                guiRunTimer.setRepeats(true);
-                guiRunTimer.start();
-            }
-        });
+    public CarController getGarageController(){
+        return carController;
     }
 
-    private void add1Button(){
-        add1 = new JButton("add1");
-        add1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                simulator.add1();
-            }
-        });
+    public GarageStats getGarageStats(){
+        return stats;
     }
-    private void add100Button(){
-        add100 = new JButton("ad100");
-        add100.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-                guiAddTimer = new Timer(15, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        simulator.add1();
-                        System.out.println(guiAddCounter);
-                        guiAddCounter--;
-                        if(guiAddCounter != 0){
-                            guiAddTimer.setRepeats(true);
-                        }else {
-                            guiAddTimer.setRepeats(false);
-                            System.out.println("false");
-                        }
-                    }
-                });
-                guiAddTimer.start();
-            }
-        });
+    public TimeController getTimeController(){
+        return timeController;
     }
+    public boolean isRunning(){
+        return running;
+    }
+
+    public void run() {
+        running = true;
+        while(running){
+            tick();
+            AbstractView.notifyViews();
+        }
+    }
+
+    public void stoprunning() {
+        this.running = false;
+    }
+
+    public void add1() {
+        tick();
+    }
+
+    private void tick() {
+
+        timeController.advanceTime();
+        carQueueController.handleExit();
+        AbstractView.notifyViews();
+        updateViews();
+        // Pause.
+        try {
+            Thread.sleep(tickPause);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        carQueueController.handleEntrance();
+    }
+
+    private void updateViews(){
+        carController.tick();
+        // Update the car park view.
+        //simulatorView.updateView();
+        AbstractView.notifyViews();
+    }
+
+
 }
