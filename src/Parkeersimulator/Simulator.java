@@ -181,12 +181,14 @@ public class Simulator extends JFrame {
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
+       // passCarsEntering(entrancePassQueue);
     }
 
     private void handleExit(){
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
+       // passCarsLeaving();
     }
 
     private void updateViews(){
@@ -202,18 +204,31 @@ public class Simulator extends JFrame {
         addArrivingCars(numberOfCars, PASS);
     }
 
-    private void carsEntering(CarQueue queue){
+    private void carsEntering(CarQueue queue) {
         int i=0;
         // Remove car from the front of the queue and assign to a parking space.
-        while (queue.carsInQueue()>0 &&
-                simulatorView.getNumberOfOpenSpots()>0 &&
-                i<enterSpeed) {
-            Car car = queue.removeCar();
-            Location freeLocation = simulatorView.getFirstFreeLocation();
-            simulatorView.setCarAt(freeLocation, car);
-            i++;
+            while (queue.carsInQueue()>0 &&
+                    simulatorView.getNumberOfOpenSpots()>0 &&
+                    i<enterSpeed) {
+                Car car = queue.removeCar();
+                Location freeLocation = simulatorView.getFirstFreeLocation();
+                simulatorView.setCarAt(freeLocation, car);
+                i++;
+            }
         }
-    }
+
+      /*  private void passCarsEntering(CarQueue passQueue){
+        int i=0;
+                while (passQueue.carsInQueue() > 0 &&
+                        simulatorView.getNumberOfOpenSpots() > 0 &&
+                        i < enterSpeed) {
+                    Car cars = passQueue.removePassCar();
+                    Location freeLocation = simulatorView.getFirstFreeLocation();
+                    simulatorView.setCarAt(freeLocation, cars);
+                    i++;
+                }
+            }*/
+
 
     private void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
@@ -250,6 +265,14 @@ public class Simulator extends JFrame {
         }
     }
 
+    /*private void passCarsLeaving() {
+        int i=0;
+        while (exitCarQueue.carsInPassQueue()>0 && i < exitSpeed){
+            exitCarQueue.removePassCar();
+            i++;
+        }
+    }*/
+
     private int getNumberOfCars(int weekDay, int weekend){
         Random random = new Random();
 
@@ -281,8 +304,8 @@ public class Simulator extends JFrame {
     }
 
     private void carLeavesSpot(Car car){
-        simulatorView.removeCarAt(car.getLocation());
-        exitCarQueue.addCar(car);
-    }
+            simulatorView.removeCarAt(car.getLocation());
+            exitCarQueue.addCar(car);
+        }
 
 }

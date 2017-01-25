@@ -29,7 +29,6 @@ public class CarQueue {
             }
         }*/
 
-
     /**
      * @return Verwijderd auto uit de queue
      */
@@ -56,9 +55,7 @@ public class CarQueue {
      * Deze als passQueue gebruikt wordt
      * @return aantal auto's in de passQueue
      */
-    public int carsInPassQueue(){
+   /* public int carsInPassQueue(){
         return passQueue.size();
-    }
-
-
+    }*/
 }

@@ -2,7 +2,7 @@ package Parkeersimulator;
 
 import javax.swing.*;
 import java.awt.*;
-//
+
 public class SimulatorView extends JFrame {
     private CarParkView carParkView;
     private int numberOfFloors;
@@ -62,16 +62,17 @@ public class SimulatorView extends JFrame {
         Car oldCar = getCarAt(location);
         if (oldCar == null) {
             if (car instanceof ParkingPassCar) {
-               cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
-            } else {
+                cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
+                } else {
                 cars[location.getFloor()+1][location.getRow()][location.getPlace()] = car;
+                 }
+                car.setLocation(location);
+                numberOfOpenSpots++;
+                return true;
             }
-            car.setLocation(location);
-            numberOfOpenSpots--;
-            return true;
+            return false;
         }
-        return false;
-    }
+
 
     public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
@@ -82,41 +83,46 @@ public class SimulatorView extends JFrame {
             if (car == null) {
                 return null;
             }
-            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+            if (car instanceof ParkingPassCar) {
+                cars[location.getPassFloor()][location.getRow()][location.getPlace()] = null;
+            } else {
+                cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+            }
             car.setLocation(null);
-
             numberOfOpenSpots++;
             return car;
         }
 
     public Location getFirstFreeLocation() {
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
+            for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+                for (int row = 0; row < getNumberOfRows(); row++) {
+                    for (int place = 0; place < getNumberOfPlaces(); place++) {
+                        Location location = new Location(floor, row, place);
+                        if (getCarAt(location) == null) {
+                            return location;
+                        }
                     }
                 }
             }
-        }
+
         return null;
     }
 
     public Car getFirstLeavingCar() {
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    Car car = getCarAt(location);
-                    if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
-                        return car;
+
+            for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+                for (int row = 0; row < getNumberOfRows(); row++) {
+                    for (int place = 0; place < getNumberOfPlaces(); place++) {
+                        Location location = new Location(floor, row, place);
+                        Car car = getCarAt(location);
+                        if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
+                            return car;
+                        }
                     }
                 }
             }
+            return null;
         }
-        return null;
-    }
 
     public void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
