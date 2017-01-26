@@ -64,9 +64,8 @@ public class CarController {
             } else {
                 cars[location.getFloor()+1][location.getRow()][location.getPlace()] = car;
             }
-
             car.setLocation(location);
-            numberOfOpenSpots--;
+            numberOfOpenSpots++;
             return true;
         }
         return false;
@@ -76,11 +75,16 @@ public class CarController {
         if (!locationIsValid(location)) {
             return null;
         }
+
         Car car = getCarAt(location);
         if (car == null) {
             return null;
         }
-        cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+        if (car instanceof ParkingPassCar) {
+            cars[location.getPassFloor()][location.getRow()][location.getPlace()] = null;
+        } else {
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+        }
         car.setLocation(null);
         numberOfOpenSpots++;
         return car;

@@ -51,6 +51,9 @@ public class CarQueue {
     	return queue.size();
     }
 
+    public int getCarsinQueue() {
+        return queue.size();
+    }
     /**
      * Deze als passQueue gebruikt wordt
      * @return aantal auto's in de passQueue
