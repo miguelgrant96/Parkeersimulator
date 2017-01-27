@@ -15,6 +15,7 @@ public class BetaalAutomaatController {
 
 
     public BetaalAutomaatController(){
+
     }
 
     public double getDagOmzet(){
