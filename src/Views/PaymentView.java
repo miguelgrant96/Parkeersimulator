@@ -17,6 +17,9 @@ public class PaymentView extends AbstractView {
     private String test1;
 
     public PaymentView(SimulatorController simulatorController) {
+
+        betaalAutomaatController = new BetaalAutomaatController(simulatorController.getCarController());
+
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
 
@@ -43,7 +46,7 @@ public class PaymentView extends AbstractView {
 
         dagOmzet.setText("dagomzet: "+test1); //Hier de nieuwe data invullen
         verwachteDagOmzet.setText("verwachte dagelijkseomzet: ");
-        weekOmzet.setText("weekomzet: "+piet);
+        weekOmzet.setText("weekomzet: " + piet);
 
     }
 

@@ -33,7 +33,7 @@ public class CarQueueController extends AbstractController{
     public CarQueueController(SimulatorController simulatorController) {
 
         this.simulatorController = simulatorController;
-        carController = simulatorController.getGarageController() ;
+        carController = simulatorController.getCarController() ;
         timeController = simulatorController.getTimeController();
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();

@@ -25,13 +25,14 @@ public class SimulatorController extends AbstractController {
         stats = new GarageStats();
     }
 
-    public CarController getGarageController(){
+    public CarController getCarController(){
         return carController;
     }
 
     public GarageStats getGarageStats(){
         return stats;
     }
+
 
     public TimeController getTimeController(){
         return timeController;
