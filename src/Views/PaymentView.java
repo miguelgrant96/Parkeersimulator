@@ -17,6 +17,8 @@ public class PaymentView extends AbstractView {
     private String test1;
 
     public PaymentView(SimulatorController simulatorController) {
+        betaalAutomaatController = new BetaalAutomaatController();
+
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
 
@@ -29,6 +31,7 @@ public class PaymentView extends AbstractView {
         add(weekOmzet);
 
         setVisible(true);
+
 
     }
 
