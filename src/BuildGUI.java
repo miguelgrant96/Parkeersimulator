@@ -12,7 +12,6 @@ public class BuildGUI extends JFrame {
     private ButtonView buttons;
     private PaymentView paymentView;
     private AbstractController simController;
-    private AdHocCar car;
 
 
     public BuildGUI() {

@@ -1,7 +1,7 @@
 package Views;
 
 import Controllers.SimulatorController;
-import Models.BetaalAutomaat;
+import Controllers.BetaalAutomaatController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
  * Created by Jop on 26-1-2017.
  */
 public class PaymentView extends AbstractView {
-    private BetaalAutomaat betaalAutomaat;
+    private BetaalAutomaatController betaalAutomaatController;
     private JLabel dagOmzet, verwachteDagOmzet, weekOmzet;
     private double test;
     private String test1;
@@ -39,10 +39,11 @@ public class PaymentView extends AbstractView {
         DecimalFormat df = new DecimalFormat("####0.00");
         test1 = df.format(test);
         test+=0.1;
+        double piet = betaalAutomaatController.getWeekOmzet();
 
-        dagOmzet.setText("dagomzet: "+test1); //Hier de nieuwe dat invullen
+        dagOmzet.setText("dagomzet: "+test1); //Hier de nieuwe data invullen
         verwachteDagOmzet.setText("verwachte dagelijkseomzet: ");
-        weekOmzet.setText("weekomzet: ");
+        weekOmzet.setText("weekomzet: "+piet);
 
     }
 

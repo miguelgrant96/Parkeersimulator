@@ -12,7 +12,7 @@ public class SimulatorController extends AbstractController {
     private CarQueueController carQueueController;
     private CarController carController;
     private GarageStats stats;
-    private BetaalAutomaat betaalAutomaat;
+    private BetaalAutomaatController betaalAutomaatController;
 
     // private int stepNumber;
     private boolean running;
