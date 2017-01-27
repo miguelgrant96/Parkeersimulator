@@ -129,6 +129,12 @@ public class CarController {
         }
     }
 
+
+    public Car[][][] getAllCars()
+    {
+        return cars;
+    }
+
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
