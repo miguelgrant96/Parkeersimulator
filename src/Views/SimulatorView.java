@@ -1,47 +1,58 @@
 package Views;
 
-import Controllers.SimulatorController;
-import Controllers.TimeController;
-import Models.Car;
-import Models.Garage;
-import Models.Simulator;
-import Parkeersimulator.Location;
-import Models.ParkingPassCar;
+import Controllers.*;
+import Models.*;
+
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SimulatorView extends AbstractView {
+public class SimulatorView  extends AbstractView{
     //extra uitbreiding op de GUI tijd en omzet
     private final String TIME_TEKST = "Tijd: ";
-    private final String OMZET_TEKST = "Omzet: ";
+    private final String BEZETTING = "Bezetting: ";
 
     private CarParkView carParkView;
- //   private JLabel time;
- //   private JLabel omzet;
+  //  private JLabel time;
+    private JLabel bezetting;
     private Container contentPane;
     private TimeController klok;
-    private Garage garage;
+    private CarController garage;
+    private GarageStats stats;
+    private SimulatorController simulatorController;
 
-    public SimulatorView(Simulator simulator) {
-        super(simulator);
-        garage = simulator.getGarage();
+    public SimulatorView(SimulatorController simulatorController) {
+        this.simulatorController = simulatorController;
+        garage = simulatorController.getGarageController();
         carParkView = new CarParkView();
-  //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
-  //      omzet = new JLabel(OMZET_TEKST, JLabel.CENTER);
+        stats = simulatorController.getGarageStats();
+    //    time = new JLabel(TIME_TEKST, JLabel.CENTER);
+        bezetting = new JLabel(BEZETTING, JLabel.CENTER);
         //  contentPane = getContentPane();
 
         add(carParkView, BorderLayout.CENTER);
-   //     add(time, BorderLayout.NORTH);
-  //      add(omzet, BorderLayout.SOUTH);
+    //    add(time, BorderLayout.NORTH);
+        add(bezetting, BorderLayout.EAST);
         setVisible(true);
 
   //      updateView();
     }
 
     public void updateView() {
-  //      time.setText(TIME_TEKST + klok.getTime());
+   //     time.setText(TIME_TEKST + klok.getTime());
         carParkView.updateView();
+    }
+
+    public void showStatus(CarController garage)
+    {
+        if(!isVisible()) {
+            setVisible(true);
+        }
+
+        stats.countFinished();
+        stats.reset();
+        bezetting.setText(BEZETTING + stats.getPopulationDetails(garage));
+
     }
 
 
@@ -95,7 +106,7 @@ public class SimulatorView extends AbstractView {
                 for(int row = 0; row < garage.getNumberOfRows(); row++) {
                     for(int place = 0; place < garage.getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
-                        Car car = simulator.getGarage().getCarAt(location);
+                        Car car = simulatorController.getGarageController().getCarAt(location);
                         if (floor == 0) {
                             Color color = car == null ? Color.yellow : car.getColor();
                             drawPlace(graphics, location, color);

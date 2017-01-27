@@ -1,30 +1,33 @@
 package Views;
 
-/**
- * Created by Bessel on 1/24/2017.
- */
 import javax.swing.*;
-import Models.*;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Created by Arjen on 25-1-2017.
+ */
 public abstract class AbstractView extends JPanel {
-    private static final long serialVersionUID = 6437976554496769048L;
-    protected Simulator simulator;
-    /**
-     * Constructor of AbstractView
-     * @param simulator
-     */
-    public AbstractView(Simulator simulator) {
-        this.simulator=simulator;
-        simulator.addView(this);
+
+    private static List<AbstractView> views;
+
+    public AbstractView(){
+        if(views == null)
+        {
+            views=new ArrayList<AbstractView>();
+        }
+
+        addView(this);
     }
-    /**
-     * @return Simulator The model that has to be used to find the correct methods
-     */
-    public Simulator getModel() {
-        return simulator;
+
+    public void addView(AbstractView view) {
+        views.add(view);
     }
-    /**
-     * Update the View
-     */
+
+
+    public static void notifyViews() {
+        for(AbstractView v: views) v.updateView();
+    }
+
     public abstract  void updateView();
 }

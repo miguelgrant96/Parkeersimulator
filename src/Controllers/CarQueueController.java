@@ -1,8 +1,6 @@
 package Controllers;
 
 import Models.*;
-import Parkeersimulator.Location;
-import Views.SimulatorView;
 
 import java.util.Random;
 
@@ -11,14 +9,14 @@ import java.util.Random;
  */
 public class CarQueueController extends AbstractController{
 
+    private SimulatorController simulatorController;
+
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
-
-    private SimulatorView simulatorView;
     private TimeController timeController;
-    private Garage garage;
+    private CarController carController;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -32,10 +30,11 @@ public class CarQueueController extends AbstractController{
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
 
-    public CarQueueController(Simulator simulator) {
-        super(simulator);
-        garage = simulator.getGarage() ;
-        timeController = simulator.getTijd();
+    public CarQueueController(SimulatorController simulatorController) {
+
+        this.simulatorController = simulatorController;
+        carController = simulatorController.getGarageController() ;
+        timeController = simulatorController.getTimeController();
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
@@ -56,7 +55,7 @@ public class CarQueueController extends AbstractController{
 
     public void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
-        Car car = garage.getFirstLeavingCar();
+        Car car = carController.getFirstLeavingCar();
         while (car!=null) {
             if (car.getHasToPay()){
                 car.setIsPaying(true);
@@ -65,7 +64,7 @@ public class CarQueueController extends AbstractController{
             else {
                 carLeavesSpot(car);
             }
-            car = garage.getFirstLeavingCar();
+            car = carController.getFirstLeavingCar();
         }
     }
 
@@ -104,7 +103,7 @@ public class CarQueueController extends AbstractController{
     }
 
     private void carLeavesSpot(Car car){
-        garage.removeCarAt(car.getLocation());
+        carController.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
     }
 
@@ -138,11 +137,11 @@ public class CarQueueController extends AbstractController{
         int i = 0;
         // Remove car from the front of the queue and assign to a parking space.
         while (queue.carsInQueue() > 0 &&
-                garage.getNumberOfOpenSpots() > 0 &&
+                carController.getNumberOfOpenSpots() > 0 &&
                 i < enterSpeed) {
             Car car = queue.removeCar();
-            Location freeLocation = garage.getFirstFreeLocation();
-            garage.setCarAt(freeLocation, car);
+            Location freeLocation = carController.getFirstFreeLocation();
+            carController.setCarAt(freeLocation, car);
             i++;
         }
     }

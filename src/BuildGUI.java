@@ -5,35 +5,42 @@ import Models.*;
 import java.awt.*;
 
 public class BuildGUI extends JFrame {
-    // audio files
 
-    private Simulator simulator;
+    private SimulatorController simulatorController;
     private SimulatorView simulatorView;
-    //private SimulatorController simulatorController;
+    private PieView pieView;
+    private ButtonView buttons;
+    private PaymentView paymentView;
     private AbstractController simController;
 
 
     public BuildGUI() {
-        simulator = new Simulator();
-        simController = new SimulatorController(simulator);
-        simulatorView = new SimulatorView(simulator);
+
+        simulatorController = new SimulatorController();
+        simulatorView = new SimulatorView(simulatorController);
+        pieView = new PieView(simulatorController);
+        buttons = new ButtonView(simulatorController);
+        paymentView = new PaymentView(simulatorController);
+
+        JPanel pane = new JPanel();
+        pane.setLayout(new BorderLayout());
+        pane.add(pieView,BorderLayout.NORTH);
 
         //Set title
         setTitle("Parkeergarage");
         setLayout(new BorderLayout());
 
-        getContentPane().add(simController, BorderLayout.WEST);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
-        JPanel pane = new JPanel();
-        pane.setLayout(new BorderLayout());
+        getContentPane().add(simulatorController, BorderLayout.EAST);
+        getContentPane().add(buttons, BorderLayout.WEST);
+        getContentPane().add(paymentView, BorderLayout.PAGE_END);
         getContentPane().add(pane, BorderLayout.EAST);
 
         pack();
 
         setVisible(true);
         setResizable(false);
-        simulator.run();
-
+        simulatorController.run();
     }
 
     /**
