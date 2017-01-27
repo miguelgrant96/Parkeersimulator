@@ -9,12 +9,16 @@ public class BetaalAutomaat {
     private double kostenTotaal;
     private AdHocCar car;
 
+
     public BetaalAutomaat(){
-        kostenTotaal = (getTimeParked() * kostenPM) + kostenTotaal;
     }
 
-    private int getTimeParked(){
-        return car.parkingTime();
+    public int dagOmzet(){
+       return car.getTotalCars();
+    }
+
+    public int getTimeParked(){
+        return car.getParkingTime();
     }
 
 }

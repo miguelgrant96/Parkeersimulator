@@ -7,6 +7,7 @@ public class AdHocCar extends Car {
 
 	private static final Color COLOR=Color.red;
 	private int stayMinutes;
+	public int totalCars = 1;
 
     public AdHocCar() {
     	Random random = new Random();
@@ -18,12 +19,18 @@ public class AdHocCar extends Car {
     public Color getColor(){
     	return COLOR;
     }
+
+
     /*
     Vraag de tijd op per wagen om zo te kunnen berekenen
     Hoeveel er betaald moet worden in totaal
     @return stayMinutes
      */
-    public int parkingTime(){
+    public int getParkingTime(){
         return stayMinutes;
+    }
+
+    public int getTotalCars(){
+        return totalCars;
     }
 }
