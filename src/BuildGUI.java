@@ -15,7 +15,15 @@ public class BuildGUI extends JFrame {
 
     public BuildGUI() {
 
+        RegisteryController registeryController = RegisteryController.GetInstance();
+
+
         simulatorController = new SimulatorController();
+
+        registeryController.AddObjectReference(simulatorController);
+        registeryController.GetObjectInstance("Controllers.SimulatorController");
+
+
         simulatorView = new SimulatorView(simulatorController);
         pieView = new PieView(simulatorController);
         buttons = new ButtonView(simulatorController);
