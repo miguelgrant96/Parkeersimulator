@@ -11,6 +11,7 @@ public class BuildGUI extends JFrame {
     private PieView pieView;
     private ButtonView buttons;
     private PaymentView paymentView;
+    private TimeView timeView;
     private AbstractController simController;
 
 
@@ -21,6 +22,7 @@ public class BuildGUI extends JFrame {
         pieView = new PieView(simulatorController);
         buttons = new ButtonView(simulatorController);
         paymentView = new PaymentView(simulatorController);
+        timeView = new TimeView();
 
         JPanel pane = new JPanel();
         pane.setLayout(new BorderLayout());
@@ -30,6 +32,7 @@ public class BuildGUI extends JFrame {
         setTitle("Parkeergarage");
         setLayout(new BorderLayout());
 
+        getContentPane().add(timeView, BorderLayout.NORTH);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
         getContentPane().add(simulatorController, BorderLayout.EAST);
         getContentPane().add(buttons, BorderLayout.WEST);
@@ -40,7 +43,7 @@ public class BuildGUI extends JFrame {
 
         setVisible(true);
         setResizable(false);
-        simulatorController.run();
+        simulatorController.updateViews();
     }
 
     /**
