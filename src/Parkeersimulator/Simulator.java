@@ -205,17 +205,22 @@ public class Simulator extends JFrame {
     }
 
     private void carsEntering(CarQueue queue) {
-        int i=0;
+        int i = 0;
         // Remove car from the front of the queue and assign to a parking space.
-            while (queue.carsInQueue()>0 &&
-                    simulatorView.getNumberOfOpenSpots()>0 &&
-                    i<enterSpeed) {
-                Car car = queue.removeCar();
-                Location freeLocation = simulatorView.getFirstFreeLocation();
-                simulatorView.setCarAt(freeLocation, car);
-                i++;
-            }
+        while (queue.carsInQueue() > 0 &&
+                carController.getNumberOfOpenSpots() > 0 &&
+                i < enterSpeed) {
+            Car car = queue.removeCar();
+            if (car.getColor() == Color.blue) {
+                Location freeLocation = carController.getFirstFreeLocation();
+                carController.setCarAt(freeLocation, car);
+            } else (
+                    Location freeLocation = carController.getFirstPaidLocation();
+            carController.setCarAt(freeLocation, car);
+            )
+            i++;
         }
+    }
 
       /*  private void passCarsEntering(CarQueue passQueue){
         int i=0;

@@ -148,8 +148,13 @@ public class CarQueueController extends AbstractController{
                 carController.getNumberOfOpenSpots() > 0 &&
                 i < enterSpeed) {
             Car car = queue.removeCar();
-            Location freeLocation = carController.getFirstFreeLocation();
-            carController.setCarAt(freeLocation, car);
+            if (car.getColor() == Color.blue) {
+                Location freeLocation = carController.getFirstFreeLocation();
+                carController.setCarAt(freeLocation, car);
+            } else (
+                Location freeLocation = carController.getFirstPaidLocation();
+                carController.setCarAt(freeLocation, car);
+            )
             i++;
         }
     }
