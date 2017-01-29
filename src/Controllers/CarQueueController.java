@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.*;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -102,14 +103,6 @@ public class CarQueueController extends AbstractController{
         }
     }
 
-/*  private void passCarsLeaving() {
-        int i=0;
-        while (exitCarQueue.carsInPassQueue()>0 && i < exitSpeed){
-            exitCarQueue.removePassCar();
-            i++;
-        }
-    }*/
-
     private void carLeavesSpot(Car car){
         carController.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
@@ -151,23 +144,11 @@ public class CarQueueController extends AbstractController{
             if (car.getColor() == Color.blue) {
                 Location freeLocation = carController.getFirstFreeLocation();
                 carController.setCarAt(freeLocation, car);
-            } else (
+            } else {
                 Location freeLocation = carController.getFirstPaidLocation();
                 carController.setCarAt(freeLocation, car);
-            )
+            }
             i++;
         }
     }
-
- /*  private void passCarsEntering(CarQueue passQueue){
-        int i=0;
-                while (passQueue.carsInQueue() > 0 &&
-                        simulatorView.getNumberOfOpenSpots() > 0 &&
-                        i < enterSpeed) {
-                    Car cars = passQueue.removePassCar();
-                    Location freeLocation = simulatorView.getFirstFreeLocation();
-                    simulatorView.setCarAt(freeLocation, cars);
-                    i++;
-                }
-            }*/
 }
