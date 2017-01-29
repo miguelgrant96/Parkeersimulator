@@ -19,10 +19,9 @@ public class PieView extends AbstractView{
 
     /**
      * Constructor of the PieView view
-     * @param simulatorController
      */
-    public PieView(SimulatorController simulatorController) {
-        this.simulatorController = simulatorController;
+    public PieView() {
+        this.simulatorController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
         setLayout(new BorderLayout());
         setSize(600,400);
         // we would like the view to be 600px wide and 400px in height
@@ -44,7 +43,7 @@ public class PieView extends AbstractView{
         g.drawRect(0, 0, 600, 400);
         g.fillRect(0, 0, 600, 400);
 
-        stats = simulatorController.getGarageStats();
+        stats =(GarageStats) super.registeryController.getObjectInstance("Models.GarageStats");
         int count = 0;
         int index = 0;
         int[] array = new int[stats.getHashMap().size()];

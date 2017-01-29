@@ -18,10 +18,11 @@ public abstract class AbstractController extends JPanel
 
     private static final long serialVersionUID = -65786798576L;
 
+    protected RegisteryController registeryController;
 
     public AbstractController()
     {
-
+        this.registeryController = RegisteryController.getInstance();
     }
 
 

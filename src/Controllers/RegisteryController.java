@@ -18,7 +18,7 @@ public class RegisteryController {
         this.ObjectReferences = new HashMap<>();
     }
 
-    public static RegisteryController GetInstance()
+    public static RegisteryController getInstance()
     {
         if(Instance == null)
             new RegisteryController();
@@ -26,12 +26,12 @@ public class RegisteryController {
         return Instance;
     }
 
-    public void AddObjectReference(Object o)
+    public void addObjectReference(Object o)
     {
         ObjectReferences.put(o.getClass().getName(),o);
     }
 
-    public <T> Object GetObjectInstance(String ObjectName)
+    public <T> Object getObjectInstance(String ObjectName)
     {
         if(ObjectReferences.get(ObjectName) != null)
             return ObjectReferences.get(ObjectName);

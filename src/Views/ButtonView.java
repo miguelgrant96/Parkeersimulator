@@ -17,9 +17,9 @@ public class ButtonView  extends AbstractView{
     private int guiAddCounter = 100;
     private JButton start, stop, add1, add100;
 
-    public ButtonView(SimulatorController simulatorController){
+    public ButtonView(){
 
-        this.simController = simulatorController;
+        this.simController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
 
         setSize(250, 50);
         setLayout(new GridLayout(0,1));

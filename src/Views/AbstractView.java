@@ -1,5 +1,7 @@
 package Views;
 
+import Controllers.RegisteryController;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,11 @@ public abstract class AbstractView extends JPanel {
 
     private static List<AbstractView> views;
 
+    protected RegisteryController registeryController;
+
     public AbstractView(){
+        registeryController = RegisteryController.getInstance();
+
         if(views == null)
         {
             views=new ArrayList<AbstractView>();
