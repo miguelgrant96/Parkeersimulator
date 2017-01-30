@@ -1,7 +1,5 @@
 package Models;
 
-import Models.Car;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -31,7 +29,6 @@ public class CarQueue {
             }
         }*/
 
-
     /**
      * @return Verwijderd auto uit de queue
      */
@@ -51,16 +48,17 @@ public class CarQueue {
      * @return het aantal autos in de queue
      */
     public int carsInQueue(){
-    	return queue.size();
+        return queue.size();
     }
 
+    public int getCarsinQueue() {
+        return queue.size();
+    }
     /**
      * Deze als passQueue gebruikt wordt
      * @return aantal auto's in de passQueue
      */
-    public int carsInPassQueue(){
+   /* public int carsInPassQueue(){
         return passQueue.size();
-    }
-
-
+    }*/
 }

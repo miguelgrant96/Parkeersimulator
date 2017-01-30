@@ -1,7 +1,9 @@
+
 package Controllers;
 
 import Models.*;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -33,7 +35,7 @@ public class CarQueueController extends AbstractController{
     public CarQueueController(SimulatorController simulatorController) {
 
         this.simulatorController = simulatorController;
-        carController = simulatorController.getGarageController() ;
+        carController = simulatorController.getCarController();
         timeController = simulatorController.getTimeController();
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -72,7 +74,7 @@ public class CarQueueController extends AbstractController{
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
-        int averageNumberOfCarsPerHour = timeController.GetDay() < 5
+        int averageNumberOfCarsPerHour = timeController.getDay() < 5
                 ? weekDay
                 : weekend;
 
@@ -140,9 +142,15 @@ public class CarQueueController extends AbstractController{
                 carController.getNumberOfOpenSpots() > 0 &&
                 i < enterSpeed) {
             Car car = queue.removeCar();
-            Location freeLocation = carController.getFirstFreeLocation();
-            carController.setCarAt(freeLocation, car);
+            if (car.getColor() == Color.blue) {
+                Location freeLocation = carController.getFirstFreeLocation();
+                carController.setCarAt(freeLocation, car);
+            } else {
+                Location freeLocation = carController.getFirstPaidLocation();
+                carController.setCarAt(freeLocation, car);
+            }
             i++;
         }
     }
 }
+

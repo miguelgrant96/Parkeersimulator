@@ -13,9 +13,11 @@ public class SimulatorView  extends AbstractView{
     private final String ADHOC = "Adhoc: ";
 
     private CarParkView carParkView;
+
     //   private JLabel time;
     private JLabel adhoc;
     private JLabel pass;
+
     private Container contentPane;
     private TimeController klok;
     private CarController garage;
@@ -24,6 +26,7 @@ public class SimulatorView  extends AbstractView{
 
     public SimulatorView(SimulatorController simulatorController) {
         this.simulatorController = simulatorController;
+
         garage = simulatorController.getGarageController();
         carParkView = new CarParkView();
         stats = simulatorController.getGarageStats();
@@ -37,6 +40,8 @@ public class SimulatorView  extends AbstractView{
         //     add(time, BorderLayout.NORTH);
         add(adhoc, BorderLayout.SOUTH);
         add(pass, BorderLayout.NORTH);
+
+
         setVisible(true);
 
         //      updateView();
@@ -44,11 +49,14 @@ public class SimulatorView  extends AbstractView{
 
     public void updateView() {
         //      time.setText(TIME_TEKST + klok.getTime());
+
         carParkView.updateView();
         showStatus();
     }
 
+
     public void showStatus()
+
     {
         if(!isVisible()) {
             setVisible(true);
@@ -101,7 +109,6 @@ public class SimulatorView  extends AbstractView{
 
         public void updateView() {
             // Create a new car park image if the size has changed.
-            //garage.tick();
             if (!size.equals(getSize())) {
                 size = getSize();
                 carParkImage = createImage(size.width, size.height);
@@ -111,7 +118,9 @@ public class SimulatorView  extends AbstractView{
                 for(int row = 0; row < garage.getNumberOfRows(); row++) {
                     for(int place = 0; place < garage.getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
+
                         Car car = simulatorController.getGarageController().getCarAt(location);
+
                         if (floor == 0) {
                             Color color = car == null ? Color.yellow : car.getColor();
                             drawPlace(graphics, location, color);

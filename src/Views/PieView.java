@@ -12,7 +12,9 @@ import java.awt.*;
  */
 public class PieView extends AbstractView{
     //Dimension size;
+
     private CarController garage;
+
     private SimulatorController simulatorController;
 
 
@@ -43,8 +45,10 @@ public class PieView extends AbstractView{
         g.drawRect(0, 0, 600, 400);
         g.fillRect(0, 0, 600, 400);
 
+
         garage = simulatorController.getGarageController();
         int count = 2;
+
         int index = 0;
         int[] array = new int[2];
         int oldDegrees=0;
