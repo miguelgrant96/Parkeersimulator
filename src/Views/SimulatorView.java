@@ -9,8 +9,10 @@ import java.awt.*;
 
 public class SimulatorView  extends AbstractView{
     //extra uitbreiding op de GUI tijd en omzet
+
     private final String PASS = "Pass: ";
     private final String ADHOC = "Adhoc: ";
+
 
     private CarParkView carParkView;
 
@@ -19,7 +21,6 @@ public class SimulatorView  extends AbstractView{
     private JLabel pass;
 
     private Container contentPane;
-    private TimeController klok;
     private CarController garage;
     private GarageStats stats;
     private SimulatorController simulatorController;

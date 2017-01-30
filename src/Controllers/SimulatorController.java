@@ -63,10 +63,7 @@ public class SimulatorController extends AbstractController {
     }
 
     private void tick() {
-
-
         timeController.advanceTime();
-
         carQueueController.handleExit();
         AbstractView.notifyViews();
         updateViews();
