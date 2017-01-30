@@ -1,37 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2e23421-0e9e-49c7-b3e3-bd93dc0575f5" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/BuildGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Controllers/AbstractController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Controllers/ActionController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Controllers/BetaalAutomaatController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Controllers/CarController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Controllers/CarQueueController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Controllers/SimulatorController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Controllers/TimeController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Models/AdHocCar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Models/Car.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Models/CarQueue.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Models/Counter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Models/GarageStats.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Models/Location.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Models/ParkingPassCar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/AbstractView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/ButtonView$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/ButtonView$2$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/ButtonView$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/ButtonView$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/ButtonView$4$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/ButtonView$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/ButtonView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/PaymentView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/PieView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/SimulatorView$CarParkView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/SimulatorView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/Views/TimeView.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="d2e23421-0e9e-49c7-b3e3-bd93dc0575f5" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,8 +32,8 @@
       <file leaf-file-name="CarController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controllers/CarController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+            <state relative-caret-position="414">
+              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -659,7 +629,7 @@
       <workItem from="1485765376297" duration="102000" />
       <workItem from="1485765508474" duration="77000" />
       <workItem from="1485765860506" duration="390000" />
-      <workItem from="1485788687747" duration="791000" />
+      <workItem from="1485788687747" duration="987000" />
     </task>
     <task id="LOCAL-00001" summary="29-1-2017 -- Update&#10;&#10;Klok update + betaalautomaal deels!">
       <created>1485680218230</created>
@@ -679,7 +649,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8907000" />
+    <option name="totallyTimeSpent" value="9103000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1859" height="1096" extended-state="7" />
@@ -1064,8 +1034,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controllers/CarController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+        <state relative-caret-position="414">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding />
         </state>
       </provider>
