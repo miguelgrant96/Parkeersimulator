@@ -5,18 +5,18 @@ import java.awt.*;
 
 public class AdHocCar extends Car {
 
-	private static final Color COLOR=Color.red;
-	private int stayMinutes;
+    private static final Color COLOR=Color.red;
+    private int stayMinutes;
 
     public AdHocCar() {
-    	Random random = new Random();
-    	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
+        Random random = new Random();
+        int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);
         this.setHasToPay(true);
     }
-    
+
     public Color getColor(){
-    	return COLOR;
+        return COLOR;
     }
     /*
     Vraag de tijd op per wagen om zo te kunnen berekenen

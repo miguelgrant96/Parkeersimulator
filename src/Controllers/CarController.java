@@ -59,11 +59,11 @@ public class CarController {
         }
         Car oldCar = getCarAt(location);
         if (oldCar == null) {
-           // if (car instanceof ParkingPassCar) {
+            // if (car instanceof ParkingPassCar) {
             //    cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
-           // } else {
-                cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
-           // }
+            // } else {
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
+            // }
 
             car.setLocation(location);
             numberOfOpenSpots--;

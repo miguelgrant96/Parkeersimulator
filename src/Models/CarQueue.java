@@ -48,7 +48,7 @@ public class CarQueue {
      * @return het aantal autos in de queue
      */
     public int carsInQueue(){
-    	return queue.size();
+        return queue.size();
     }
 
     public int getCarsinQueue() {
