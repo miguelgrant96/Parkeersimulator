@@ -3,6 +3,7 @@ package Controllers;
 import Models.*;
 
 import java.awt.*;
+import java.sql.Time;
 
 /**
  * Created by Jop on 24-1-2017.
@@ -13,6 +14,7 @@ public class BetaalAutomaatController {
     private CarController carController;
 
     private double kostenPM = 0.05;
+    private double dagOmzet = 0;
 
 
     public BetaalAutomaatController(CarController carController){
@@ -20,7 +22,6 @@ public class BetaalAutomaatController {
     }
 
     public double getDagOmzet() {
-        double dagOmzet = 1;
         Car[][][] cars = carController.getAllCars();
         for(Car[][] cars1 : cars)
         {
@@ -48,17 +49,19 @@ public class BetaalAutomaatController {
     public double getVerwachteDagOmzet(){
         double verwachteDagOmzet = 0;
 
-        return test(verwachteDagOmzet);
+        return checkCars(verwachteDagOmzet);
     }
 
     public double getWeekOmzet(){
         double weekOmzet = 0;
-
+                                    /*if(timeController.getTime().equals("23:29")) {
+                                            dagOmzet = 0;
+                                        }*/
         return weekOmzet += getDagOmzet();
     }
 
 
-    private double test(double e){
+    private double checkCars(double input){
         Car[][][] cars = carController.getAllCars();
         for(Car[][] cars1 : cars)
         {
@@ -70,7 +73,7 @@ public class BetaalAutomaatController {
                     {
                         AdHocCar adHocCar = (AdHocCar)car;
                         if(adHocCar.getColor() == Color.red) {
-                            e += adHocCar.getParkingTime() * kostenPM;
+                            input += adHocCar.getParkingTime() * kostenPM;
                         }
                     }
                     catch (Exception b)
@@ -80,7 +83,7 @@ public class BetaalAutomaatController {
                 }
             }
         }
-        return e;
+        return input;
     }
 
 }

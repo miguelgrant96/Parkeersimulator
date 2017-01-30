@@ -4,6 +4,8 @@ import Models.Car;
 import Models.Location;
 import Models.ParkingPassCar;
 
+import java.awt.*;
+
 /**
  * Created by Bessel on 1/24/2017.
  */
@@ -37,7 +39,7 @@ public class CarController {
         return numberOfPlaces;
     }
 
-    public int getNumberOfOpenSpots(){
+        public int getNumberOfOpenSpots(){
         return numberOfOpenSpots;
     }
 
@@ -59,7 +61,7 @@ public class CarController {
         }
         Car oldCar = getCarAt(location);
         if (oldCar == null) {
-            if (car instanceof ParkingPassCar) {
+            if (car.getColor() == Color.blue) {
                 cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
             } else {
                 cars[location.getFloor()+1][location.getRow()][location.getPlace()] = car;

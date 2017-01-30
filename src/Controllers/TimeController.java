@@ -8,7 +8,7 @@ import Views.TimeView;
 public class TimeController {
 
     private int day = 0;
-    private int hour = 6;
+    private int hour = 23;
     private int minute = 29;
 
     public TimeController(){

@@ -32,6 +32,7 @@ public class TimeView extends AbstractView {
 
     public void updateView(){
         timeController.advanceTime();
+        System.out.println(timeController.getTime());
         time.setText(timeController.getTime());
     }
 }
