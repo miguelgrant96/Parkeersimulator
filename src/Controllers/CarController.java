@@ -1,23 +1,43 @@
-package Models;
+package Controllers;
+
+import Models.Car;
+import Models.Counter;
+import Models.Location;
+import Models.ParkingPassCar;
 
 /**
  * Created by Bessel on 1/24/2017.
  */
 
-public class Garage {
+public class CarController {
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
+    private Counter adhoc;
+    private Counter pass;
 
-    public Garage(int numberOfFloors, int numberOfRows, int numberOfPlaces){
+    public CarController(int numberOfFloors, int numberOfRows, int numberOfPlaces){
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
+
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+
+        adhoc = new Counter("adhoc");
+        pass = new Counter("pass");
+
     }
+    public Counter getAdhoc(){
+        return adhoc;
+    }
+
+    public Counter getPass(){
+        return pass;
+    }
+
 
     public int getNumberOfFloors() {
         return numberOfFloors;
@@ -35,7 +55,7 @@ public class Garage {
         return numberOfOpenSpots;
     }
 
-    public Car getCarAt(Simulator.Location location) {
+    public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
@@ -47,7 +67,7 @@ public class Garage {
         return cars[floor][row][places];
     }
 
-    public boolean setCarAt(Simulator.Location location, Car car) {
+    public boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
         }
@@ -55,18 +75,21 @@ public class Garage {
         if (oldCar == null) {
             if (car instanceof ParkingPassCar) {
                 cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
+                pass.increment();
             } else {
                 cars[location.getFloor()+1][location.getRow()][location.getPlace()] = car;
+                adhoc.increment();
             }
 
             car.setLocation(location);
             numberOfOpenSpots--;
+
             return true;
         }
         return false;
     }
 
-    public Car removeCarAt(Simulator.Location location) {
+    public Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
         }
@@ -74,17 +97,28 @@ public class Garage {
         if (car == null) {
             return null;
         }
-        cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
-        car.setLocation(null);
-        numberOfOpenSpots++;
-        return car;
+        if (car instanceof ParkingPassCar) {
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+            car.setLocation(null);
+            numberOfOpenSpots++;
+            pass.decrement();
+            return car;
+        }
+        else{
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+            car.setLocation(null);
+            numberOfOpenSpots++;
+            adhoc.decrement();
+            return car;
+
+        }
     }
 
-    public Simulator.Location getFirstFreeLocation() {
+    public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Simulator.Location location = new Simulator.Location(floor, row, place);
+                    Location location = new Location(floor, row, place);
                     if (getCarAt(location) == null) {
                         return location;
                     }
@@ -98,7 +132,7 @@ public class Garage {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Simulator.Location location = new Simulator.Location(floor, row, place);
+                    Location location = new Location(floor, row, place);
                     Car car = getCarAt(location);
                     if (car != null && car.getMinutesLeft() <= 0 && !car.getIsPaying()) {
                         return car;
@@ -113,7 +147,7 @@ public class Garage {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Simulator.Location location = new Simulator.Location(floor, row, place);
+                    Location location = new Location(floor, row, place);
                     Car car = getCarAt(location);
                     if (car != null) {
                         car.tick();
@@ -123,7 +157,7 @@ public class Garage {
         }
     }
 
-    private boolean locationIsValid(Simulator.Location location) {
+    private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
         int place = location.getPlace();
