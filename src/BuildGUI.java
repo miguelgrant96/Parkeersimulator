@@ -1,7 +1,6 @@
 import javax.swing.*;
 import Controllers.*;
 import Views.*;
-import Models.*;
 import java.awt.*;
 
 public class BuildGUI extends JFrame {
