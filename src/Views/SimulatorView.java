@@ -13,7 +13,11 @@ public class SimulatorView  extends AbstractView{
     private final String BEZETTING = "Bezetting: ";
 
     private CarParkView carParkView;
+<<<<<<< HEAD
     //   private JLabel time;
+=======
+  //  private JLabel time;
+>>>>>>> jop
     private JLabel bezetting;
     private Container contentPane;
     private TimeController klok;
@@ -23,23 +27,36 @@ public class SimulatorView  extends AbstractView{
 
     public SimulatorView(SimulatorController simulatorController) {
         this.simulatorController = simulatorController;
-        garage = simulatorController.getGarageController();
+        garage = simulatorController.getCarController();
         carParkView = new CarParkView();
         stats = simulatorController.getGarageStats();
+<<<<<<< HEAD
         //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
+=======
+    //    time = new JLabel(TIME_TEKST, JLabel.CENTER);
+>>>>>>> jop
         bezetting = new JLabel(BEZETTING, JLabel.CENTER);
         //  contentPane = getContentPane();
 
         add(carParkView, BorderLayout.CENTER);
+<<<<<<< HEAD
         //     add(time, BorderLayout.NORTH);
         add(bezetting, BorderLayout.SOUTH);
+=======
+    //    add(time, BorderLayout.NORTH);
+        add(bezetting, BorderLayout.EAST);
+>>>>>>> jop
         setVisible(true);
 
         //      updateView();
     }
 
     public void updateView() {
+<<<<<<< HEAD
         //      time.setText(TIME_TEKST + klok.getTime());
+=======
+   //     time.setText(TIME_TEKST + klok.getTime());
+>>>>>>> jop
         carParkView.updateView();
     }
 
@@ -106,7 +123,7 @@ public class SimulatorView  extends AbstractView{
                 for(int row = 0; row < garage.getNumberOfRows(); row++) {
                     for(int place = 0; place < garage.getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
-                        Car car = simulatorController.getGarageController().getCarAt(location);
+                        Car car = simulatorController.getCarController().getCarAt(location);
                         if (floor == 0) {
                             Color color = car == null ? Color.yellow : car.getColor();
                             drawPlace(graphics, location, color);
