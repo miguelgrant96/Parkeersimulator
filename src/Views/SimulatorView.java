@@ -13,7 +13,6 @@ public class SimulatorView  extends AbstractView{
     private final String BEZETTING = "Bezetting: ";
 
     private CarParkView carParkView;
- //   private JLabel time;
     private JLabel bezetting;
     private Container contentPane;
     private TimeController klok;
@@ -23,23 +22,19 @@ public class SimulatorView  extends AbstractView{
 
     public SimulatorView(SimulatorController simulatorController) {
         this.simulatorController = simulatorController;
-        garage = simulatorController.getGarageController();
+        garage = simulatorController.getCarController();
         carParkView = new CarParkView();
         stats = simulatorController.getGarageStats();
-  //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
         bezetting = new JLabel(BEZETTING, JLabel.CENTER);
-        //  contentPane = getContentPane();
 
         add(carParkView, BorderLayout.CENTER);
-   //     add(time, BorderLayout.NORTH);
-        add(bezetting, BorderLayout.SOUTH);
+        add(bezetting, BorderLayout.EAST);
         setVisible(true);
 
-  //      updateView();
+        //      updateView();
     }
 
     public void updateView() {
-  //      time.setText(TIME_TEKST + klok.getTime());
         carParkView.updateView();
     }
 
@@ -57,24 +52,24 @@ public class SimulatorView  extends AbstractView{
 
 
     private class CarParkView extends JPanel {
-        
+
         private Dimension size;
-        private Image carParkImage;    
-    
+        private Image carParkImage;
+
         /**
          * Constructor for objects of class CarPark
          */
         public CarParkView() {
             size = new Dimension(0, 0);
         }
-    
+
         /**
          * Overridden. Tell the GUI manager how big we would like to be.
          */
         public Dimension getPreferredSize() {
             return new Dimension(800, 500);
         }
-    
+
         /**
          * Overriden. The car park view component needs to be redisplayed. Copy the
          * internal image to screen.
@@ -83,7 +78,7 @@ public class SimulatorView  extends AbstractView{
             if (carParkImage == null) {
                 return;
             }
-    
+
             Dimension currentSize = getSize();
             if (size.equals(currentSize)) {
                 g.drawImage(carParkImage, 0, 0, null);
@@ -93,10 +88,9 @@ public class SimulatorView  extends AbstractView{
                 g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
             }
         }
-    
+
         public void updateView() {
             // Create a new car park image if the size has changed.
-            //garage.tick();
             if (!size.equals(getSize())) {
                 size = getSize();
                 carParkImage = createImage(size.width, size.height);
@@ -106,7 +100,7 @@ public class SimulatorView  extends AbstractView{
                 for(int row = 0; row < garage.getNumberOfRows(); row++) {
                     for(int place = 0; place < garage.getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
-                        Car car = simulatorController.getGarageController().getCarAt(location);
+                        Car car = simulatorController.getCarController().getCarAt(location);
                         if (floor == 0) {
                             Color color = car == null ? Color.yellow : car.getColor();
                             drawPlace(graphics, location, color);
@@ -120,7 +114,7 @@ public class SimulatorView  extends AbstractView{
             repaint();
 
         }
-    
+
         /**
          * Paint a place on this car park view in a given color.
          */
