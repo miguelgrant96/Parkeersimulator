@@ -43,10 +43,12 @@ public class ButtonView  extends AbstractView{
             public void actionPerformed(ActionEvent e) {
                 if(simController.isRunning()) {
                     simController.stoprunning();
+
                 }else if(guiAddCounter > 0 && guiAddCounter != 100){
                     guiAddTimer.setRepeats(false);
                     guiAddCounter = 100;
                 } else {
+
                     guiRunTimer.setRepeats(false);
                 }
             }
@@ -97,7 +99,12 @@ public class ButtonView  extends AbstractView{
                             guiAddTimer.setRepeats(true);
                         }else {
                             guiAddTimer.setRepeats(false);
+
+                            System.out.println("false");
                             guiAddCounter = 100;
+
+                            
+
                         }
                     }
                 });
@@ -110,4 +117,6 @@ public class ButtonView  extends AbstractView{
     {
         repaint();
     }
+
 }
+

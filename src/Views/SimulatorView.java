@@ -9,11 +9,15 @@ import java.awt.*;
 
 public class SimulatorView  extends AbstractView{
     //extra uitbreiding op de GUI tijd en omzet
-    private final String TIME_TEKST = "Tijd: ";
-    private final String BEZETTING = "Bezetting: ";
+    private final String PASS = "Pass: ";
+    private final String ADHOC = "Adhoc: ";
 
     private CarParkView carParkView;
-    private JLabel bezetting;
+
+    //   private JLabel time;
+    private JLabel adhoc;
+    private JLabel pass;
+
     private Container contentPane;
     private TimeController klok;
     private CarController garage;
@@ -22,32 +26,46 @@ public class SimulatorView  extends AbstractView{
 
     public SimulatorView(SimulatorController simulatorController) {
         this.simulatorController = simulatorController;
-        garage = simulatorController.getCarController();
+
+        garage = simulatorController.getGarageController();
         carParkView = new CarParkView();
         stats = simulatorController.getGarageStats();
-        bezetting = new JLabel(BEZETTING, JLabel.CENTER);
+
+        //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
+        adhoc = new JLabel(ADHOC, JLabel.CENTER);
+        pass = new JLabel(PASS, JLabel.CENTER);
+        //  contentPane = getContentPane();
 
         add(carParkView, BorderLayout.CENTER);
-        add(bezetting, BorderLayout.EAST);
+        //     add(time, BorderLayout.NORTH);
+        add(adhoc, BorderLayout.SOUTH);
+        add(pass, BorderLayout.NORTH);
+
+
         setVisible(true);
 
         //      updateView();
     }
 
     public void updateView() {
+        //      time.setText(TIME_TEKST + klok.getTime());
+
         carParkView.updateView();
+        showStatus();
     }
 
-    public void showStatus(CarController garage)
+
+    public void showStatus()
+
     {
         if(!isVisible()) {
             setVisible(true);
         }
 
-        stats.countFinished();
-        stats.reset();
-        bezetting.setText(BEZETTING + stats.getPopulationDetails(garage));
-
+        //stats.countFinished();
+        //stats.reset();
+        pass.setText(PASS + garage.getPass().getCount());
+        adhoc.setText(ADHOC + garage.getAdhoc().getCount());
     }
 
 
@@ -100,7 +118,9 @@ public class SimulatorView  extends AbstractView{
                 for(int row = 0; row < garage.getNumberOfRows(); row++) {
                     for(int place = 0; place < garage.getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
-                        Car car = simulatorController.getCarController().getCarAt(location);
+
+                        Car car = simulatorController.getGarageController().getCarAt(location);
+
                         if (floor == 0) {
                             Color color = car == null ? Color.yellow : car.getColor();
                             drawPlace(graphics, location, color);
