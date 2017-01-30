@@ -25,15 +25,20 @@ public class SimulatorController extends AbstractController {
         stats = new GarageStats();
     }
 
+    public CarController getGarageController(){
+        return carController;
+    }
+
+    public CarQueueController getQue(){
+        return carQueueController;
+    }
+
+
     public CarController getCarController(){
         return carController;
     }
 
-    public GarageStats getGarageStats(){
-        return stats;
-    }
-
-
+  
     public TimeController getTimeController(){
         return timeController;
     }
@@ -58,7 +63,6 @@ public class SimulatorController extends AbstractController {
     }
 
     private void tick() {
-
         timeController.advanceTime();
         carQueueController.handleExit();
         AbstractView.notifyViews();
@@ -72,7 +76,9 @@ public class SimulatorController extends AbstractController {
         carQueueController.handleEntrance();
     }
 
+
     public void updateViews(){
+
         carController.tick();
         // Update the car park view.
         //simulatorView.updateView();

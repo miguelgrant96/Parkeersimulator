@@ -75,4 +75,6 @@ public class Location {
      */
     public int getPassFloor() { return 0; }
 
+
 }
+
