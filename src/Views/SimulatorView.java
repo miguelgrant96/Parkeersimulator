@@ -12,7 +12,6 @@ public class SimulatorView  extends AbstractView{
     private final String BEZETTING = "Bezetting: ";
 
     private CarParkView carParkView;
-    //  private JLabel time;
     private JLabel bezetting;
     private Container contentPane;
     private CarController garage;
@@ -90,7 +89,6 @@ public class SimulatorView  extends AbstractView{
 
         public void updateView() {
             // Create a new car park image if the size has changed.
-            //garage.tick();
             if (!size.equals(getSize())) {
                 size = getSize();
                 carParkImage = createImage(size.width, size.height);
