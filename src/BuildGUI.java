@@ -21,7 +21,7 @@ public class BuildGUI extends JFrame {
         pieView = new PieView(simulatorController);
         buttons = new ButtonView(simulatorController);
         paymentView = new PaymentView(simulatorController);
-        timeView = new TimeView();
+        timeView = new TimeView(simulatorController);
 
         JPanel pane = new JPanel();
         pane.setLayout(new BorderLayout());

@@ -42,8 +42,13 @@ public class CarQueueController extends AbstractController{
         exitCarQueue = new CarQueue();
     }
 
+    public void test(){
+        System.out.println(timeController.getTime());
+    }
+
     public void handleEntrance(){
         carsArriving();
+        test();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
     }

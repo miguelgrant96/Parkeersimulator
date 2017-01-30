@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.SimulatorController;
 import Controllers.TimeController;
 
 import javax.swing.*;
@@ -11,13 +12,14 @@ import java.awt.*;
 public class TimeView extends AbstractView {
 
     private TimeController timeController;
+    private SimulatorController simulatorController;
     private JLabel day,time,empty;
     private JPanel dayTime;
     private String dayString;
 
-    public TimeView(){
+    public TimeView(SimulatorController simulatorController){
 
-        timeController = new TimeController();
+        timeController = simulatorController.getTimeController();
 
         dayString = ""+timeController.getDay();
 
@@ -41,7 +43,6 @@ public class TimeView extends AbstractView {
     }
 
     public void updateView(){
-        timeController.advanceTime();
         day.setText(toString());
         time.setText(timeController.getTime());
     }
