@@ -13,11 +13,7 @@ public class SimulatorView  extends AbstractView{
     private final String BEZETTING = "Bezetting: ";
 
     private CarParkView carParkView;
-<<<<<<< HEAD
-    //   private JLabel time;
-=======
-  //  private JLabel time;
->>>>>>> jop
+    //  private JLabel time;
     private JLabel bezetting;
     private Container contentPane;
     private TimeController klok;
@@ -30,33 +26,20 @@ public class SimulatorView  extends AbstractView{
         garage = simulatorController.getCarController();
         carParkView = new CarParkView();
         stats = simulatorController.getGarageStats();
-<<<<<<< HEAD
-        //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
-=======
-    //    time = new JLabel(TIME_TEKST, JLabel.CENTER);
->>>>>>> jop
+        //    time = new JLabel(TIME_TEKST, JLabel.CENTER);
         bezetting = new JLabel(BEZETTING, JLabel.CENTER);
         //  contentPane = getContentPane();
 
         add(carParkView, BorderLayout.CENTER);
-<<<<<<< HEAD
-        //     add(time, BorderLayout.NORTH);
-        add(bezetting, BorderLayout.SOUTH);
-=======
-    //    add(time, BorderLayout.NORTH);
+        //    add(time, BorderLayout.NORTH);
         add(bezetting, BorderLayout.EAST);
->>>>>>> jop
         setVisible(true);
 
         //      updateView();
     }
 
     public void updateView() {
-<<<<<<< HEAD
-        //      time.setText(TIME_TEKST + klok.getTime());
-=======
-   //     time.setText(TIME_TEKST + klok.getTime());
->>>>>>> jop
+        //     time.setText(TIME_TEKST + klok.getTime());
         carParkView.updateView();
     }
 

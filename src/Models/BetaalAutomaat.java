@@ -14,7 +14,7 @@ public class BetaalAutomaat {
     }
 
     private int getTimeParked(){
-        return car.parkingTime();
+        return car.getParkingTime();
     }
 
 }
