@@ -13,7 +13,6 @@ public class SimulatorView  extends AbstractView{
     private final String BEZETTING = "Bezetting: ";
 
     private CarParkView carParkView;
-    //  private JLabel time;
     private JLabel bezetting;
     private Container contentPane;
     private TimeController klok;
@@ -26,12 +25,9 @@ public class SimulatorView  extends AbstractView{
         garage = simulatorController.getCarController();
         carParkView = new CarParkView();
         stats = simulatorController.getGarageStats();
-        //    time = new JLabel(TIME_TEKST, JLabel.CENTER);
         bezetting = new JLabel(BEZETTING, JLabel.CENTER);
-        //  contentPane = getContentPane();
 
         add(carParkView, BorderLayout.CENTER);
-        //    add(time, BorderLayout.NORTH);
         add(bezetting, BorderLayout.EAST);
         setVisible(true);
 
@@ -39,7 +35,6 @@ public class SimulatorView  extends AbstractView{
     }
 
     public void updateView() {
-        //     time.setText(TIME_TEKST + klok.getTime());
         carParkView.updateView();
     }
 
@@ -96,7 +91,6 @@ public class SimulatorView  extends AbstractView{
 
         public void updateView() {
             // Create a new car park image if the size has changed.
-            //garage.tick();
             if (!size.equals(getSize())) {
                 size = getSize();
                 carParkImage = createImage(size.width, size.height);
