@@ -34,4 +34,8 @@ public class AdHocCar extends Car {
     public int getParkingTime(){
         return stayMinutes;
     }
+
+    public boolean getIsPaying(){
+        return super.getIsPaying();
+    }
 }

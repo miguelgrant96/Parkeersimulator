@@ -8,7 +8,7 @@ import Views.TimeView;
 public class TimeController {
 
     private int day = 0;
-    private int hour = 23;
+    private int hour = 20;
     private int minute = 29;
 
     public TimeController() {
@@ -25,13 +25,13 @@ public class TimeController {
             hour -= 24;
             day++;
         }
-        while (day > 6) {
+        while (day > 7) {
             day -= 7;
         }
 
     }
 
-    public int GetDay() {
+    public int getDay() {
         return this.day;
     }
 

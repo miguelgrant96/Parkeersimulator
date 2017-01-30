@@ -2,7 +2,6 @@ package Controllers;
 
 import Models.Car;
 import Models.Location;
-import Models.ParkingPassCar;
 
 /**
  * Created by Bessel on 1/24/2017.

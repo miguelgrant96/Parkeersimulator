@@ -1,9 +1,9 @@
-package Models;
+/*package Models;
 
 /**
  * Created by Jop on 24-1-2017.
  */
-public class BetaalAutomaat {
+/*public class BetaalAutomaat {
 
     private double kostenPM = 0.05;
     private double kostenTotaal;
@@ -17,4 +17,4 @@ public class BetaalAutomaat {
         return car.getParkingTime();
     }
 
-}
+}*/

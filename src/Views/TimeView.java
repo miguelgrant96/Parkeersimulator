@@ -18,7 +18,7 @@ public class TimeView extends AbstractView {
         timeController = new TimeController();
 
         setSize(250, 50);
-        setLayout(new GridLayout(0,2));
+        setLayout(new GridLayout(0,4));
 
         empty = new JLabel();
         time = new JLabel(timeController.getTime());
@@ -32,7 +32,6 @@ public class TimeView extends AbstractView {
 
     public void updateView(){
         timeController.advanceTime();
-        System.out.println(timeController.getTime());
         time.setText(timeController.getTime());
     }
 }

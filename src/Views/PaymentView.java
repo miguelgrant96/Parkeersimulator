@@ -2,6 +2,7 @@ package Views;
 
 import Controllers.SimulatorController;
 import Controllers.BetaalAutomaatController;
+import Controllers.TimeController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +13,14 @@ import java.text.DecimalFormat;
  */
 public class PaymentView extends AbstractView {
     private BetaalAutomaatController betaalAutomaatController;
+    private TimeController timeController;
     private JLabel dagOmzetLabel, verwachteDagOmzetLabel, weekOmzetLabel;
 
     public PaymentView(SimulatorController simulatorController) {
 
         betaalAutomaatController = new BetaalAutomaatController(simulatorController.getCarController());
+        timeController = new TimeController();
+
 
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
@@ -51,6 +55,17 @@ public class PaymentView extends AbstractView {
         dagOmzetLabel.setText("dagomzet: "+dagOmzetS); //Hier de nieuwe data invullen
         verwachteDagOmzetLabel.setText("verwachte omzet: "+verwachteDagOmzetS);
         weekOmzetLabel.setText("weekomzet: "+weekOmzetS);
+
+
+        timeController.advanceTime();
+        if(timeController.getDay() == 7 && timeController.getTime().equals("23:59")){
+            betaalAutomaatController.resetFields(1);
+        }else if(timeController.getTime().equals("23:59")){
+            betaalAutomaatController.resetFields(2);
+        }else {
+            //Do nothing!!
+        }
+
 
     }
 

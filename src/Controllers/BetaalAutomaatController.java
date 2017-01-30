@@ -15,6 +15,8 @@ public class BetaalAutomaatController {
 
     private double kostenPM = 0.05;
     private double dagOmzet = 0;
+    private double verwachteDagOmzet = 0;
+    private double weekOmzet = 0;
 
 
     public BetaalAutomaatController(CarController carController){
@@ -32,7 +34,7 @@ public class BetaalAutomaatController {
                     try
                     {
                         AdHocCar adHocCar = (AdHocCar)car;
-                        if(adHocCar.getColor() == Color.red && carPaying.getIsPaying()) {
+                        if(adHocCar.getColor() == Color.red && adHocCar.getMinutesLeft() == 0) {
                             dagOmzet += adHocCar.getParkingTime() * kostenPM;
                         }
                     }
@@ -47,21 +49,7 @@ public class BetaalAutomaatController {
     }
 
     public double getVerwachteDagOmzet(){
-        double verwachteDagOmzet = 0;
-
-        return checkCars(verwachteDagOmzet);
-    }
-
-    public double getWeekOmzet(){
-        double weekOmzet = 0;
-                                    /*if(timeController.getTime().equals("23:29")) {
-                                            dagOmzet = 0;
-                                        }*/
-        return weekOmzet += getDagOmzet();
-    }
-
-
-    private double checkCars(double input){
+        double input = 0;
         Car[][][] cars = carController.getAllCars();
         for(Car[][] cars1 : cars)
         {
@@ -73,7 +61,7 @@ public class BetaalAutomaatController {
                     {
                         AdHocCar adHocCar = (AdHocCar)car;
                         if(adHocCar.getColor() == Color.red) {
-                            input += adHocCar.getParkingTime() * kostenPM;
+                            input = adHocCar.getParkingTime() * kostenPM;
                         }
                     }
                     catch (Exception b)
@@ -83,7 +71,27 @@ public class BetaalAutomaatController {
                 }
             }
         }
-        return input;
+        return verwachteDagOmzet += input;
     }
 
+    public double getWeekOmzet(){
+        return weekOmzet;
+    }
+
+
+    public void resetFields(int i){
+        switch (i){
+            case 1:
+                dagOmzet = 0;
+                verwachteDagOmzet = 0;
+                weekOmzet = 0;
+                break;
+
+            case 2:
+                weekOmzet = weekOmzet + dagOmzet;
+                dagOmzet = 0;
+                verwachteDagOmzet = 0;
+                break;
+        }
+    }
 }

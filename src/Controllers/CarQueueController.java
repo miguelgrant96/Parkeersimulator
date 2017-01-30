@@ -73,7 +73,7 @@ public class CarQueueController extends AbstractController{
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
-        int averageNumberOfCarsPerHour = timeController.GetDay() < 5
+        int averageNumberOfCarsPerHour = timeController.getDay() < 5
                 ? weekDay
                 : weekend;
 
