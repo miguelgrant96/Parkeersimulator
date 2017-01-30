@@ -9,14 +9,12 @@ import java.awt.*;
 
 public class SimulatorView  extends AbstractView{
     //extra uitbreiding op de GUI tijd en omzet
-    private final String TIME_TEKST = "Tijd: ";
     private final String BEZETTING = "Bezetting: ";
 
     private CarParkView carParkView;
     //  private JLabel time;
     private JLabel bezetting;
     private Container contentPane;
-    private TimeController klok;
     private CarController garage;
     private GarageStats stats;
     private SimulatorController simulatorController;
@@ -26,12 +24,9 @@ public class SimulatorView  extends AbstractView{
         garage = simulatorController.getCarController();
         carParkView = new CarParkView();
         stats = simulatorController.getGarageStats();
-        //    time = new JLabel(TIME_TEKST, JLabel.CENTER);
         bezetting = new JLabel(BEZETTING, JLabel.CENTER);
-        //  contentPane = getContentPane();
 
         add(carParkView, BorderLayout.CENTER);
-        //    add(time, BorderLayout.NORTH);
         add(bezetting, BorderLayout.EAST);
         setVisible(true);
 
@@ -39,7 +34,6 @@ public class SimulatorView  extends AbstractView{
     }
 
     public void updateView() {
-        //     time.setText(TIME_TEKST + klok.getTime());
         carParkView.updateView();
     }
 
