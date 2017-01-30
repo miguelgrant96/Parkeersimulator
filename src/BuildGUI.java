@@ -24,10 +24,6 @@ public class BuildGUI extends JFrame {
         paymentView = new PaymentView(simulatorController);
         timeView = new TimeView(simulatorController);
 
-        JPanel pane = new JPanel();
-        pane.setLayout(new BorderLayout());
-        pane.add(pieView,BorderLayout.NORTH);
-
         //Set title
         setTitle("Parkeergarage");
         setLayout(new BorderLayout());
@@ -47,9 +43,6 @@ public class BuildGUI extends JFrame {
 
         setVisible(true);
         setResizable(false);
-
-        simulatorController.run();
-
 
         simulatorController.updateViews();
 

@@ -13,13 +13,14 @@ import java.text.DecimalFormat;
  */
 public class PaymentView extends AbstractView {
     private BetaalAutomaatController betaalAutomaatController;
+    private SimulatorController simulatorController;
     private TimeController timeController;
     private JLabel dagOmzetLabel, verwachteDagOmzetLabel, weekOmzetLabel;
 
     public PaymentView(SimulatorController simulatorController) {
 
         betaalAutomaatController = new BetaalAutomaatController(simulatorController.getCarController());
-        timeController = new TimeController();
+        timeController = simulatorController.getTimeController();
 
 
         setSize(250, 50);
@@ -57,7 +58,6 @@ public class PaymentView extends AbstractView {
         weekOmzetLabel.setText("weekomzet: "+weekOmzetS);
 
 
-        timeController.advanceTime();
         if(timeController.getDay() == 7 && timeController.getTime().equals("23:59")){
             betaalAutomaatController.resetFields(1);
         }else if(timeController.getTime().equals("23:59")){
