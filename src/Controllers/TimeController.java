@@ -31,6 +31,10 @@ public class TimeController {
     public int getDay() {
         return this.day;
     }
+    
+    public int getHour() {
+        return hour;
+    }
 
     //Setting the time in a HH:MM format
     public String getTime() {
@@ -45,9 +49,5 @@ public class TimeController {
             time = hour + ":" + minute;
         }
         return time;
-    }
-
-    public int getHour() {
-        return hour;
     }
 }
