@@ -96,6 +96,7 @@ public class CarQueueController extends AbstractController{
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
+
     }
 
     public void carsReadyToLeave(){
@@ -110,6 +111,7 @@ public class CarQueueController extends AbstractController{
                 carLeavesSpot(car);
             }
             car = carController.getFirstLeavingCar();
+
         }
     }
 
@@ -146,11 +148,13 @@ public class CarQueueController extends AbstractController{
             i++;
             leftCarsToday++;
         }
+
     }
 
     private void carLeavesSpot(Car car){
         carController.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
+
     }
 
 
@@ -177,7 +181,7 @@ public class CarQueueController extends AbstractController{
 
         numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
-        carsToday++;
+
     }
 
     private void carsEntering(CarQueue queue) {
@@ -197,6 +201,7 @@ public class CarQueueController extends AbstractController{
                 carController.getAdhoc().increment();
             }
             i++;
+            carsToday++;
         }
     }
 
@@ -205,7 +210,7 @@ public class CarQueueController extends AbstractController{
         if (queue.carsInQueue() >= 3) {
             int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
 
-            //System.out.println("Number " + randomNum);
+            System.out.println("Number " + randomNum);
             if (randomNum > 7) {
                 carsLeft++;
                 //System.out.println("Time the car left: " + timeController.getTime() + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + leftCars());
@@ -240,9 +245,7 @@ public class CarQueueController extends AbstractController{
                 numberOfCarsInQueue = 0;
                 leftCarsToday = 0;
         }
-
-
-
+    
     public void carLeavingQueue(){
         //System.out.println("Screw you guys, I'm going home!");
         entranceCarQueue.removeCar();
