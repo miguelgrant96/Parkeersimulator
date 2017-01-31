@@ -218,4 +218,5 @@ public class CarQueueController extends AbstractController{
         System.out.println("Screw you guys, I'm going home!");
         entranceCarQueue.removeCar();
     }
+    
 }
