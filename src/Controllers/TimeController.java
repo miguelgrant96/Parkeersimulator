@@ -46,4 +46,8 @@ public class TimeController {
         }
         return time;
     }
+
+    public int getHour() {
+        return hour;
+    }
 }
