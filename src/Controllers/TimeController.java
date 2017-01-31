@@ -1,14 +1,11 @@
 package Controllers;
 
-import Views.TimeView;
 
-/**
- * Created by Arjen on 23-1-2017.
- */
 public class TimeController {
 
-    private int day = 0;
-    private int hour = 22;
+    //Starting Day 1 at: 06:30
+    private int day = 7;
+    private int hour = 06;
     private int minute = 30;
 
     public TimeController() {
@@ -35,7 +32,7 @@ public class TimeController {
         return this.day;
     }
 
-    //return de tijd in hh:mm format
+    //Setting the time in a HH:MM format
     public String getTime() {
         String time;
         if (hour < 10 && minute < 10) {

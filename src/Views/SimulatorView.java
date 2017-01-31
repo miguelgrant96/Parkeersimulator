@@ -9,13 +9,9 @@ import java.awt.*;
 
 public class SimulatorView  extends AbstractView{
     //extra uitbreiding op de GUI tijd en omzet
-    private final String PASS = "Pass: ";
-    private final String ADHOC = "Adhoc: ";
 
     private CarParkView carParkView;
     //   private JLabel time;
-    private JLabel adhoc;
-    private JLabel pass;
     private Container contentPane;
     private TimeController klok;
     private CarController garage;
@@ -28,12 +24,8 @@ public class SimulatorView  extends AbstractView{
         carParkView = new CarParkView();
         stats = simulatorController.getGarageStats();
 
-        adhoc = new JLabel(ADHOC, JLabel.CENTER);
-        pass = new JLabel(PASS, JLabel.CENTER);
 
         add(carParkView, BorderLayout.CENTER);
-        add(adhoc, BorderLayout.SOUTH);
-        add(pass, BorderLayout.NORTH);
         setVisible(true);
 
         //      updateView();
@@ -52,8 +44,6 @@ public class SimulatorView  extends AbstractView{
 
         //stats.countFinished();
         //stats.reset();
-        pass.setText(PASS + garage.getPass().getCount());
-        adhoc.setText(ADHOC + garage.getAdhoc().getCount());
     }
 
 
@@ -109,7 +99,7 @@ public class SimulatorView  extends AbstractView{
                         Location location = new Location(floor, row, place);
                         Car car = simulatorController.getGarageController().getCarAt(location);
                         if (floor == 0) {
-                            Color color = car == null ? Color.yellow : car.getColor();
+                            Color color = car == null ? Color.lightGray : car.getColor();
                             drawPlace(graphics, location, color);
                         } else {
                             Color color = car == null ? Color.white : car.getColor();
