@@ -4,7 +4,7 @@ package Controllers;
 public class TimeController {
 
     //Starting Day 1 at: 06:30
-    private int day = 7;
+    private int day = 1;
     private int hour = 06;
     private int minute = 30;
 

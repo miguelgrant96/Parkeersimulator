@@ -8,7 +8,7 @@ import java.sql.Time;
 /**
  * Created by Jop on 24-1-2017.
  */
-public class BetaalAutomaatController {
+public class BetaalAutomaatController extends AbstractController{
 
     private Car carPaying;
     private CarController carController;
@@ -19,8 +19,8 @@ public class BetaalAutomaatController {
     private double weekOmzet = 0;
 
 
-    public BetaalAutomaatController(CarController carController){
-        this.carController = carController;
+    public BetaalAutomaatController(){
+        this.carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
     }
 
     public double getDagOmzet() {

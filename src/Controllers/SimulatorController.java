@@ -18,31 +18,13 @@ public class SimulatorController extends AbstractController {
     private int tickPause = 100;
 
     public SimulatorController( ) {
-        carController = new CarController(3, 6, 30);
-        timeController = new TimeController();
-        carQueueController = new CarQueueController(this);
-        stats = new GarageStats();
+        super();
+        carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
+        timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
+        carQueueController = (CarQueueController) super.registeryController.getObjectInstance("Controllers.CarQueueController");
+        stats = (GarageStats) super.registeryController.getObjectInstance("Models.GarageStats");
     }
 
-    public CarController getGarageController(){
-        return carController;
-    }
-
-    public CarQueueController getQue(){
-        return carQueueController;
-    }
-
-    public CarController getCarController(){
-        return carController;
-    }
-
-    public GarageStats getGarageStats(){
-        return stats;
-    }
-
-    public TimeController getTimeController(){
-        return timeController;
-    }
     public boolean isRunning(){
         return running;
     }
