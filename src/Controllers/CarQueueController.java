@@ -204,7 +204,7 @@ public class CarQueueController extends AbstractController{
 
                 getCarsLeft();
                 System.out.println("Time the car left: " + timeLeft + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + getCarsLeft());
-                carsLeavingQueue();
+                carLeavingQueue();
             }
         }
     }
@@ -219,8 +219,8 @@ public class CarQueueController extends AbstractController{
         return carsLeft;
     }
 
-    public void carsLeavingQueue(){
-        System.out.println("Car is Leaving Queue");
+    public void carLeavingQueue(){
+        System.out.println("Screw you guys, I'm going home!");
         entranceCarQueue.removeCar();
     }
 }
