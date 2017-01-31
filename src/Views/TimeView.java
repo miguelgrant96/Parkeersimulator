@@ -17,9 +17,9 @@ public class TimeView extends AbstractView {
     private JPanel dayTime;
     private String dayString;
 
-    public TimeView(SimulatorController simulatorController){
+    public TimeView(){
         // Connecting with the same TimeControllers the other classes in the project use.
-        timeController = simulatorController.getTimeController();
+        timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
 
         // Getting the current day
         dayString = "Day: "+timeController.getDay();
