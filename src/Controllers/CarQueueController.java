@@ -21,6 +21,9 @@ public class CarQueueController extends AbstractController{
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
     private int carsLeft;
+    private int numberOfCarsInQueue;
+    private int carsToday;
+    private int leftCarsToday;
 
 
     int weekDayArrivals; // average number of arriving cars per hour
@@ -47,6 +50,10 @@ public class CarQueueController extends AbstractController{
         exitCarQueue = new CarQueue();
         setArrivals();
         carsLeft = 0;
+        numberOfCarsInQueue = 0;
+        carsToday = 0;
+        leftCarsToday = 0;
+
     }
 
     private void setArrivals() {
@@ -137,6 +144,7 @@ public class CarQueueController extends AbstractController{
         while (exitCarQueue.carsInQueue()>0 && i < exitSpeed){
             exitCarQueue.removeCar();
             i++;
+            leftCarsToday++;
         }
     }
 
@@ -169,6 +177,7 @@ public class CarQueueController extends AbstractController{
 
         numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
+        carsToday++;
     }
 
     private void carsEntering(CarQueue queue) {
@@ -192,35 +201,50 @@ public class CarQueueController extends AbstractController{
     }
 
     public void carsLeavingQueue(CarQueue queue){
-        System.out.println(queue.carsInQueue());
+        numberOfCarsInQueue = queue.carsInQueue();
         if (queue.carsInQueue() >= 3) {
             int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
 
-            System.out.println("Number " + randomNum);
+            //System.out.println("Number " + randomNum);
             if (randomNum > 7) {
-
-                System.out.println("Time the car left: " + timeController.getTime() + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + leftCars());
+                carsLeft++;
+                //System.out.println("Time the car left: " + timeController.getTime() + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + leftCars());
                 carLeavingQueue();
             }
         }
     }
 
-    public int getWaitingCars(CarQueue queue) {
-        return queue.carsInQueue();
+    public int getWaitingCars() {
+        return numberOfCarsInQueue;
     }
-    
+
     public int getLeftCars(){
         return leftCars();
     }
 
     public int leftCars() {
-        carsLeft++;
         return carsLeft;
     }
 
+    public int getCarsToday(){
+        return carsToday;
+    }
+
+    public int getLeavingCarsToday(){
+        return leftCarsToday;
+    }
+
+    public void resetCars(){
+                carsLeft = 0;
+                carsToday = 0;
+                numberOfCarsInQueue = 0;
+                leftCarsToday = 0;
+        }
+
+
+
     public void carLeavingQueue(){
-        System.out.println("Screw you guys, I'm going home!");
+        //System.out.println("Screw you guys, I'm going home!");
         entranceCarQueue.removeCar();
     }
-    
 }
