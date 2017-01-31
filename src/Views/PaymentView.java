@@ -16,11 +16,11 @@ public class PaymentView extends AbstractView {
     private TimeController timeController;
     private JLabel dagOmzetLabel, verwachteDagOmzetLabel, weekOmzetLabel;
 
-    public PaymentView(SimulatorController simulatorController) {
+    public PaymentView() {
 
-        betaalAutomaatController = new BetaalAutomaatController(simulatorController.getCarController());
+        betaalAutomaatController = (BetaalAutomaatController) super.registeryController.getObjectInstance("Controllers.BetaalAutomaatController");
         //Connecting to the "global" TimeController
-        timeController = simulatorController.getTimeController();
+        timeController =(TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
 
 
         setSize(250, 50);

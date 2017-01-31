@@ -25,15 +25,6 @@ public class SimulatorView  extends AbstractView{
         stats = (GarageStats) super.registeryController.getObjectInstance("Models.GarageStats");
 
         carParkView = new CarParkView();
-<<<<<<< HEAD
-
-  //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
-        bezetting = new JLabel(BEZETTING, JLabel.CENTER);
-        //  contentPane = getContentPane();
-=======
-        stats = simulatorController.getGarageStats();
-
->>>>>>> master
 
         add(carParkView, BorderLayout.CENTER);
         setVisible(true);

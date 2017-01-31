@@ -27,12 +27,8 @@ public class BuildGUI extends JFrame {
         reg.addObjectReference(simulatorController);
 
 
-        simulatorView = new SimulatorView();
-        pieView = new PieView();
-        buttons = new ButtonView();
 
         //Initiating all views and creating the "Main" TimeController
-
         simulatorView = new SimulatorView();
         pieView = new PieView();
         buttons = new ButtonView();
