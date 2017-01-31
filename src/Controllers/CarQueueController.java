@@ -1,8 +1,11 @@
 package Controllers;
 
 import Models.*;
+import Views.TimeView;
+
 import java.awt.*;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Arjen on 23-1-2017.
@@ -18,10 +21,11 @@ public class CarQueueController extends AbstractController{
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
 
-    int weekDayArrivals= 100; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
-    int weekendPassArrivals = 5; // average number of arriving cars per hour
+
+    int weekDayArrivals; // average number of arriving cars per hour
+    int weekendArrivals; // average number of arriving cars per hour
+    int weekDayPassArrivals; // average number of arriving cars per hour
+    int weekendPassArrivals; // average number of arriving cars per hour
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -40,10 +44,41 @@ public class CarQueueController extends AbstractController{
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
+        setArrivals();
+    }
+
+    private void setArrivals() {
+        if (timeController.getDay() < 5) {
+            //Niet druk
+            if (timeController.getHour() >= 22 && timeController.getHour() <= 5) {
+
+                weekDayArrivals = 10; // average number of arriving cars per hour
+                weekDayPassArrivals = 1; // average number of arriving cars per hour
+
+                //Beetje druk
+            } else if (timeController.getHour() < 7 ||
+                    timeController.getHour() > 9 && timeController.getHour() < 12 ||
+                    timeController.getHour() > 14 && timeController.getHour() < 17 ||
+                    timeController.getHour() > 19 && timeController.getHour() < 22) {
+
+                weekDayArrivals = 25; // average number of arriving cars per hour
+                weekDayPassArrivals = 10; // average number of arriving cars per hour
+
+                // Druk
+            } else{
+                weekDayArrivals = 100; // average number of arriving cars per hour
+                weekDayPassArrivals = 50; // average number of arriving cars per hour
+            }
+        } else {
+            weekendArrivals = 200; // average number of arriving cars per hour
+            weekendPassArrivals = 5; // average number of arriving cars per hour
+        }
     }
 
     public void handleEntrance(){
         carsArriving();
+        setArrivals();
+        carsLeavingQueue(entranceCarQueue);
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
     }
@@ -152,5 +187,40 @@ public class CarQueueController extends AbstractController{
             }
             i++;
         }
+    }
+
+    public void carsLeavingQueue(CarQueue queue){
+        int carsLeft = 0;
+        System.out.println(queue.carsInQueue());
+        if (queue.carsInQueue() >= 3) {
+            int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
+
+            System.out.println("Number " + randomNum);
+            if (randomNum > 7) {
+
+                String timeLeft = timeController.getTime();
+                queue.carsInQueue();
+                carsLeft++;
+
+                getCarsLeft();
+                System.out.println("Time the car left: " + timeLeft + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + getCarsLeft());
+                carLeavingQueue();
+            }
+        }
+    }
+
+    public int getWaitingCars(CarQueue queue) {
+        return queue.carsInQueue();
+    }
+
+    public int getCarsLeft(){
+        int carsLeft = 0;
+        carsLeft++;
+        return carsLeft;
+    }
+
+    public void carLeavingQueue(){
+        System.out.println("Screw you guys, I'm going home!");
+        entranceCarQueue.removeCar();
     }
 }
