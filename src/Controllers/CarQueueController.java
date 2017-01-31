@@ -10,13 +10,13 @@ import java.util.Random;
 public class CarQueueController extends AbstractController{
 
     private SimulatorController simulatorController;
+    private TimeController timeController;
+    private CarController carController;
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
-    private TimeController timeController;
-    private CarController carController;
 
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -30,11 +30,12 @@ public class CarQueueController extends AbstractController{
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
 
-    public CarQueueController(SimulatorController simulatorController) {
+    public CarQueueController() {
 
-        this.simulatorController = simulatorController;
-        carController = simulatorController.getGarageController() ;
-        timeController = simulatorController.getTimeController();
+        this.simulatorController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
+        this.carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
+        this.timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
+
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();

@@ -17,13 +17,27 @@ public class BuildGUI extends JFrame {
 
     public BuildGUI() {
 
-        //Initiating all views and creating the "Main" TimeController
+        RegisteryController reg = RegisteryController.getInstance();
+        reg.addObjectReference(new CarController(3, 6, 30));
+        reg.addObjectReference(new TimeController());
+        reg.addObjectReference(new CarQueueController());
+        reg.addObjectReference(new BetaalAutomaatController());
+
         simulatorController = new SimulatorController();
-        simulatorView = new SimulatorView(simulatorController);
-        pieView = new PieView(simulatorController);
-        buttons = new ButtonView(simulatorController);
-        paymentView = new PaymentView(simulatorController);
-        timeView = new TimeView(simulatorController);
+        reg.addObjectReference(simulatorController);
+
+
+        simulatorView = new SimulatorView();
+        pieView = new PieView();
+        buttons = new ButtonView();
+
+        //Initiating all views and creating the "Main" TimeController
+
+        simulatorView = new SimulatorView();
+        pieView = new PieView();
+        buttons = new ButtonView();
+        paymentView = new PaymentView();
+        timeView = new TimeView();
 
         //Setting title of the program
         setTitle("Parkeergarage");
@@ -32,6 +46,9 @@ public class BuildGUI extends JFrame {
         //Creating panel for the Pieview
         JPanel pane = new JPanel();
         pane.setLayout(new BorderLayout());
+
+        pane.add(pieView, BorderLayout.NORTH);
+
         pane.add(pieView,BorderLayout.NORTH);
 
         //Adding all views to the GUI
@@ -40,6 +57,7 @@ public class BuildGUI extends JFrame {
         getContentPane().add(simulatorController, BorderLayout.EAST);
         getContentPane().add(buttons, BorderLayout.WEST);
         getContentPane().add(paymentView, BorderLayout.PAGE_END);
+
         getContentPane().add(pane, BorderLayout.EAST);
 
         pack();

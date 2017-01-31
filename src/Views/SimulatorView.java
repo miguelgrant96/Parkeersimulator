@@ -14,16 +14,26 @@ public class SimulatorView  extends AbstractView{
     //   private JLabel time;
     private Container contentPane;
     private TimeController klok;
-    private CarController garage;
+    private CarController carController;
     private GarageStats stats;
     private SimulatorController simulatorController;
 
-    public SimulatorView(SimulatorController simulatorController) {
-        this.simulatorController = simulatorController;
-        garage = simulatorController.getGarageController();
+    public SimulatorView() {
+        this.simulatorController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
+        carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
+
+        stats = (GarageStats) super.registeryController.getObjectInstance("Models.GarageStats");
+
         carParkView = new CarParkView();
+<<<<<<< HEAD
+
+  //      time = new JLabel(TIME_TEKST, JLabel.CENTER);
+        bezetting = new JLabel(BEZETTING, JLabel.CENTER);
+        //  contentPane = getContentPane();
+=======
         stats = simulatorController.getGarageStats();
 
+>>>>>>> master
 
         add(carParkView, BorderLayout.CENTER);
         setVisible(true);
@@ -93,11 +103,11 @@ public class SimulatorView  extends AbstractView{
                 carParkImage = createImage(size.width, size.height);
             }
             Graphics graphics = carParkImage.getGraphics();
-            for(int floor = 0; floor < garage.getNumberOfFloors(); floor++) {
-                for(int row = 0; row < garage.getNumberOfRows(); row++) {
-                    for(int place = 0; place < garage.getNumberOfPlaces(); place++) {
+            for(int floor = 0; floor < carController.getNumberOfFloors(); floor++) {
+                for(int row = 0; row < carController.getNumberOfRows(); row++) {
+                    for(int place = 0; place < carController.getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
-                        Car car = simulatorController.getGarageController().getCarAt(location);
+                        Car car = carController.getCarAt(location);
                         if (floor == 0) {
                             Color color = car == null ? Color.lightGray : car.getColor();
                             drawPlace(graphics, location, color);
