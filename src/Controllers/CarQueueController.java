@@ -208,6 +208,10 @@ public class CarQueueController extends AbstractController{
     public int getWaitingCars(CarQueue queue) {
         return queue.carsInQueue();
     }
+    
+    public int getLeftCars(){
+        return leftCars();
+    }
 
     public int leftCars() {
         carsLeft++;
