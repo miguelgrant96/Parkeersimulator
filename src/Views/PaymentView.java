@@ -17,10 +17,9 @@ public class PaymentView extends AbstractView {
 
     public PaymentView() {
 
-        betaalAutomaatController = (BetaalAutomaatController) super.registeryController.getObjectInstance("Controllers.BetaalAutomaatController");
-
-        //Connecting to the "Main" TimeController
-        timeController =(TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
+        betaalAutomaatController = (BetaalAutomaatController) super.registeryController.getObjectInstance("BetaalAutomaatController");
+        //Connecting to the "global" TimeController
+        timeController =(TimeController) super.registeryController.getObjectInstance("TimeController");
 
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
