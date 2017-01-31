@@ -6,17 +6,18 @@ import java.awt.*;
 public class BuildGUI extends JFrame {
 
     private SimulatorController simulatorController;
+
+    //Importing all needed views to create the GUI
     private SimulatorView simulatorView;
     private PieView pieView;
     private ButtonView buttons;
-
     private PaymentView paymentView;
     private TimeView timeView;
-    private AbstractController simController;
 
 
     public BuildGUI() {
 
+        //Initiating all views and creating the "Main" TimeController
         simulatorController = new SimulatorController();
         simulatorView = new SimulatorView(simulatorController);
         pieView = new PieView(simulatorController);
@@ -24,32 +25,27 @@ public class BuildGUI extends JFrame {
         paymentView = new PaymentView(simulatorController);
         timeView = new TimeView(simulatorController);
 
+        //Setting title of the program
+        setTitle("Parkeergarage");
+        setLayout(new BorderLayout());
+
+        //Creating panel for the Pieview
         JPanel pane = new JPanel();
         pane.setLayout(new BorderLayout());
         pane.add(pieView,BorderLayout.NORTH);
 
-        //Set title
-        setTitle("Parkeergarage");
-        setLayout(new BorderLayout());
-
-
+        //Adding all views to the GUI
         getContentPane().add(timeView, BorderLayout.NORTH);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
         getContentPane().add(simulatorController, BorderLayout.EAST);
         getContentPane().add(buttons, BorderLayout.WEST);
         getContentPane().add(paymentView, BorderLayout.PAGE_END);
-        JPanel pane = new JPanel();
-        pane.setLayout(new BorderLayout());
-        pane.add(pieView,BorderLayout.NORTH);
         getContentPane().add(pane, BorderLayout.EAST);
 
         pack();
 
         setVisible(true);
         setResizable(false);
-
-        simulatorController.run();
-
 
         simulatorController.updateViews();
 

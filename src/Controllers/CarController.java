@@ -1,4 +1,3 @@
-
 package Controllers;
 
 import Models.Car;
@@ -56,6 +55,11 @@ public class CarController {
         return numberOfOpenSpots;
     }
 
+    public Car[][][] getAllCars()
+    {
+        return cars;
+    }
+
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -74,17 +78,10 @@ public class CarController {
         }
         Car oldCar = getCarAt(location);
         if (oldCar == null) {
-            if (car instanceof ParkingPassCar) {
-                cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
-                pass.increment();
-            } else {
-                cars[location.getFloor()+1][location.getRow()][location.getPlace()] = car;
-                adhoc.increment();
-            }
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
 
             car.setLocation(location);
             numberOfOpenSpots--;
-
             return true;
         }
         return false;
@@ -117,6 +114,20 @@ public class CarController {
 
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Location getFirstPaidLocation() {
+        for (int floor = 1; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
@@ -168,4 +179,3 @@ public class CarController {
         return true;
     }
 }
-
