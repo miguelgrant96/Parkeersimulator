@@ -20,6 +20,7 @@ public class CarQueueController extends AbstractController{
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
+    private int carsLeft;
 
 
     int weekDayArrivals; // average number of arriving cars per hour
@@ -45,6 +46,7 @@ public class CarQueueController extends AbstractController{
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         setArrivals();
+        carsLeft = 0;
     }
 
     private void setArrivals() {
@@ -190,7 +192,6 @@ public class CarQueueController extends AbstractController{
     }
 
     public void carsLeavingQueue(CarQueue queue){
-        int carsLeft = 0;
         System.out.println(queue.carsInQueue());
         if (queue.carsInQueue() >= 3) {
             int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
@@ -198,12 +199,7 @@ public class CarQueueController extends AbstractController{
             System.out.println("Number " + randomNum);
             if (randomNum > 7) {
 
-                String timeLeft = timeController.getTime();
-                queue.carsInQueue();
-                carsLeft++;
-
-                getCarsLeft();
-                System.out.println("Time the car left: " + timeLeft + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + getCarsLeft());
+                System.out.println("Time the car left: " + timeController.getTime() + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + leftCars());
                 carLeavingQueue();
             }
         }
@@ -213,8 +209,7 @@ public class CarQueueController extends AbstractController{
         return queue.carsInQueue();
     }
 
-    public int getCarsLeft(){
-        int carsLeft = 0;
+    public int leftCars() {
         carsLeft++;
         return carsLeft;
     }
