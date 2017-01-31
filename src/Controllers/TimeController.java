@@ -1,15 +1,17 @@
 package Controllers;
 
-/**
- * Created by Arjen on 23-1-2017.
- */
+
 public class TimeController {
 
-    private int day = 0;
-    private int hour = 0;
-    private int minute = 0;
+    //Starting Day 1 at: 06:30
+    private int day = 1;
+    private int hour = 06;
+    private int minute = 30;
 
-    public void advanceTime(){
+    public TimeController() {
+    }
+
+    public void advanceTime() {
         // Advance the time by one minute.
         minute++;
         while (minute > 59) {
@@ -20,19 +22,28 @@ public class TimeController {
             hour -= 24;
             day++;
         }
-        while (day > 6) {
+        while (day > 7) {
             day -= 7;
         }
 
     }
 
-    public int GetDay()
-    {
+    public int getDay() {
         return this.day;
     }
 
-    //return de tijd in hh:mm format
-    public String getTime(){
-        return hour + ":" + minute;
+    //Setting the time in a HH:MM format
+    public String getTime() {
+        String time;
+        if (hour < 10 && minute < 10) {
+            time = "0" + hour + ":0" + minute;
+        } else if (hour < 10) {
+            time = "0" + hour + ":" + minute;
+        } else if (minute < 10) {
+            time = hour + ":0" + minute;
+        } else {
+            time = hour + ":" + minute;
+        }
+        return time;
     }
 }

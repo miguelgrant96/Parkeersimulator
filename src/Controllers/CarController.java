@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Car;
+import Models.Counter;
 import Models.Location;
 import Models.ParkingPassCar;
 
@@ -14,6 +15,8 @@ public class CarController {
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
+    private Counter adhoc;
+    private Counter pass;
 
     public CarController(int numberOfFloors, int numberOfRows, int numberOfPlaces){
         this.numberOfFloors = numberOfFloors;
@@ -23,7 +26,18 @@ public class CarController {
 
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
 
+        adhoc = new Counter("adhoc");
+        pass = new Counter("pass");
+
     }
+    public Counter getAdhoc(){
+        return adhoc;
+    }
+
+    public Counter getPass(){
+        return pass;
+    }
+
 
     public int getNumberOfFloors() {
         return numberOfFloors;
@@ -39,6 +53,11 @@ public class CarController {
 
     public int getNumberOfOpenSpots(){
         return numberOfOpenSpots;
+    }
+
+    public Car[][][] getAllCars()
+    {
+        return cars;
     }
 
     public Car getCarAt(Location location) {
@@ -59,11 +78,7 @@ public class CarController {
         }
         Car oldCar = getCarAt(location);
         if (oldCar == null) {
-            if (car instanceof ParkingPassCar) {
-                cars[location.getPassFloor()][location.getRow()][location.getPlace()] = car;
-            } else {
-                cars[location.getFloor()+1][location.getRow()][location.getPlace()] = car;
-            }
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = car;
 
             car.setLocation(location);
             numberOfOpenSpots--;
@@ -80,14 +95,39 @@ public class CarController {
         if (car == null) {
             return null;
         }
-        cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
-        car.setLocation(null);
-        numberOfOpenSpots++;
-        return car;
+        if (car instanceof ParkingPassCar) {
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+            car.setLocation(null);
+            numberOfOpenSpots++;
+            pass.decrement();
+            return car;
+        }
+        else{
+            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
+            car.setLocation(null);
+            numberOfOpenSpots++;
+            adhoc.decrement();
+            return car;
+
+        }
     }
 
     public Location getFirstFreeLocation() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Location getFirstPaidLocation() {
+        for (int floor = 1; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
