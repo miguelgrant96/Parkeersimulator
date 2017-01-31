@@ -1,0 +1,50 @@
+package Views;
+
+import Controllers.CarQueueController;
+import Models.*;
+
+import javax.swing.*;
+import java.awt.*;
+
+/**
+ * Created by Marnick Scholten on 31-1-2017.
+ */
+public class CarLeavingView extends AbstractView {
+    private CarQueueController carQueueController;
+    private JLabel queueLabel, queueLeftLabel, carsEnteredLabel, carsLeftLabel;
+
+
+    public CarLeavingView(){
+        setSize(250,50);
+        setLayout(new GridLayout(0,1));
+
+        //Create Labels
+        queueLabel = new JLabel("Auto's in de rij: ");
+        queueLeftLabel = new JLabel("Auto's weggereden uit de wachtrij: ");
+        carsEnteredLabel = new JLabel("Ingeren auto's: ");
+        carsLeftLabel = new JLabel("Uitreidende auto's: ");
+
+        add(queueLabel);
+        add(queueLeftLabel);
+        add(carsEnteredLabel);
+        add(carsLeftLabel);
+
+        setVisible(true);
+    }
+
+    public void updateView(){
+        int queue = CarQueueController.getWaitingCars();
+        int queueLeft = CarQueueController.getLeftCars();
+        //int carsEntered = CarQueueController.();
+        //int carsLeft = CarQueueController.();
+
+        queueLabel.setText("Auto's in de rij: "+queue);
+        queueLeftLabel.setText("Auto's weggereden uit de wachtrij: "+queueLeft);
+        //carsEnteredLabel.setText("Ingered auto's: "+carsEntered);
+        //carsLeftLabel.setText("Uitreidende auto's: //: "+carsLeft);
+
+    }
+}
+
+
+
