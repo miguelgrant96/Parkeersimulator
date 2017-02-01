@@ -20,7 +20,7 @@ public class BetaalAutomaatController extends AbstractController{
 
 
     public BetaalAutomaatController(){
-        this.carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
+        this.carController = (CarController) super.registeryController.getObjectInstance("CarController");
     }
 
     public double getDagOmzet() {

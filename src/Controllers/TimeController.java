@@ -1,7 +1,7 @@
 package Controllers;
 
 
-public class TimeController {
+public class TimeController extends AbstractController {
 
     //Starting Day 1 at: 06:30
     private int day = 1;

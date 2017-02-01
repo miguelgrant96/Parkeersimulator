@@ -9,7 +9,7 @@ import Models.ParkingPassCar;
  * Created by Bessel on 1/24/2017.
  */
 
-public class CarController {
+public class CarController extends AbstractController {
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;

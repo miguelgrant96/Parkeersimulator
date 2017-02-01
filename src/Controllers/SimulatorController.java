@@ -1,6 +1,5 @@
 package Controllers;
 
-import Models.*;
 import Views.AbstractView;
 
 
@@ -11,7 +10,6 @@ public class SimulatorController extends AbstractController {
     private TimeController timeController;
     private CarQueueController carQueueController;
     private CarController carController;
-    private GarageStats stats;
 
     // private int stepNumber;
     private boolean running;
@@ -19,10 +17,9 @@ public class SimulatorController extends AbstractController {
 
     public SimulatorController( ) {
         super();
-        carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
-        timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
-        carQueueController = (CarQueueController) super.registeryController.getObjectInstance("Controllers.CarQueueController");
-        stats = (GarageStats) super.registeryController.getObjectInstance("Models.GarageStats");
+        carController = (CarController) super.registeryController.getObjectInstance("CarController");
+        timeController = (TimeController) super.registeryController.getObjectInstance("TimeController");
+        carQueueController = (CarQueueController) super.registeryController.getObjectInstance("CarQueueController");
     }
 
     public boolean isRunning(){
@@ -62,8 +59,8 @@ public class SimulatorController extends AbstractController {
 
     public void updateViews(){
         carController.tick();
+
         // Update the car park view.
-        //simulatorView.updateView();
         AbstractView.notifyViews();
     }
 

@@ -19,17 +19,12 @@ public class SimulatorView  extends AbstractView{
     private SimulatorController simulatorController;
 
     public SimulatorView() {
-        this.simulatorController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
-        carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
-
-        stats = (GarageStats) super.registeryController.getObjectInstance("Models.GarageStats");
-
+        simulatorController = (SimulatorController) super.registeryController.getObjectInstance("SimulatorController");
+        carController = (CarController) super.registeryController.getObjectInstance("CarController");
         carParkView = new CarParkView();
 
         add(carParkView, BorderLayout.CENTER);
         setVisible(true);
-
-        //      updateView();
     }
 
     public void updateView() {
@@ -42,9 +37,6 @@ public class SimulatorView  extends AbstractView{
         if(!isVisible()) {
             setVisible(true);
         }
-
-        //stats.countFinished();
-        //stats.reset();
     }
 
 
