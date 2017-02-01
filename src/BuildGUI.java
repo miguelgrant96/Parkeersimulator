@@ -35,7 +35,7 @@ public class BuildGUI extends JFrame {
         buttons = new ButtonView();
         paymentView = new PaymentView();
         timeView = new TimeView();
-        //carLeavingView = new CarLeavingView();
+        carLeavingView = new CarLeavingView();
 
         //Setting title of the program
         setTitle("Parkeergarage");
@@ -47,7 +47,7 @@ public class BuildGUI extends JFrame {
 
         //Adding the information views in one panel
         infoPane.add(pieView, BorderLayout.NORTH);
-        //infoPane.add(carLeavingView, BorderLayout.CENTER);
+        infoPane.add(carLeavingView, BorderLayout.CENTER);
         infoPane.add(paymentView, BorderLayout.LINE_END);
 
         //Adding all views to the GUI
