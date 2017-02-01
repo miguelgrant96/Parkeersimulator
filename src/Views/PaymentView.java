@@ -18,6 +18,7 @@ public class PaymentView extends AbstractView {
     public PaymentView() {
 
         betaalAutomaatController = (BetaalAutomaatController) super.registeryController.getObjectInstance("Controllers.BetaalAutomaatController");
+
         //Connecting to the "Main" TimeController
         timeController =(TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
 
@@ -61,13 +62,7 @@ public class PaymentView extends AbstractView {
         weekOmzetLabel.setText("weekomzet: "+weekOmzetS);
 
         //Setting a resetter for Week and day profits
-        if(timeController.getDay() == 7 && timeController.getTime().equals("23:59")){
-            betaalAutomaatController.resetFields(1);
-        }else if(timeController.getTime().equals("23:59")){
-            betaalAutomaatController.resetFields(2);
-        }else {
-            //Do nothing!!
-        }
+        betaalAutomaatController.resetFields();
 
 
     }

@@ -93,14 +93,11 @@ public class ButtonView  extends AbstractView{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         simController.add1();
-                        System.out.println(guiAddCounter);
                         guiAddCounter--;
                         if(guiAddCounter != 0){
                             guiAddTimer.setRepeats(true);
                         }else {
                             guiAddTimer.setRepeats(false);
-
-                            System.out.println("false");
                             guiAddCounter = 100;
 
                             

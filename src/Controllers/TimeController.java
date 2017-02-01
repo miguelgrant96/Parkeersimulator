@@ -7,13 +7,16 @@ public class TimeController {
     private int day = 1;
     private int hour = 06;
     private int minute = 30;
+    private int week = 1;
+    private int month = 1;
+    private int year = 1;
 
     public TimeController() {
     }
 
     public void advanceTime() {
         // Advance the time by one minute.
-        minute++;
+        minute+=30;
         while (minute > 59) {
             minute -= 60;
             hour++;
@@ -24,8 +27,28 @@ public class TimeController {
         }
         while (day > 7) {
             day -= 7;
+            week++;
         }
+        while (week > 4){
+            week -= 4;
+            month++;
+        }
+        while (month > 12){
+            month -= 12;
+            year++;
+        }
+    }
 
+    public int getYear(){
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getWeek() {
+        return week;
     }
 
     public int getDay() {
@@ -34,6 +57,22 @@ public class TimeController {
     
     public int getHour() {
         return hour;
+    }
+
+    public int getMinute(){
+        return minute;
+    }
+
+    public void incDay(){
+        day++;
+    }
+
+    public void incWeek(){
+        week++;
+    }
+
+    public void incMonth(){
+        month++;
     }
 
     //Setting the time in a HH:MM format
