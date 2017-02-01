@@ -47,8 +47,6 @@ public class BuildGUI extends JFrame {
         JPanel infoPane = new JPanel();
         infoPane.setLayout(new BorderLayout());
 
-        pane.add(pieView, BorderLayout.NORTH);
-
         //Adding the information views in one panel
         infoPane.add(pieView, BorderLayout.NORTH);
         infoPane.add(carLeavingView, BorderLayout.CENTER);
@@ -58,6 +56,8 @@ public class BuildGUI extends JFrame {
         getContentPane().add(timeView, BorderLayout.NORTH);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
         getContentPane().add(buttons, BorderLayout.WEST);
+        getContentPane().add(paymentView, BorderLayout.PAGE_END);
+
         getContentPane().add(infoPane, BorderLayout.EAST);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

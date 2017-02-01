@@ -44,11 +44,6 @@ public class TimeController extends AbstractController {
         return this.dayOfYear;
     }
 
-    public int getHour()
-    {
-        return hour;
-    }
-
     public int getMinute()
     {
         return minute;
