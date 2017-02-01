@@ -1,8 +1,11 @@
 package Controllers;
 
 import Models.*;
+import Views.TimeView;
+
 import java.awt.*;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Arjen on 23-1-2017.
@@ -17,11 +20,16 @@ public class CarQueueController extends AbstractController{
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
+    private int carsLeft;
+    private int numberOfCarsInQueue;
+    private int carsToday;
+    private int leftCarsToday;
 
-    int weekDayArrivals= 100; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
-    int weekendPassArrivals = 5; // average number of arriving cars per hour
+
+    int weekDayArrivals; // average number of arriving cars per hour
+    int weekendArrivals; // average number of arriving cars per hour
+    int weekDayPassArrivals; // average number of arriving cars per hour
+    int weekendPassArrivals; // average number of arriving cars per hour
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -40,10 +48,46 @@ public class CarQueueController extends AbstractController{
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
+        setArrivals();
+        carsLeft = 0;
+        numberOfCarsInQueue = 0;
+        carsToday = 0;
+        leftCarsToday = 0;
+
+    }
+
+    private void setArrivals() {
+        if (timeController.getDay() < 5) {
+            //Niet druk
+            if (timeController.getHour() >= 22 && timeController.getHour() <= 5) {
+
+                weekDayArrivals = 10; // average number of arriving cars per hour
+                weekDayPassArrivals = 1; // average number of arriving cars per hour
+
+                //Beetje druk
+            } else if (timeController.getHour() < 7 ||
+                    timeController.getHour() > 9 && timeController.getHour() < 12 ||
+                    timeController.getHour() > 14 && timeController.getHour() < 17 ||
+                    timeController.getHour() > 19 && timeController.getHour() < 22) {
+
+                weekDayArrivals = 25; // average number of arriving cars per hour
+                weekDayPassArrivals = 10; // average number of arriving cars per hour
+
+                // Druk
+            } else{
+                weekDayArrivals = 100; // average number of arriving cars per hour
+                weekDayPassArrivals = 50; // average number of arriving cars per hour
+            }
+        } else {
+            weekendArrivals = 200; // average number of arriving cars per hour
+            weekendPassArrivals = 5; // average number of arriving cars per hour
+        }
     }
 
     public void handleEntrance(){
         carsArriving();
+        setArrivals();
+        carsLeavingQueue(entranceCarQueue);
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
     }
@@ -52,6 +96,7 @@ public class CarQueueController extends AbstractController{
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
+
     }
 
     public void carsReadyToLeave(){
@@ -66,6 +111,7 @@ public class CarQueueController extends AbstractController{
                 carLeavesSpot(car);
             }
             car = carController.getFirstLeavingCar();
+
         }
     }
 
@@ -100,12 +146,15 @@ public class CarQueueController extends AbstractController{
         while (exitCarQueue.carsInQueue()>0 && i < exitSpeed){
             exitCarQueue.removeCar();
             i++;
+            leftCarsToday++;
         }
+
     }
 
     private void carLeavesSpot(Car car){
         carController.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
+
     }
 
 
@@ -132,6 +181,7 @@ public class CarQueueController extends AbstractController{
 
         numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
+
     }
 
     private void carsEntering(CarQueue queue) {
@@ -151,6 +201,53 @@ public class CarQueueController extends AbstractController{
                 carController.getAdhoc().increment();
             }
             i++;
+            carsToday++;
         }
+    }
+
+    public void carsLeavingQueue(CarQueue queue){
+        numberOfCarsInQueue = queue.carsInQueue();
+        if (queue.carsInQueue() >= 3) {
+            int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
+
+            System.out.println("Number " + randomNum);
+            if (randomNum > 7) {
+                carsLeft++;
+                //System.out.println("Time the car left: " + timeController.getTime() + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + leftCars());
+                carLeavingQueue();
+            }
+        }
+    }
+
+    public int getWaitingCars() {
+        return numberOfCarsInQueue;
+    }
+
+    public int getLeftCars(){
+        return leftCars();
+    }
+
+    public int leftCars() {
+        return carsLeft;
+    }
+
+    public int getCarsToday(){
+        return carsToday;
+    }
+
+    public int getLeavingCarsToday(){
+        return leftCarsToday;
+    }
+
+    public void resetCars(){
+                carsLeft = 0;
+                carsToday = 0;
+                numberOfCarsInQueue = 0;
+                leftCarsToday = 0;
+        }
+    
+    public void carLeavingQueue(){
+        //System.out.println("Screw you guys, I'm going home!");
+        entranceCarQueue.removeCar();
     }
 }

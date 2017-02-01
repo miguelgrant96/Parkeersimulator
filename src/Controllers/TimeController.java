@@ -34,6 +34,10 @@ public class TimeController extends AbstractController {
     public int getDay() {
         return this.day;
     }
+    
+    public int getHour() {
+        return hour;
+    }
 
     public int getDayOfYear()
     {

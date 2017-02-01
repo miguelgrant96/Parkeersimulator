@@ -41,16 +41,21 @@ public class BuildGUI extends JFrame {
         setLayout(new BorderLayout());
 
         //Creating panel for the Pieview
-        JPanel pane = new JPanel();
-        pane.setLayout(new BorderLayout());
+        JPanel infoPane = new JPanel();
+        infoPane.setLayout(new BorderLayout());
 
-        pane.add(pieView, BorderLayout.NORTH);
+        //Adding the information views in one panel
+        infoPane.add(pieView, BorderLayout.NORTH);
+        infoPane.add(carLeavingView, BorderLayout.CENTER);
+        infoPane.add(paymentView, BorderLayout.LINE_END);
 
         //Adding all views to the GUI
         getContentPane().add(timeView, BorderLayout.NORTH);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
+        getContentPane().add(simulatorController, BorderLayout.EAST);
         getContentPane().add(buttons, BorderLayout.WEST);
         getContentPane().add(paymentView, BorderLayout.PAGE_END);
+
         getContentPane().add(pane, BorderLayout.EAST);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
