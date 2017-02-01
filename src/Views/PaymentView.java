@@ -1,6 +1,5 @@
 package Views;
 
-import Controllers.SimulatorController;
 import Controllers.BetaalAutomaatController;
 import Controllers.TimeController;
 
@@ -19,7 +18,7 @@ public class PaymentView extends AbstractView {
     public PaymentView() {
 
         betaalAutomaatController = (BetaalAutomaatController) super.registeryController.getObjectInstance("Controllers.BetaalAutomaatController");
-        //Connecting to the "global" TimeController
+        //Connecting to the "Main" TimeController
         timeController =(TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
 
 

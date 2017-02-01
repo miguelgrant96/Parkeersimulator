@@ -6,9 +6,6 @@ import Controllers.TimeController;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Marnick Scholten on 31-1-2017.
- */
 
 public class CarLeavingView extends AbstractView {
     private CarQueueController carQueueController;

@@ -18,7 +18,7 @@ public class TimeView extends AbstractView {
     private String dayString;
 
     public TimeView(){
-        // Connecting with the same TimeControllers the other classes in the project use.
+        // Connecting with the "main" TimeController
         timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
 
         // Getting the current day
