@@ -75,8 +75,8 @@ public class CarQueueController extends AbstractController{
 
                 // Druk
             } else{
-                weekDayArrivals = 100; // average number of arriving cars per hour
-                weekDayPassArrivals = 50; // average number of arriving cars per hour
+                weekDayArrivals = 200; // average number of arriving cars per hour
+                weekDayPassArrivals = 50; // average number of arriving cars per hour || Random(1, aantal abbo plekken)
             }
         } else {
             weekendArrivals = 200; // average number of arriving cars per hour
