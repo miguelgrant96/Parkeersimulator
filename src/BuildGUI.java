@@ -13,7 +13,7 @@ public class BuildGUI extends JFrame {
     private ButtonView buttons;
     private PaymentView paymentView;
     private TimeView timeView;
-
+    private CarLeavingView carLeavingView;
 
     public BuildGUI() {
 
@@ -35,6 +35,7 @@ public class BuildGUI extends JFrame {
         buttons = new ButtonView();
         paymentView = new PaymentView();
         timeView = new TimeView();
+        //carLeavingView = new CarLeavingView();
 
         //Setting title of the program
         setTitle("Parkeergarage");
@@ -46,17 +47,16 @@ public class BuildGUI extends JFrame {
 
         //Adding the information views in one panel
         infoPane.add(pieView, BorderLayout.NORTH);
-        infoPane.add(carLeavingView, BorderLayout.CENTER);
+        //infoPane.add(carLeavingView, BorderLayout.CENTER);
         infoPane.add(paymentView, BorderLayout.LINE_END);
 
         //Adding all views to the GUI
         getContentPane().add(timeView, BorderLayout.NORTH);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
-        getContentPane().add(simulatorController, BorderLayout.EAST);
         getContentPane().add(buttons, BorderLayout.WEST);
         getContentPane().add(paymentView, BorderLayout.PAGE_END);
 
-        getContentPane().add(pane, BorderLayout.EAST);
+        getContentPane().add(infoPane, BorderLayout.EAST);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
