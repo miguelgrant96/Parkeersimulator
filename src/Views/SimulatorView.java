@@ -11,11 +11,7 @@ public class SimulatorView  extends AbstractView{
     //extra uitbreiding op de GUI tijd en omzet
 
     private CarParkView carParkView;
-    //   private JLabel time;
-    private Container contentPane;
-    private TimeController klok;
     private CarController carController;
-    private GarageStats stats;
     private SimulatorController simulatorController;
 
     public SimulatorView() {
