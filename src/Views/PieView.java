@@ -38,8 +38,9 @@ public class PieView extends AbstractView{
         legend.add(adhoclb);
         legend.add(passlb);
 
-        setVisible(true);
         add(legend,BorderLayout.SOUTH);
+        setVisible(true);
+
     }
 
     @Override

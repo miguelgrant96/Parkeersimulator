@@ -13,6 +13,7 @@ public class BuildGUI extends JFrame {
     private ButtonView buttons;
     private PaymentView paymentView;
     private TimeView timeView;
+    private CarLeavingView carLeavingView;
 
 
     public BuildGUI() {
@@ -22,6 +23,7 @@ public class BuildGUI extends JFrame {
         reg.addObjectReference(new TimeController());
         reg.addObjectReference(new CarQueueController());
         reg.addObjectReference(new BetaalAutomaatController());
+        reg.addObjectReference(new CarLeavingView());
 
         simulatorController = new SimulatorController();
         reg.addObjectReference(simulatorController);
@@ -34,27 +36,30 @@ public class BuildGUI extends JFrame {
         buttons = new ButtonView();
         paymentView = new PaymentView();
         timeView = new TimeView();
+        carLeavingView = new CarLeavingView();
 
         //Setting title of the program
         setTitle("Parkeergarage");
         setLayout(new BorderLayout());
 
         //Creating panel for the Pieview
-        JPanel pane = new JPanel();
-        pane.setLayout(new BorderLayout());
+        JPanel infoPane = new JPanel();
+        infoPane.setLayout(new BorderLayout());
 
-        pane.add(pieView, BorderLayout.NORTH);
-
-        pane.add(pieView,BorderLayout.NORTH);
+        //Adding the information views in one panel
+        infoPane.add(pieView, BorderLayout.NORTH);
+        infoPane.add(carLeavingView, BorderLayout.CENTER);
+        infoPane.add(paymentView, BorderLayout.LINE_END);
 
         //Adding all views to the GUI
         getContentPane().add(timeView, BorderLayout.NORTH);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
-        getContentPane().add(simulatorController, BorderLayout.EAST);
+        //getContentPane().add(simulatorController, BorderLayout.EAST);
         getContentPane().add(buttons, BorderLayout.WEST);
-        getContentPane().add(paymentView, BorderLayout.PAGE_END);
+        //getContentPane().add(paymentView, BorderLayout.PAGE_END);
+        //getContentPane().add(carLeavingView, BorderLayout.LINE_END);
 
-        getContentPane().add(pane, BorderLayout.EAST);
+        getContentPane().add(infoPane, BorderLayout.EAST);
 
         pack();
 
