@@ -12,8 +12,8 @@ public class AdHocCar extends Car {
 	private BetaalAutomaatController betaalAutomaatController;
 
     public AdHocCar() {
-        generateParkingTime();
-        this.setMinutesLeft(stayMinutes);
+
+        this.setMinutesLeft(super.generateParkingTime());
         this.setHasToPay(true);
     }
 
@@ -21,10 +21,7 @@ public class AdHocCar extends Car {
         return COLOR;
     }
 
-    private void generateParkingTime(){
-        Random random = new Random();
-        stayMinutes =  Math.round(15 + random.nextFloat() * 3 * 60);
-    }
+
 
     /**
     Vraag de tijd op per wagen om zo te kunnen berekenen

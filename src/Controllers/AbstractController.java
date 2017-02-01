@@ -12,7 +12,7 @@ import Views.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractController extends JPanel
+public abstract class AbstractController
 {
     // instance variables
 
@@ -24,7 +24,4 @@ public abstract class AbstractController extends JPanel
     {
         this.registeryController = RegisteryController.getInstance();
     }
-
-
-
 }

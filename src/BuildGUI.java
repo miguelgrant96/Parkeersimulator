@@ -15,7 +15,6 @@ public class BuildGUI extends JFrame {
     private TimeView timeView;
     private CarLeavingView carLeavingView;
 
-
     public BuildGUI() {
 
         RegisteryController reg = RegisteryController.getInstance();
@@ -23,7 +22,7 @@ public class BuildGUI extends JFrame {
         reg.addObjectReference(new TimeController());
         reg.addObjectReference(new CarQueueController());
         reg.addObjectReference(new BetaalAutomaatController());
-        reg.addObjectReference(new CarLeavingView());
+        reg.addObjectReference(new ReservationController());
 
         simulatorController = new SimulatorController();
         reg.addObjectReference(simulatorController);
@@ -36,7 +35,7 @@ public class BuildGUI extends JFrame {
         buttons = new ButtonView();
         paymentView = new PaymentView();
         timeView = new TimeView();
-        carLeavingView = new CarLeavingView();
+        //carLeavingView = new CarLeavingView();
 
         //Setting title of the program
         setTitle("Parkeergarage");
@@ -48,18 +47,18 @@ public class BuildGUI extends JFrame {
 
         //Adding the information views in one panel
         infoPane.add(pieView, BorderLayout.NORTH);
-        infoPane.add(carLeavingView, BorderLayout.CENTER);
+        //infoPane.add(carLeavingView, BorderLayout.CENTER);
         infoPane.add(paymentView, BorderLayout.LINE_END);
 
         //Adding all views to the GUI
         getContentPane().add(timeView, BorderLayout.NORTH);
         getContentPane().add(simulatorView, BorderLayout.CENTER);
-        //getContentPane().add(simulatorController, BorderLayout.EAST);
         getContentPane().add(buttons, BorderLayout.WEST);
-        //getContentPane().add(paymentView, BorderLayout.PAGE_END);
-        //getContentPane().add(carLeavingView, BorderLayout.LINE_END);
+        getContentPane().add(paymentView, BorderLayout.PAGE_END);
 
         getContentPane().add(infoPane, BorderLayout.EAST);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         pack();
 
