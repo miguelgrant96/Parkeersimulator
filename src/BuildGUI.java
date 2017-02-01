@@ -10,11 +10,12 @@ public class BuildGUI extends JFrame {
     //Importing all needed views to create the GUI
     private SimulatorView simulatorView;
     private PieView pieView;
-    private ProfitTableView profitTableView;
     private ButtonView buttons;
     private PaymentView paymentView;
     private TimeView timeView;
+    private ReservationView reservationView;
     private CarLeavingView carLeavingView;
+
 
     public BuildGUI() {
 
@@ -23,8 +24,6 @@ public class BuildGUI extends JFrame {
         reg.addObjectReference(new TimeController());
         reg.addObjectReference(new CarQueueController());
         reg.addObjectReference(new BetaalAutomaatController());
-        reg.addObjectReference(new ReservationController());
-
 
         simulatorController = new SimulatorController();
         reg.addObjectReference(simulatorController);
@@ -38,32 +37,27 @@ public class BuildGUI extends JFrame {
         paymentView = new PaymentView();
         timeView = new TimeView();
         carLeavingView = new CarLeavingView();
-        profitTableView = new ProfitTableView();
 
         //Setting title of the program
         setTitle("Parkeergarage");
         setLayout(new BorderLayout());
 
-        JPanel tablePane = new JPanel();
-        tablePane.add(profitTableView);
-
         //Creating panel for the Pieview
         JPanel infoPane = new JPanel();
         infoPane.setLayout(new BorderLayout());
 
+        pane.add(pieView, BorderLayout.NORTH);
+
         //Adding the information views in one panel
         infoPane.add(pieView, BorderLayout.NORTH);
         infoPane.add(carLeavingView, BorderLayout.CENTER);
-        infoPane.add(paymentView, BorderLayout.PAGE_END);
+        infoPane.add(paymentView, BorderLayout.LINE_END);
 
         //Adding all views to the GUI
-        getContentPane().add(simulatorView, BorderLayout.CENTER);
         getContentPane().add(timeView, BorderLayout.NORTH);
-        getContentPane().add(infoPane, BorderLayout.EAST);
-        getContentPane().add(tablePane, BorderLayout.SOUTH);
+        getContentPane().add(simulatorView, BorderLayout.CENTER);
         getContentPane().add(buttons, BorderLayout.WEST);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().add(infoPane, BorderLayout.EAST);
 
         pack();
 
