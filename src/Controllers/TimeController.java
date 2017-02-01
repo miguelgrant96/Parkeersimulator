@@ -5,10 +5,12 @@ public class TimeController extends AbstractController {
 
     //Starting Day 1 at: 06:30
     private int day = 1;
+    private int dayOfYear = 1;
     private int hour = 06;
     private int minute = 30;
 
     public TimeController() {
+
     }
 
     public void advanceTime() {
@@ -21,6 +23,7 @@ public class TimeController extends AbstractController {
         while (hour > 23) {
             hour -= 24;
             day++;
+            dayOfYear++;
         }
         while (day > 7) {
             day -= 7;
@@ -30,6 +33,21 @@ public class TimeController extends AbstractController {
 
     public int getDay() {
         return this.day;
+    }
+
+    public int getDayOfYear()
+    {
+        return this.dayOfYear;
+    }
+
+    public int getHour()
+    {
+        return hour;
+    }
+
+    public int getMinute()
+    {
+        return minute;
     }
 
     //Setting the time in a HH:MM format

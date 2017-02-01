@@ -13,7 +13,6 @@ public class BuildGUI extends JFrame {
     private ButtonView buttons;
     private PaymentView paymentView;
     private TimeView timeView;
-    private ReservationView reservationView;
 
 
     public BuildGUI() {
@@ -23,6 +22,7 @@ public class BuildGUI extends JFrame {
         reg.addObjectReference(new TimeController());
         reg.addObjectReference(new CarQueueController());
         reg.addObjectReference(new BetaalAutomaatController());
+        reg.addObjectReference(new ReservationController());
 
         simulatorController = new SimulatorController();
         reg.addObjectReference(simulatorController);
@@ -51,8 +51,9 @@ public class BuildGUI extends JFrame {
         getContentPane().add(simulatorView, BorderLayout.CENTER);
         getContentPane().add(buttons, BorderLayout.WEST);
         getContentPane().add(paymentView, BorderLayout.PAGE_END);
-
         getContentPane().add(pane, BorderLayout.EAST);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         pack();
 

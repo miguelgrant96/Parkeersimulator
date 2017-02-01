@@ -32,7 +32,7 @@ public class RegisteryController {
         ControllerObjects.put(name[1],o);
     }
 
-    public <T> Object getObjectInstance(String ObjectName)
+    public Object getObjectInstance(String ObjectName)
     {
         if(ControllerObjects.get(ObjectName) != null)
             return ControllerObjects.get(ObjectName);
