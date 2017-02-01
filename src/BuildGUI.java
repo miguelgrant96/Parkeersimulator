@@ -13,6 +13,7 @@ public class BuildGUI extends JFrame {
     private ButtonView buttons;
     private PaymentView paymentView;
     private TimeView timeView;
+    private CarLeavingView carLeavingView;
 
 
     public BuildGUI() {
@@ -22,6 +23,7 @@ public class BuildGUI extends JFrame {
         reg.addObjectReference(new TimeController());
         reg.addObjectReference(new CarQueueController());
         reg.addObjectReference(new BetaalAutomaatController());
+        reg.addObjectReference(new CarLeavingView());
 
         simulatorController = new SimulatorController();
         reg.addObjectReference(simulatorController);
@@ -34,6 +36,7 @@ public class BuildGUI extends JFrame {
         buttons = new ButtonView();
         paymentView = new PaymentView();
         timeView = new TimeView();
+        carLeavingView = new CarLeavingView();
 
         //Setting title of the program
         setTitle("Parkeergarage");
@@ -53,8 +56,9 @@ public class BuildGUI extends JFrame {
         getContentPane().add(simulatorController, BorderLayout.EAST);
         getContentPane().add(buttons, BorderLayout.WEST);
         getContentPane().add(paymentView, BorderLayout.PAGE_END);
+        getContentPane().add(carLeavingView, BorderLayout.LINE_END);
 
-        getContentPane().add(pane, BorderLayout.EAST);
+        getContentPane().add(pane, BorderLayout.NORTH);
 
         pack();
 
