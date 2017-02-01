@@ -10,6 +10,7 @@ public class SimulatorController extends AbstractController {
     private TimeController timeController;
     private CarQueueController carQueueController;
     private CarController carController;
+    private ReservationController reservationController;
 
     // private int stepNumber;
     private boolean running;
@@ -20,6 +21,7 @@ public class SimulatorController extends AbstractController {
         carController = (CarController) super.registeryController.getObjectInstance("CarController");
         timeController = (TimeController) super.registeryController.getObjectInstance("TimeController");
         carQueueController = (CarQueueController) super.registeryController.getObjectInstance("CarQueueController");
+        reservationController = (ReservationController) super.registeryController.getObjectInstance("ReservationController");
     }
 
     public boolean isRunning(){
@@ -45,6 +47,7 @@ public class SimulatorController extends AbstractController {
     private void tick() {
 
         timeController.advanceTime();
+        reservationController.checkReservations();
         carQueueController.handleExit();
         AbstractView.notifyViews();
         updateViews();

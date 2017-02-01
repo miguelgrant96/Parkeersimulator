@@ -24,6 +24,7 @@ public class BuildGUI extends JFrame {
         reg.addObjectReference(new TimeController());
         reg.addObjectReference(new CarQueueController());
         reg.addObjectReference(new BetaalAutomaatController());
+        reg.addObjectReference(new ReservationController());
 
         simulatorController = new SimulatorController();
         reg.addObjectReference(simulatorController);
@@ -58,6 +59,8 @@ public class BuildGUI extends JFrame {
         getContentPane().add(simulatorView, BorderLayout.CENTER);
         getContentPane().add(buttons, BorderLayout.WEST);
         getContentPane().add(infoPane, BorderLayout.EAST);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         pack();
 
