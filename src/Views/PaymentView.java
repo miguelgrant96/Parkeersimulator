@@ -61,7 +61,7 @@ public class PaymentView extends AbstractView {
         verwachteDagOmzetLabel.setText("verwachte omzet: "+verwachteDagOmzetS);
         weekOmzetLabel.setText("weekomzet: "+weekOmzetS);
 
-        //Calling the BetaalControllerMethod to save and reset data when needed
+        //Calling the paymentController method to save and reset data when needed
         paymentController.doStuff();
 
 
