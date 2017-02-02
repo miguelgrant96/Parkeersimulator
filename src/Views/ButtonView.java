@@ -15,11 +15,12 @@ public class ButtonView  extends AbstractView{
     SimulatorController simController;
     private Timer guiRunTimer, guiAddTimer;
     private int guiAddCounter = 100;
-    private JButton start, stop, add1, add100,profitTable;
+
+    private JButton start, stop, add1, add100, reservation;
 
     public ButtonView(){
 
-        this.simController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
+        this.simController = (SimulatorController) super.registeryController.getObjectInstance("SimulatorController");
 
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
@@ -28,12 +29,14 @@ public class ButtonView  extends AbstractView{
         stopButton();
         add1Button();
         add100Button();
+        reservationButton();
 
 
         add(start);
         add(stop);
         add(add1);
         add(add100);
+        add(reservation);
         setVisible(true);
     }
 
@@ -110,6 +113,18 @@ public class ButtonView  extends AbstractView{
             }
         });
     }
+
+    private void reservationButton()
+    {
+        this.reservation = new JButton("Add Reservation");
+        reservation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ReservationView();
+            }
+        });
+    }
+  
     public void updateView()
     {
         repaint();
