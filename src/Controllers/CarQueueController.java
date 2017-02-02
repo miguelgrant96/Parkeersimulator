@@ -75,8 +75,8 @@ public class CarQueueController extends AbstractController{
 
                 // Druk
             } else{
-                weekDayArrivals = 100; // average number of arriving cars per hour
-                weekDayPassArrivals = 50; // average number of arriving cars per hour
+                weekDayArrivals = 200; // average number of arriving cars per hour
+                weekDayPassArrivals = 50; // average number of arriving cars per hour || Random(1, aantal abbo plekken)
             }
         } else {
             weekendArrivals = 200; // average number of arriving cars per hour
@@ -209,8 +209,6 @@ public class CarQueueController extends AbstractController{
         numberOfCarsInQueue = queue.carsInQueue();
         if (queue.carsInQueue() >= 3) {
             int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
-
-            System.out.println("Number " + randomNum);
             if (randomNum > 7) {
                 carsLeft++;
                 //System.out.println("Time the car left: " + timeController.getTime() + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + leftCars());
