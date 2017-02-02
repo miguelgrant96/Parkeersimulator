@@ -1,20 +1,14 @@
 package Controllers;
 
 import Models.*;
-
 import java.awt.*;
-import java.sql.Time;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Jop on 24-1-2017.
  */
 public class BetaalAutomaatController extends AbstractController {
 
-    private Car carPaying;
     private CarController carController;
     private TimeController timeController;
 
@@ -36,10 +30,15 @@ public class BetaalAutomaatController extends AbstractController {
 
         //Connecting to the "Main" TimeController
         timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
-        maanden = new HashMap<Integer, Double>(); //<Maandnummer, Omzet (week 1+week2 etc)>
-        weken = new HashMap<Integer, Double>(); //<Weeknummer, weekOmzet>
+
+        maanden = new HashMap<>(); //<Maandnummer, Omzet (week1 + week2 etc)>
+        weken = new HashMap<>(); //<Weeknummer, weekOmzet>
     }
 
+    /**
+     *
+     * @return return the value of dagOmzet
+     */
     private double calcDagOmzet() {
         Car[][][] cars = carController.getAllCars();
         for (Car[][] cars1 : cars) {
@@ -59,6 +58,10 @@ public class BetaalAutomaatController extends AbstractController {
         return dagOmzet;
     }
 
+    /**
+     *
+     * @return return the value of verwachteDagOmzet
+     */
     private double calcVerwachteDagOmzet() {
         double input = 0;
         Car[][][] cars = carController.getAllCars();
@@ -79,36 +82,105 @@ public class BetaalAutomaatController extends AbstractController {
         return verwachteDagOmzet += input;
     }
 
+    /**
+     *
+     * @return return the value of weekOmzet
+     */
     private double calcWeekOmzet(){
         weekOmzet = weekOmzet + dagOmzet;
         return weekOmzet;
     }
 
+    /**
+     *
+     * @return return the value of maandOmzet
+     */
     private double calcMaandOmzet(){
         double value;
-        for(int i = 1; i < 5; i++) {
+        for(int i = 1; i <= 4; i++) {
             value = weken.get(i);
             maandOmzet = maandOmzet + value;
         }
         return maandOmzet;
     }
 
+    /**
+     *
+     * @return the HashMap maanden
+     */
+    public HashMap<Integer, Double> getMaanden() {
+        return maanden;
+    }
+
+    /**
+     *
+     * @return the HashMap weken
+     */
+    public HashMap<Integer, Double> getWeken() {
+        return weken;
+    }
+
+    /**
+     *
+     * @param maandNummer
+     * @return return the value of maanden[maandNummer]
+     */
+    public double getFromMaanden(int maandNummer){
+        return maanden.get(maandNummer);
+    }
+
+    public void clearMaanden(){
+        maanden.clear();
+    }
+
+    /**
+     *
+     * @param weekNummer
+     * @return return the value of weken[weekNummer]
+     */
+    public double getFromWeken(int weekNummer){
+        return weken.get(weekNummer);
+    }
+
+    public void clearWeken(){
+        weken.clear();
+    }
+
+    /**
+     *
+     * @return return the value of calcDagOmzet()
+     */
     public double getDagOmzet() {
         return calcDagOmzet();
     }
 
+    /**
+     *
+     * @return return the value of calcVerwachteDagOmzet
+     */
     public double getVerwachteDagOmzet() {
         return calcVerwachteDagOmzet();
     }
 
+    /**
+     *
+     * @return return the value of weekOmzet
+     */
     public double getWeekOmzet() {
         return weekOmzet;
     }
 
+    /**
+     *
+     * @return return the value of maandOmzet
+     */
     public double getMaandOmzet(){
         return maandOmzet;
     }
 
+    /**
+     *
+     */
     public void putMaandOmzet(){
         maanden.put(timeController.getMonth(),getMaandOmzet());
     }
@@ -118,17 +190,32 @@ public class BetaalAutomaatController extends AbstractController {
     }
 
 
-
-    public void resetFields() {
+    /**
+     * Method to save the profit fields and when needed reset them
+     */
+    public void doStuff() {
         called++;
+        String resetTime = "00:00";
         if (called == 2) {
             called = 0;
-            if (timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals("23:30")) {
+            if(timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
                 calcWeekOmzet();
+                putWeekOmzet();
                 calcMaandOmzet();
                 putMaandOmzet();
 
-                System.out.println(timeController.getDay() + " Omzet: "+dagOmzet);
+                dagOmzet = 0;
+                verwachteDagOmzet = 0;
+                weekOmzet = 0;
+                maandOmzet = 0;
+            }
+            else if (timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
+                calcWeekOmzet();
+                putWeekOmzet();
+                calcMaandOmzet();
+                putMaandOmzet();
+
+
                 System.out.println("weeknr: " + timeController.getWeek() + " Omzet: " + weken.get(timeController.getWeek()));
                 System.out.println("Maandnr: " + timeController.getMonth() + " Omzet: " + maanden.get(timeController.getMonth()));
 
@@ -136,19 +223,16 @@ public class BetaalAutomaatController extends AbstractController {
                 verwachteDagOmzet = 0;
                 weekOmzet = 0;
                 maandOmzet = 0;
-            } else if (timeController.getDay() == 7 && timeController.getTime().equals("23:30")) {
+            } else if (timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
                 calcWeekOmzet();
                 putWeekOmzet();
 
-                System.out.println(timeController.getDay() + " Omzet: "+dagOmzet);
                 System.out.println("weeknr: " + timeController.getWeek() + " Omzet: " + weken.get(timeController.getWeek()));
 
                 dagOmzet = 0;
                 verwachteDagOmzet = 0;
                 weekOmzet = 0;
-            } else if (timeController.getTime().equals("23:30")) {
-                System.out.println(timeController.getDay() + " Omzet: " + dagOmzet);
-
+            } else if (timeController.getTime().equals(resetTime)) {
                 calcWeekOmzet();
                 dagOmzet = 0;
                 verwachteDagOmzet = 0;
@@ -158,35 +242,3 @@ public class BetaalAutomaatController extends AbstractController {
         }
     }
 }
-
-
-
-/*
-    public void resetFields(int i){
-        switch (i){
-            case 1:
-                weekOmzet = weekOmzet + dagOmzet;
-                putWeekOmzet();
-                System.out.println("weeknr: "+weekNummer +" Omzet: "+weken.get(weekNummer));
-                dagOmzet = 0;
-                verwachteDagOmzet = 0;
-                weekOmzet = 0;
-                break;
-            case 2:
-                weekOmzet = weekOmzet + dagOmzet;
-                dagOmzet = 0;
-                verwachteDagOmzet = 0;
-                break;
-            //case 3:
-        }
-    }*/
-
-/*
-    Set set = weken.entrySet();
-    Iterator iterator = set.iterator();
-                while(iterator.hasNext()){
-                        Map.Entry mentry = (Map.Entry)iterator.next();
-                        System.out.println("Weeknr: "+mentry.getKey() + " omzet = "+mentry.getValue());
-                        }
-
-*/

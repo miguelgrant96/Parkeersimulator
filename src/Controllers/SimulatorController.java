@@ -30,11 +30,7 @@ public class SimulatorController extends AbstractController {
     }
 
     public void run() {
-        running = true;
-        while(running){
-            tick();
-            AbstractView.notifyViews();
-        }
+        tick();
     }
 
     public void stoprunning() {

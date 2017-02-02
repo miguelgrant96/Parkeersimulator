@@ -1,6 +1,5 @@
 package Views;
 
-import Controllers.SimulatorController;
 import Controllers.TimeController;
 
 import javax.swing.*;
@@ -12,11 +11,13 @@ import java.awt.*;
 public class TimeView extends AbstractView {
 
     private TimeController timeController;
-    private SimulatorController simulatorController;
     private JLabel month,week,day,time,empty;
     private JPanel Time;
     private String dayString, weekString, monthString;
 
+    /**
+     * Creating the time/date panel
+     */
     public TimeView(){
         // Connecting with the "main" TimeController
         timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
@@ -52,6 +53,9 @@ public class TimeView extends AbstractView {
 
     }
 
+    /**
+     * Updating the date/time view
+     */
     public void updateView(){
         //Updating the Time and Day with every Tick()
         day.setText(this.toString(1));
@@ -60,17 +64,27 @@ public class TimeView extends AbstractView {
         time.setText(timeController.getTime());
     }
 
+    /**
+     *
+     * @param i the item that is chosen
+     * @return return the value of output
+     */
     public String toString(int i) {
-        String value = "";
+        String output;
         //Overriding the toString() method to het an updatable Day
-        if (i == 1) {
-            value = "Day: " + timeController.getDay();
-        } else if (i == 2) {
-            value = "Week: " + timeController.getWeek();
-        } else if (i == 3) {
-            value = "Month: " + timeController.getMonth();
-        }else {
+        switch (i) {
+            case 1:
+                output = "Day: " + timeController.getDay();
+                break;
+            case 2:
+                output = "Week: " + timeController.getWeek();
+                break;
+            case 3:
+                output = "Month: " + timeController.getMonth();
+                break;
+            default:
+                output = null;
         }
-        return value;
+        return output;
     }
 }

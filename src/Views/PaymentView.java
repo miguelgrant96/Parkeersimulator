@@ -39,9 +39,9 @@ public class PaymentView extends AbstractView {
 
     }
 
-
-    // Afronden op 2 decimalen
-
+    /**
+     * updating the profit values and setting them to the correct decimal points
+     */
     public void updateView() {
 
         //Creating "local" variables to get the current profit
@@ -62,7 +62,7 @@ public class PaymentView extends AbstractView {
         weekOmzetLabel.setText("weekomzet: "+weekOmzetS);
 
         //Setting a resetter for Week and day profits
-        betaalAutomaatController.resetFields();
+        betaalAutomaatController.doStuff();
 
 
     }

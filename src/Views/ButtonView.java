@@ -15,7 +15,7 @@ public class ButtonView  extends AbstractView{
     SimulatorController simController;
     private Timer guiRunTimer, guiAddTimer;
     private int guiAddCounter = 100;
-    private JButton start, stop, add1, add100;
+    private JButton start, stop, add1, add100,profitTable;
 
     public ButtonView(){
 
@@ -28,6 +28,7 @@ public class ButtonView  extends AbstractView{
         stopButton();
         add1Button();
         add100Button();
+
 
         add(start);
         add(stop);
@@ -64,7 +65,7 @@ public class ButtonView  extends AbstractView{
                 guiRunTimer = new Timer(15, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        simController.add1();
+                        simController.run();
                     }
                 });
                 guiRunTimer.setRepeats(true);
@@ -109,7 +110,6 @@ public class ButtonView  extends AbstractView{
             }
         });
     }
-
     public void updateView()
     {
         repaint();

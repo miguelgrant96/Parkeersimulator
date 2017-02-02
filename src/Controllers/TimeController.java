@@ -4,18 +4,21 @@ package Controllers;
 public class TimeController {
 
     //Starting Day 1 at: 06:30
-    private int day = 1;
-    private int hour = 06;
     private int minute = 30;
+    private int hour = 06;
+    private int day = 1;
     private int week = 1;
     private int month = 1;
-    private int year = 1;
+    private int year = 2017;
 
     public TimeController() {
     }
 
+    /**
+     * The "Controls" of the main timecontroller
+     */
     public void advanceTime() {
-        // Advance the time by one minute.
+        // Advance the time by 30 minutes.
         minute+=30;
         while (minute > 59) {
             minute -= 60;
@@ -39,43 +42,59 @@ public class TimeController {
         }
     }
 
+    /**
+     *
+     * @return return the value of year
+     */
     public int getYear(){
         return year;
     }
 
+    /**
+     *
+     * @return return the value of month
+     */
     public int getMonth() {
         return month;
     }
 
+    /**
+     *
+     * @return return the value of week
+     */
     public int getWeek() {
         return week;
     }
 
+    /**
+     *
+     * @return return the value of day
+     */
     public int getDay() {
         return this.day;
     }
-    
+
+    /**
+     *
+     * @return return the value of hour
+     */
     public int getHour() {
         return hour;
     }
 
+    /**
+     *
+     * @return return the value of minute
+     */
     public int getMinute(){
         return minute;
     }
 
-    public void incDay(){
-        day++;
-    }
 
-    public void incWeek(){
-        week++;
-    }
-
-    public void incMonth(){
-        month++;
-    }
-
-    //Setting the time in a HH:MM format
+    /**
+     * Setting the time in a HH:MM format
+     * @return return the value of hour+minute
+     */
     public String getTime() {
         String time;
         if (hour < 10 && minute < 10) {
