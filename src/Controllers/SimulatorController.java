@@ -44,7 +44,7 @@ public class SimulatorController extends AbstractController {
         tick();
     }
 
-    private void tick() {
+    public void tick() {
 
         timeController.advanceTime();
         reservationController.checkReservations();
