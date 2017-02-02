@@ -40,9 +40,9 @@ public class CarQueueController extends AbstractController{
 
     public CarQueueController() {
 
-        this.simulatorController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
-        this.carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
-        this.timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
+        this.simulatorController = (SimulatorController) super.registeryController.getObjectInstance("SimulatorController");
+        this.carController = (CarController) super.registeryController.getObjectInstance("CarController");
+        this.timeController = (TimeController) super.registeryController.getObjectInstance("TimeController");
 
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
@@ -75,8 +75,8 @@ public class CarQueueController extends AbstractController{
 
                 // Druk
             } else{
-                weekDayArrivals = 200; // average number of arriving cars per hour
-                weekDayPassArrivals = 50; // average number of arriving cars per hour || Random(1, aantal abbo plekken)
+                weekDayArrivals = 100; // average number of arriving cars per hour
+                weekDayPassArrivals = 50; // average number of arriving cars per hour
             }
         } else {
             weekendArrivals = 200; // average number of arriving cars per hour

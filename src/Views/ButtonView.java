@@ -15,11 +15,11 @@ public class ButtonView  extends AbstractView{
     SimulatorController simController;
     private Timer guiRunTimer, guiAddTimer;
     private int guiAddCounter = 100;
-    private JButton start, stop, add1, add100,profitTable;
+    private JButton start, stop, add1, add100, reservation;
 
     public ButtonView(){
 
-        this.simController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
+        this.simController = (SimulatorController) super.registeryController.getObjectInstance("SimulatorController");
 
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
@@ -28,12 +28,13 @@ public class ButtonView  extends AbstractView{
         stopButton();
         add1Button();
         add100Button();
-
+        reservationButton();
 
         add(start);
         add(stop);
         add(add1);
         add(add100);
+        add(reservation);
         setVisible(true);
     }
 
@@ -44,12 +45,10 @@ public class ButtonView  extends AbstractView{
             public void actionPerformed(ActionEvent e) {
                 if(simController.isRunning()) {
                     simController.stoprunning();
-
                 }else if(guiAddCounter > 0 && guiAddCounter != 100){
                     guiAddTimer.setRepeats(false);
                     guiAddCounter = 100;
                 } else {
-
                     guiRunTimer.setRepeats(false);
                 }
             }
@@ -65,7 +64,7 @@ public class ButtonView  extends AbstractView{
                 guiRunTimer = new Timer(15, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        simController.run();
+                        simController.tick();
                     }
                 });
                 guiRunTimer.setRepeats(true);
@@ -93,16 +92,13 @@ public class ButtonView  extends AbstractView{
                 guiAddTimer = new Timer(15, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        simController.add1();
+                        simController.tick();
                         guiAddCounter--;
                         if(guiAddCounter != 0){
                             guiAddTimer.setRepeats(true);
                         }else {
                             guiAddTimer.setRepeats(false);
                             guiAddCounter = 100;
-
-                            
-
                         }
                     }
                 });
@@ -110,6 +106,18 @@ public class ButtonView  extends AbstractView{
             }
         });
     }
+
+    private void reservationButton()
+    {
+        this.reservation = new JButton("Add Reservation");
+        reservation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ReservationView();
+            }
+        });
+    }
+
     public void updateView()
     {
         repaint();
