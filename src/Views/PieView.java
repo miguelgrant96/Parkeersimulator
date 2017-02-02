@@ -13,7 +13,7 @@ import java.awt.*;
 public class PieView extends AbstractView{
     //Dimension size;
     private CarController carController;
-    private JLabel open, adhoclb, passlb;
+    private JLabel open, adhoclb, passlb, orange, red, blue;
     private JPanel legend;
     /**
      * Constructor of the PieView view
@@ -28,15 +28,21 @@ public class PieView extends AbstractView{
         setPreferredSize(new Dimension(600,400));
         // create a legend with the colors used in the pieview
 
-        legend = new JPanel(new GridLayout(0,1));
+        legend = new JPanel(new GridLayout(0,2));
         open = new JLabel();
+        orange = new JLabel("Orange: Free spaces");
         adhoclb = new JLabel();
+        red = new JLabel("Red: Paying cars");
         passlb = new JLabel();
+        blue = new JLabel("Blue: Subscription holders");
 
 
         legend.add(open);
+        legend.add(orange);
         legend.add(adhoclb);
+        legend.add(red);
         legend.add(passlb);
+        legend.add(blue);
 
         add(legend,BorderLayout.SOUTH);
         setVisible(true);

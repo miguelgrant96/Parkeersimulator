@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.BetaalAutomaatController;
+import Controllers.PaymentController;
 import Controllers.TimeController;
 
 import javax.swing.*;
@@ -11,15 +11,17 @@ import java.text.DecimalFormat;
  * Created by Jop on 26-1-2017.
  */
 public class PaymentView extends AbstractView {
-    private BetaalAutomaatController betaalAutomaatController;
+    private PaymentController paymentController;
     private TimeController timeController;
     private JLabel dagOmzetLabel, verwachteDagOmzetLabel, weekOmzetLabel;
 
     public PaymentView() {
 
-        betaalAutomaatController = (BetaalAutomaatController) super.registeryController.getObjectInstance("BetaalAutomaatController");
-        //Connecting to the "global" TimeController
+        paymentController = (PaymentController) super.registeryController.getObjectInstance("PaymentController");
+
+        //Connecting to the "Main" TimeController
         timeController =(TimeController) super.registeryController.getObjectInstance("TimeController");
+
 
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
@@ -43,9 +45,9 @@ public class PaymentView extends AbstractView {
     public void updateView() {
 
         //Creating "local" variables to get the current profit
-        double dagOmzet = betaalAutomaatController.getDagOmzet();
-        double verwachteDagOmzet = betaalAutomaatController.getVerwachteDagOmzet();
-        double weekOmzet = betaalAutomaatController.getWeekOmzet();
+        double dagOmzet = paymentController.getDagOmzet();
+        double verwachteDagOmzet = paymentController.getVerwachteDagOmzet();
+        double weekOmzet = paymentController.getWeekOmzet();
 
         //Setting the Double to a 2 decimal format
         DecimalFormat df = new DecimalFormat("####0.00");
@@ -59,8 +61,8 @@ public class PaymentView extends AbstractView {
         verwachteDagOmzetLabel.setText("verwachte omzet: "+verwachteDagOmzetS);
         weekOmzetLabel.setText("weekomzet: "+weekOmzetS);
 
-        //Setting a resetter for Week and day profits
-        betaalAutomaatController.doStuff();
+        //Calling the BetaalControllerMethod to save and reset data when needed
+        paymentController.doStuff();
 
 
     }

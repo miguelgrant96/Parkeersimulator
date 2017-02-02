@@ -1,19 +1,18 @@
 package Models;
 
-import Controllers.BetaalAutomaatController;
+import Controllers.PaymentController;
 
-import java.util.Random;
 import java.awt.*;
 
 public class AdHocCar extends Car {
 
 	private static final Color COLOR=Color.red;
 	private int stayMinutes;
-	private BetaalAutomaatController betaalAutomaatController;
+	private PaymentController paymentController;
 
     public AdHocCar() {
-
-        this.setMinutesLeft(super.generateParkingTime());
+        this.stayMinutes = super.generateParkingTime();
+        this.setMinutesLeft(stayMinutes);
         this.setHasToPay(true);
     }
 

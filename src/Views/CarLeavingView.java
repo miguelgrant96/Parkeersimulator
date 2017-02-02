@@ -18,7 +18,7 @@ public class CarLeavingView extends AbstractView {
         carQueueController = (CarQueueController) super.registeryController.getObjectInstance("CarQueueController");
         timeController =(TimeController) super.registeryController.getObjectInstance("TimeController");
 
-        setSize(250,50);
+        setSize(250,25);
         setLayout(new GridLayout(0,1));
 
         //Create Labels

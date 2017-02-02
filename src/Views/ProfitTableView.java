@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.BetaalAutomaatController;
+import Controllers.PaymentController;
 
 import Controllers.TimeController;
 
@@ -15,19 +15,18 @@ import java.text.DecimalFormat;
  */
 public class ProfitTableView extends AbstractView {
 
-    private BetaalAutomaatController betaalAutomaatController;
+    private PaymentController paymentController;
     private TimeController timeController;
 
     private DefaultTableModel model = new DefaultTableModel();
 
     private int called = 0;
-    private int test = 0;
 
 
 
     public ProfitTableView(){
         //Connecting to the "Main" TimeController
-        timeController = (TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
+        timeController = (TimeController) super.registeryController.getObjectInstance("TimeController");
 
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
@@ -59,8 +58,8 @@ public class ProfitTableView extends AbstractView {
     }
 
     /**
-     *
-     * @param i Integer to choose which data is created and thus which row is added
+     * Method to add the choses data to the JTable
+     * @param i Integer to choose which dataSet is created and thus which row is added
      */
     public void addRow(int i){
         model.addRow(createData(i));
@@ -114,10 +113,10 @@ public class ProfitTableView extends AbstractView {
         String output;
         switch(i){
             case 1:
-                output = df.format(betaalAutomaatController.getFromWeken(timeController.getWeek()));
+                output = df.format(paymentController.getFromWeken(timeController.getWeek()));
                 break;
             case 2:
-                output = df.format(betaalAutomaatController.getFromMaanden(timeController.getMonth()));
+                output = df.format(paymentController.getFromMaanden(timeController.getMonth()));
                 break;
             default:
                 output = "Profit not found";
@@ -133,46 +132,45 @@ public class ProfitTableView extends AbstractView {
 
     /**
      *
-     * @param i Integer to choose which case is used
+     * @param dataSet Integer to choose which dataSet is created
      * @return the data to be added to the table
      */
-   private Object[] createData(int i){
-       betaalAutomaatController = (BetaalAutomaatController) super.registeryController.getObjectInstance("Controllers.BetaalAutomaatController");
+    private Object[] createData(int dataSet){
+        paymentController = (PaymentController) super.registeryController.getObjectInstance("PaymentController");
 
+        Object[] data = {"","", "", ""};
+        switch(dataSet){
+            case 1:
+                data = new Object[] {timeController.getYear(),getMonthName(timeController.getMonth()+1), "", ""};
+                break;
 
-       Object[] data = {"","", "", ""};
-       test++;
-           switch(i){
-               case 1:
-                   data = new Object[] {timeController.getYear(),getMonthName(timeController.getMonth()+1), "", ""};
-       break;
+            case 2:
+                data = new Object[] {"", "", timeController.getWeek(), getDecimalProfit(1)};
+                break;
 
-               case 2:
-                   data = new Object[] {"", "", timeController.getWeek(), getDecimalProfit(1)};
-                   break;
-
-               case 3:
-                   data = new Object[] {"", "", "", getDecimalProfit(2)};
-                   break;
-               default:
-                   data = new Object[] {"","", "", ""};
-                   break;
-           }
-       return data;
+            case 3:
+                data = new Object[] {"", "", "", getDecimalProfit(2)};
+                break;
+            default:
+                data = new Object[] {"","", "", ""};
+                break;
+        }
+        return data;
     }
 
     /**
-     * Updating the JTable with the correct data at the correct time.
+     *
+     * Method to update or reset data at specified time
      */
     public void updateView(){
         called++;
-        String resetTime = "00:00";
+        String resetTime = "23:30";
         if (called == 2) {
             called = 0;
             if(timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
 
-                betaalAutomaatController.clearWeken();
-                betaalAutomaatController.clearMaanden();
+                paymentController.clearWeken();
+                paymentController.clearMaanden();
                 clearTable();
                 model.addRow(new Object[]{timeController.getYear(),getMonthName(timeController.getMonth()), "", ""});
             }
@@ -181,7 +179,7 @@ public class ProfitTableView extends AbstractView {
                 addRow(3);
                 addRow(0);
                 addRow(1);
-                betaalAutomaatController.clearWeken();
+                paymentController.clearWeken();
             }
             else if (timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
                 addRow(2);
