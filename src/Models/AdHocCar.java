@@ -1,18 +1,17 @@
 package Models;
 
-import Controllers.BetaalAutomaatController;
+import Controllers.PaymentController;
 
-import java.util.Random;
 import java.awt.*;
 
 public class AdHocCar extends Car {
 
 	private static final Color COLOR=Color.red;
 	private int stayMinutes;
-	private BetaalAutomaatController betaalAutomaatController;
+	private PaymentController paymentController;
 
     public AdHocCar() {
-        generateParkingTime();
+        this.stayMinutes = super.generateParkingTime();
         this.setMinutesLeft(stayMinutes);
         this.setHasToPay(true);
     }
@@ -21,10 +20,7 @@ public class AdHocCar extends Car {
         return COLOR;
     }
 
-    private void generateParkingTime(){
-        Random random = new Random();
-        stayMinutes =  Math.round(15 + random.nextFloat() * 3 * 60);
-    }
+
 
     /**
     Vraag de tijd op per wagen om zo te kunnen berekenen

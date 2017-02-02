@@ -11,11 +11,11 @@ import java.util.HashMap;
 public class RegisteryController {
 
     private static RegisteryController Instance = null;
-    private HashMap<String, Object> ObjectReferences;
+    private HashMap<String, AbstractController> ControllerObjects;
 
     private RegisteryController(){
         this.Instance = this;
-        this.ObjectReferences = new HashMap<>();
+        this.ControllerObjects = new HashMap<>();
     }
 
     public static RegisteryController getInstance()
@@ -26,15 +26,16 @@ public class RegisteryController {
         return Instance;
     }
 
-    public void addObjectReference(Object o)
+    public void addObjectReference(AbstractController o)
     {
-        ObjectReferences.put(o.getClass().getName(),o);
+        String[] name = o.getClass().getName().split("\\.");
+        ControllerObjects.put(name[1],o);
     }
 
-    public <T> Object getObjectInstance(String ObjectName)
+    public Object getObjectInstance(String ObjectName)
     {
-        if(ObjectReferences.get(ObjectName) != null)
-            return ObjectReferences.get(ObjectName);
+        if(ControllerObjects.get(ObjectName) != null)
+            return ControllerObjects.get(ObjectName);
 
         return null;
     }
