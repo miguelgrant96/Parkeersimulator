@@ -15,8 +15,8 @@ public class CarLeavingView extends AbstractView {
 
     public CarLeavingView(){
 
-        carQueueController = (CarQueueController) super.registeryController.getObjectInstance("CarQueueController");
-        timeController =(TimeController) super.registeryController.getObjectInstance("TimeController");
+        carQueueController = (CarQueueController) super.registeryController.getObjectInstance("Controllers.CarQueueController");
+        timeController =(TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
 
         setSize(250,50);
         setLayout(new GridLayout(0,1));

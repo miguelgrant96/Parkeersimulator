@@ -25,7 +25,6 @@ public class BetaalAutomaatController extends AbstractController {
     private int called = 0;
 
 
-
     public BetaalAutomaatController() {
         this.carController = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
 

@@ -1,7 +1,7 @@
 package Controllers;
 
 
-public class TimeController extends AbstractController {
+public class TimeController {
 
     //Starting Day 1 at: 06:30
     private int minute = 30;
@@ -10,10 +10,8 @@ public class TimeController extends AbstractController {
     private int week = 1;
     private int month = 1;
     private int year = 2017;
-    private int dayOfYear = 1;
 
     public TimeController() {
-
     }
 
     /**
@@ -29,7 +27,6 @@ public class TimeController extends AbstractController {
         while (hour > 23) {
             hour -= 24;
             day++;
-            dayOfYear++;
         }
         while (day > 7) {
             day -= 7;
@@ -85,14 +82,14 @@ public class TimeController extends AbstractController {
         return hour;
     }
 
-    public int getDayOfYear()
-    {
-        return this.dayOfYear;
-    }
-
+    /**
+     *
+     * @return return the value of minute
+     */
     public int getMinute(){
         return minute;
     }
+
 
     /**
      * Setting the time in a HH:MM format

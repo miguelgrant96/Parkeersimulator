@@ -22,6 +22,7 @@ public class PaymentView extends AbstractView {
         //Connecting to the "Main" TimeController
         timeController =(TimeController) super.registeryController.getObjectInstance("Controllers.TimeController");
 
+
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
 
