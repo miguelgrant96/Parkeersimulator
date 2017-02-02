@@ -12,19 +12,19 @@ import java.awt.*;
  */
 public class PieView extends AbstractView{
     //Dimension size;
-    private CarController carController;
+    private CarController garage;
+    private SimulatorController simulatorController;
     private JLabel open, adhoclb, passlb;
     private JPanel legend;
     /**
      * Constructor of the PieView view
      */
     public PieView() {
-        carController = (CarController) super.registeryController.getObjectInstance("CarController");
+        this.simulatorController = (SimulatorController) super.registeryController.getObjectInstance("Controllers.SimulatorController");
+        this.garage = (CarController) super.registeryController.getObjectInstance("Controllers.CarController");
         setLayout(new BorderLayout());
-
         setSize(600,400);
         // we would like the view to be 600px wide and 400px in height
-
         setPreferredSize(new Dimension(600,400));
         // create a legend with the colors used in the pieview
 
@@ -62,15 +62,15 @@ public class PieView extends AbstractView{
         double percentage = 0;
 
 
-        Counter pass = carController.getPass();
-        Counter adhoc = carController.getAdhoc();
+        Counter pass = garage.getPass();
+        Counter adhoc = garage.getAdhoc();
 
-        count = count + pass.getCount() + adhoc.getCount() + carController.getNumberOfOpenSpots();
+        count = count + pass.getCount() + adhoc.getCount() + garage.getNumberOfOpenSpots();
         array[0] = pass.getCount(); // number of actors
         klasse[0] = pass.getName();
         array[1] = adhoc.getCount(); // number of actors
         klasse[1] = adhoc.getName();// names of the classes to set the colour later
-        array[2] = carController.getNumberOfOpenSpots();
+        array[2] = garage.getNumberOfOpenSpots();
         klasse[2] = "open";
 
         // loop through the array and do action

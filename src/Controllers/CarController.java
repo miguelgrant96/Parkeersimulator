@@ -1,12 +1,15 @@
 package Controllers;
 
-import Models.*;
+import Models.Car;
+import Models.Counter;
+import Models.Location;
+import Models.ParkingPassCar;
 
 /**
  * Created by Bessel on 1/24/2017.
  */
 
-public class CarController extends AbstractController {
+public class CarController {
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
@@ -97,12 +100,6 @@ public class CarController extends AbstractController {
             car.setLocation(null);
             numberOfOpenSpots++;
             pass.decrement();
-            return car;
-        }
-        else if(car instanceof Reservation)
-        {
-            cars[location.getFloor()][location.getRow()][location.getPlace()] = null;
-            numberOfOpenSpots++;
             return car;
         }
         else{

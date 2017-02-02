@@ -1,13 +1,11 @@
 package Models;
 
 import java.awt.*;
-import java.util.Random;
 
 public abstract class Car {
 
     private Location location;
     private int minutesLeft;
-    private String licencePlane;
     private boolean isPaying;
     private boolean hasToPay;
 
@@ -52,11 +50,6 @@ public abstract class Car {
 
     public void tick() {
         minutesLeft--;
-    }
-
-    public int generateParkingTime(){
-        Random random = new Random();
-         return  Math.round(15 + random.nextFloat() * 3 * 60);
     }
 
     public abstract Color getColor();
