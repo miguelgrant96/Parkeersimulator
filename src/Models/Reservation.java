@@ -20,7 +20,7 @@ public class Reservation extends Car {
         this.minuteOfArrival = times[1];
 
         this.setMinutesLeft((((dayOfArrival-1)*24)+hourOfArrival)*60 + minuteOfArrival + 30);
-        this.setHasToPay(true);
+        this.setHasToPay(false);
     }
 
     private int[] parseTime(String time)
