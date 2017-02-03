@@ -169,7 +169,7 @@ public class ProfitTableView extends AbstractView {
      */
     private void saveData(){
         try {
-            File file = new File("C:\\Users\\Jop\\Documents\\Text.txt"); //Loaction to save file + filename.extention
+            File file = new File("C:\\Users\\Jop\\Documents\\Table.txt"); //Loaction to save file + filename.extention
             if(!file.exists()){
                 file.createNewFile();
             }
@@ -178,7 +178,7 @@ public class ProfitTableView extends AbstractView {
 
             for(int i = 0; i < model.getRowCount(); i++){
                 for(int j = 0; j < model.getColumnCount(); j++){
-                    bw.write(model.getValueAt(i,j)+"");
+                    bw.write(model.getValueAt(i,j)+"  ");
                 }
                 bw.write("\n_________________\n");
             }
@@ -193,7 +193,7 @@ public class ProfitTableView extends AbstractView {
 
     /**
      *
-     * Method to update or reset data at specified time
+     * Method to update, reset and save data when needed
      */
     public void updateView(){
         called++;
@@ -216,6 +216,7 @@ public class ProfitTableView extends AbstractView {
                 addRow(3);
                 addRow(0);
                 addRow(1);
+
                 paymentController.clearWeken();
             }
             else if (timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {

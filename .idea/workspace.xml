@@ -35,8 +35,8 @@
       <file leaf-file-name="ProfitTableView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Views/ProfitTableView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="171" column="69" lean-forward="true" selection-start-line="171" selection-start-column="69" selection-end-line="171" selection-end-column="69" />
+            <state relative-caret-position="91">
+              <caret line="184" column="23" lean-forward="true" selection-start-line="184" selection-start-column="23" selection-end-line="184" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,6 +48,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -597,7 +603,7 @@
       <workItem from="1486123793255" duration="38000" />
       <workItem from="1486130393072" duration="33000" />
       <workItem from="1486130448028" duration="5893000" />
-      <workItem from="1486156185334" duration="28000" />
+      <workItem from="1486156185334" duration="1251000" />
     </task>
     <task id="LOCAL-00001" summary="Working files + new Branch Jop">
       <created>1486071389751</created>
@@ -606,11 +612,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486071389751</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Yearly table reset.&#10;Saving yearly table data to file.">
+      <created>1486156249941</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1486156249941</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6251000" />
+    <option name="totallyTimeSpent" value="7474000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="2418" height="1318" extended-state="6" />
@@ -655,7 +668,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working files + new Branch Jop" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working files + new Branch Jop" />
+    <MESSAGE value="Yearly table reset.&#10;Saving yearly table data to file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Yearly table reset.&#10;Saving yearly table data to file." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -725,8 +739,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Views/ProfitTableView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="171" column="69" lean-forward="true" selection-start-line="171" selection-start-column="69" selection-end-line="171" selection-end-column="69" />
+        <state relative-caret-position="91">
+          <caret line="184" column="23" lean-forward="true" selection-start-line="184" selection-start-column="23" selection-end-line="184" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
