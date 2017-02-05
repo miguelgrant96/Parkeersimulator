@@ -159,9 +159,9 @@ public class CarQueueController extends AbstractController{
 
 
 
-    private void addArrivingCars(int numberOfCars, String type){
+    private void addArrivingCars(int numberOfCars, String type) {
         // Add the cars to the back of the queue.
-        switch(type) {
+        switch (type) {
             case AD_HOC:
                 for (int i = 0; i < numberOfCars; i++) {
                     entranceCarQueue.addCar(new AdHocCar());
@@ -169,7 +169,10 @@ public class CarQueueController extends AbstractController{
                 break;
             case PASS:
                 for (int i = 0; i < numberOfCars; i++) {
-                    entrancePassQueue.addCar(new ParkingPassCar());
+                    if (carController.getPassHolder() < carController.getPassSpots()) {
+                        entrancePassQueue.addCar(new ParkingPassCar());
+                        // System.out.println(carController.numberOfTakenPassSpots());
+                    }
                 }
                 break;
         }
@@ -238,12 +241,12 @@ public class CarQueueController extends AbstractController{
     }
 
     public void resetCars(){
-                carsLeft = 0;
-                carsToday = 0;
-                numberOfCarsInQueue = 0;
-                leftCarsToday = 0;
-        }
-    
+        carsLeft = 0;
+        carsToday = 0;
+        numberOfCarsInQueue = 0;
+        leftCarsToday = 0;
+    }
+
     public void carLeavingQueue(){
         //System.out.println("Screw you guys, I'm going home!");
         entranceCarQueue.removeCar();

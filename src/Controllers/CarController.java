@@ -14,6 +14,8 @@ public class CarController extends AbstractController {
     private Car[][][] cars;
     private Counter adhoc;
     private Counter pass;
+    private int passSpots;
+    private int passHolder;
 
     public CarController(int numberOfFloors, int numberOfRows, int numberOfPlaces){
         this.numberOfFloors = numberOfFloors;
@@ -26,6 +28,8 @@ public class CarController extends AbstractController {
         adhoc = new Counter("adhoc");
         pass = new Counter("pass");
 
+        passSpots = 81;
+        passHolder = 0;
     }
     public Counter getAdhoc(){
         return adhoc;
@@ -35,6 +39,9 @@ public class CarController extends AbstractController {
         return pass;
     }
 
+    public int getPassHolder(){
+        return passHolder;
+    }
 
     public int getNumberOfFloors() {
         return numberOfFloors;
@@ -51,6 +58,8 @@ public class CarController extends AbstractController {
     public int getNumberOfOpenSpots(){
         return numberOfOpenSpots;
     }
+
+    public int getPassSpots() {return passSpots; }
 
     public Car[][][] getAllCars()
     {
@@ -97,6 +106,7 @@ public class CarController extends AbstractController {
             car.setLocation(null);
             numberOfOpenSpots++;
             pass.decrement();
+            passHolder--;
             return car;
         }
         else if(car instanceof Reservation)
@@ -116,12 +126,15 @@ public class CarController extends AbstractController {
     }
 
     public Location getFirstFreeLocation() {
-        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
+        while (passHolder < getPassSpots()) {
+            for (int floor = 0; floor < getNumberOfFloors(); floor++) {
+                for (int row = 0; row < getNumberOfRows(); row++) {
+                    for (int place = 0; place < getNumberOfPlaces(); place++) {
+                        Location location = new Location(floor, row, place);
+                        if (getCarAt(location) == null) {
+                            passHolder++;
+                            return location;
+                        }
                     }
                 }
             }
@@ -130,12 +143,17 @@ public class CarController extends AbstractController {
     }
 
     public Location getFirstPaidLocation() {
-        for (int floor = 1; floor < getNumberOfFloors(); floor++) {
+        int paid = 0;
+        for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    paid++;
                     Location location = new Location(floor, row, place);
                     if (getCarAt(location) == null) {
-                        return location;
+                        if (paid <= getPassSpots()) {
+                        } else {
+                            return location;
+                        }
                     }
                 }
             }

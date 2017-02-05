@@ -8,6 +8,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.io.File;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 
 
 /**
@@ -125,7 +129,8 @@ public class ProfitTableView extends AbstractView {
     }
 
     private void clearTable(){
-        for(int i = 0; i < model.getRowCount(); i++) {
+        int rowCount = model.getRowCount();
+        for(int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
     }
@@ -160,7 +165,35 @@ public class ProfitTableView extends AbstractView {
 
     /**
      *
-     * Method to update or reset data at specified time
+     * Method to save the table data to file
+     */
+    private void saveData(){
+        try {
+            File file = new File("C:\\Users\\jop\\Documents\\Table.txt"); //Loaction to save file + filename.extention
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for(int i = 0; i < model.getRowCount(); i++){
+                for(int j = 0; j < model.getColumnCount(); j++){
+                    bw.write(model.getValueAt(i,j)+"  ");
+                }
+                bw.write("\n_________________\n");
+            }
+            bw.close();
+            fw.close();
+            JOptionPane.showMessageDialog(null, "Data saved");
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * Method to update, reset and save data when needed
      */
     public void updateView(){
         called++;
@@ -168,17 +201,28 @@ public class ProfitTableView extends AbstractView {
         if (called == 2) {
             called = 0;
             if(timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
+                addRow(2);
+                addRow(3);
+                saveData();
 
                 paymentController.clearWeken();
                 paymentController.clearMaanden();
+
                 clearTable();
-                model.addRow(new Object[]{timeController.getYear(),getMonthName(timeController.getMonth()), "", ""});
+                model.addRow(new Object[]{timeController.getYear()+1,getMonthName(1), "", ""});
             }
             else if (timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
                 addRow(2);
                 addRow(3);
+
+                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
+                    saveData();
+                }
+
                 addRow(0);
                 addRow(1);
+
+
                 paymentController.clearWeken();
             }
             else if (timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
