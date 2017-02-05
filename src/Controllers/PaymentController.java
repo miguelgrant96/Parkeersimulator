@@ -185,21 +185,21 @@ public class PaymentController extends AbstractController {
      *
      * @return return the value of maandOmzet
      */
-    public double getMaandOmzet(){
+    private double getMaandOmzet(){
         return maandOmzet;
     }
 
     /**
      * Method to add data to HashMap maanden
      */
-    public void putMaandOmzet(){
+    private void putMaandOmzet(){
         maanden.put(timeController.getMonth(),getMaandOmzet());
     }
 
     /**
      * Method to add data to HashMap weken
      */
-    public void putWeekOmzet() {
+    private void putWeekOmzet() {
         weken.put(timeController.getWeek(), getWeekOmzet());
     }
 
