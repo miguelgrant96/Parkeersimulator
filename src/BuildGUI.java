@@ -28,6 +28,7 @@ public class BuildGUI extends JFrame {
         reg.addObjectReference(new CarQueueController());
         reg.addObjectReference(new PaymentController());
         reg.addObjectReference(new ReservationController());
+        reg.addObjectReference(new ProfitTableController());
 
         simulatorController = new SimulatorController();
         reg.addObjectReference(simulatorController);

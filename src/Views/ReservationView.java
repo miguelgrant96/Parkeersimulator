@@ -14,8 +14,11 @@ import java.awt.event.ActionListener;
  */
 public class ReservationView extends AbstractView{
 
+    private TimeController timeController;
+
     JFrame reservationFrame;
-    JTextField f1,f2,f3;
+    JTextField f1, f2 , f3;
+
 
     public ReservationView()
     {
@@ -24,6 +27,8 @@ public class ReservationView extends AbstractView{
 
     private void CreateResView()
     {
+        timeController = (TimeController) super.registeryController.getObjectInstance("TimeController");
+
         reservationFrame = new JFrame("Add new reservation");
         reservationFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel content = CreatePanel();
@@ -40,7 +45,7 @@ public class ReservationView extends AbstractView{
         JPanel content = new JPanel(new GridLayout(4,2));
 
         JLabel l1 = new JLabel("Day of arival");
-        JLabel l2 = new JLabel("Time of arival ");
+        JLabel l2 = new JLabel("Time of arival");
         JLabel l3 = new JLabel("Licenceplate");
 
         f1 = new JTextField(12);
