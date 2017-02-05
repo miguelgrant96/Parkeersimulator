@@ -15,7 +15,7 @@ public class ButtonView  extends AbstractView{
     SimulatorController simController;
     private Timer guiRunTimer, guiAddTimer;
     private int guiAddCounter = 100;
-    private JButton start, stop, add1, add100, reservation;
+    private JButton start, stop, add1, add100;
 
     public ButtonView(){
 
@@ -31,16 +31,12 @@ public class ButtonView  extends AbstractView{
         stopButton();
         add1Button();
         add100Button();
-        reservationButton();
 
         //Adding the buttons to the panel
         add(start);
         add(stop);
         add(add1);
         add(add100);
-        add(reservation);
-
-        //Making the panel visible
         setVisible(true);
     }
 
@@ -126,26 +122,11 @@ public class ButtonView  extends AbstractView{
     }
 
     /**
-     * Method to create the reservation button and its ActionListener
-     */
-    private void reservationButton()
-    {
-        this.reservation = new JButton("Add Reservation");
-        reservation.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ReservationView();
-            }
-        });
-    }
-
-    /**
      * Method to update data when called
      */
     public void updateView()
     {
         repaint();
     }
-
 }
 
