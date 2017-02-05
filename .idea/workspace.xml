@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61fb00ce-73f3-47ea-a8d3-9d55e5ec1778" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Controllers/ProfitTableController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BuildGUI.java" afterPath="$PROJECT_DIR$/src/BuildGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controllers/TimeController.java" afterPath="$PROJECT_DIR$/src/Controllers/TimeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/CarLeavingView.java" afterPath="$PROJECT_DIR$/src/Views/CarLeavingView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/ProfitTableView.java" afterPath="$PROJECT_DIR$/src/Views/ProfitTableView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/ReservationView.java" afterPath="$PROJECT_DIR$/src/Views/ReservationView.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -663,7 +657,7 @@
       <workItem from="1486326651259" duration="690000" />
       <workItem from="1486327351226" duration="5000" />
       <workItem from="1486327398272" duration="3825000" />
-      <workItem from="1486331427614" duration="279000" />
+      <workItem from="1486331427614" duration="301000" />
     </task>
     <task id="LOCAL-00001" summary="Working files + new Branch Jop">
       <created>1486071389751</created>
@@ -707,11 +701,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486326635635</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added ProfitTableController">
+      <created>1486331721205</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1486331721205</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45824000" />
+    <option name="totallyTimeSpent" value="45846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="2418" height="1318" extended-state="6" />
@@ -761,7 +762,8 @@
     <MESSAGE value="Best working complete version so far!!!" />
     <MESSAGE value="Added comments to files created by me." />
     <MESSAGE value="Added comments, changed visibility modifiers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added comments, changed visibility modifiers" />
+    <MESSAGE value="Added ProfitTableController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ProfitTableController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

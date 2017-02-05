@@ -205,4 +205,17 @@ public class CarController extends AbstractController {
         }
         return true;
     }
+
+    public void resetCars()
+    {
+        this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
+
+        cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+
+        adhoc = new Counter("adhoc");
+        pass = new Counter("pass");
+
+        passSpots = 81;
+        passHolder = 0;
+    }
 }

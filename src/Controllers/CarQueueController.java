@@ -247,4 +247,14 @@ public class CarQueueController extends AbstractController{
     public void carLeavingQueue(){
         entranceCarQueue.removeCar();
     }
+
+    public void resetQueue()
+    {
+        entranceCarQueue = new CarQueue();
+        entrancePassQueue = new CarQueue();
+        paymentCarQueue = new CarQueue();
+        exitCarQueue = new CarQueue();
+        setArrivals();
+        resetCars();
+    }
 }
