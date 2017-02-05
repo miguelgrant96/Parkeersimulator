@@ -183,40 +183,43 @@ public class ProfitTableController extends AbstractController {
         }
     }
 
-    public void updateTable(){
-    called++;
-    String resetTime = "23:30";
+    public void updateTable() {
+        called++;
+        String resetTime = "23:30";
         if (called == 2) {
-        called = 0;
-        if(timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
-            addRow(2);
-            addRow(3);
-            saveData();
+            called = 0;
+            if (timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
+                addRow(2);
+                addRow(3);
+                saveData();
 
-            paymentController.clearWeken();
-            paymentController.clearMaanden();
+                paymentController.clearWeken();
+                paymentController.clearMaanden();
 
-            clearTable();
-            model.addRow(new Object[]{timeController.getYear()+1,getMonthName(1), "", ""});
-        }
-        else if (timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
-            addRow(2);
-            addRow(3);
+                clearTable();
+                model.addRow(new Object[]{timeController.getYear() + 1, getMonthName(1), "", ""});
+            } else if (timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
+                addRow(2);
+                addRow(3);
 
-//                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
-//                    saveData();
-//                }
+                //                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
+                //                    saveData();
+                //                }
 
-            addRow(0);
-            addRow(1);
+                addRow(0);
+                addRow(1);
 
 
-            paymentController.clearWeken();
-        }
-        else if (timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
-            addRow(2);
+                paymentController.clearWeken();
+            } else if (timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
+                addRow(2);
+            }
         }
     }
-}
+
+    public void resetTable(){
+        clearTable();
+        model.addRow(new Object[]{timeController.getYear(),getMonthName(timeController.getMonth()), "", ""});
+    }
 
 }
