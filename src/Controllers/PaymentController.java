@@ -258,4 +258,12 @@ public class PaymentController extends AbstractController {
                 break;
         }
     }
+
+    public void resetPayments()
+    {
+        dagOmzet = 0;
+        verwachteDagOmzet = 0;
+        weekOmzet = 0;
+        maandOmzet = 0;
+    }
 }

@@ -117,4 +117,15 @@ public class TimeController extends AbstractController{
         }
         return time;
     }
+
+    public void resetTime()
+    {
+        minute = 30;
+        hour = 06;
+        day = 1;
+        week = 1;
+        month = 1;
+        year = 2017;
+        dayOfYear = 1;
+    }
 }

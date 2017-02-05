@@ -128,7 +128,7 @@ public class ProfitTableView extends AbstractView {
         return output;
     }
 
-    private void clearTable(){
+    public void clearTable(){
         int rowCount = model.getRowCount();
         for(int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
