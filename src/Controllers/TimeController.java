@@ -79,7 +79,7 @@ public class TimeController extends AbstractController{
      *
      * @return return the value of dayOfYear
      */
-    public int getDayOfYear(){
+    protected int getDayOfYear(){
         return dayOfYear;
     }
 
@@ -87,7 +87,7 @@ public class TimeController extends AbstractController{
      *
      * @return return the value of hour
      */
-    public int getHour() {
+    protected int getHour() {
         return hour;
     }
 
@@ -95,7 +95,7 @@ public class TimeController extends AbstractController{
      *
      * @return return the value of minute
      */
-    public int getMinute(){
+    protected int getMinute(){
         return minute;
     }
 

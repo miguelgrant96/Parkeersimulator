@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.*;
-import Views.TimeView;
 
 import java.awt.*;
 import java.util.Random;
@@ -171,7 +170,6 @@ public class CarQueueController extends AbstractController{
                 for (int i = 0; i < numberOfCars; i++) {
                     if (carController.getPassHolder() < carController.getPassSpots()) {
                         entrancePassQueue.addCar(new ParkingPassCar());
-                        // System.out.println(carController.numberOfTakenPassSpots());
                     }
                 }
                 break;
@@ -195,7 +193,7 @@ public class CarQueueController extends AbstractController{
                 i < enterSpeed) {
             Car car = queue.removeCar();
             if (car.getColor() == Color.blue) {
-                Location freeLocation = carController.getFirstFreeLocation();
+                Location freeLocation = carController.getFirstPassLocation();
                 carController.setCarAt(freeLocation, car);
                 carController.getPass().increment();
             } else {
@@ -214,7 +212,6 @@ public class CarQueueController extends AbstractController{
             int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
             if (randomNum > 7) {
                 carsLeft++;
-                //System.out.println("Time the car left: " + timeController.getTime() + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + leftCars());
                 carLeavingQueue();
             }
         }
@@ -248,7 +245,6 @@ public class CarQueueController extends AbstractController{
     }
 
     public void carLeavingQueue(){
-        //System.out.println("Screw you guys, I'm going home!");
         entranceCarQueue.removeCar();
     }
 

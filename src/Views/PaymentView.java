@@ -62,7 +62,7 @@ public class PaymentView extends AbstractView {
         weekOmzetLabel.setText("weekomzet: "+weekOmzetS);
 
         //Calling the paymentController method to save and reset data when needed
-        paymentController.doStuff();
+        paymentController.saveDataToMap();
 
 
     }
