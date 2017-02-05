@@ -57,6 +57,7 @@ public class MenuBarView {
         CarController carCon = (CarController) reg.getObjectInstance("CarController");
         PaymentController payCon = (PaymentController) reg.getObjectInstance("PaymentController");
         CarQueueController queCon = (CarQueueController) reg.getObjectInstance("CarQueueController");
+        ProfitTableController proCon = (ProfitTableController) reg.getObjectInstance("ProfitTableController");
 
         JMenuItem reset = new JMenuItem("Reset simulator");
         reset.addActionListener(new ActionListener() {
@@ -66,6 +67,7 @@ public class MenuBarView {
                 carCon.resetCars();
                 payCon.resetPayments();
                 queCon.resetQueue();
+                proCon.clearTable();
                 AbstractView.notifyViews();
             }
         });
