@@ -1,7 +1,11 @@
 import javax.swing.*;
 import Controllers.*;
 import Views.*;
+import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BuildGUI extends JFrame {
 
@@ -62,6 +66,11 @@ public class BuildGUI extends JFrame {
         getContentPane().add(infoPane, BorderLayout.EAST);
         getContentPane().add(tablePane, BorderLayout.SOUTH);
         getContentPane().add(buttons, BorderLayout.WEST);
+
+        //Adding menuItems
+        MenuBarView menuBarView = new MenuBarView();
+        setJMenuBar(menuBarView.CreateMenuBar());
+
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

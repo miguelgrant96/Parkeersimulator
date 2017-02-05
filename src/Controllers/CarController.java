@@ -61,6 +61,11 @@ public class CarController extends AbstractController {
 
     public int getPassSpots() {return passSpots; }
 
+    public void setPassSpots(int passSpots)
+    {
+        this.passSpots = passSpots;
+    }
+
     public Car[][][] getAllCars()
     {
         return cars;
