@@ -170,7 +170,6 @@ public class CarQueueController extends AbstractController{
                 for (int i = 0; i < numberOfCars; i++) {
                     if (carController.getPassHolder() < carController.getPassSpots()) {
                         entrancePassQueue.addCar(new ParkingPassCar());
-                        // System.out.println(carController.numberOfTakenPassSpots());
                     }
                 }
                 break;
@@ -213,7 +212,6 @@ public class CarQueueController extends AbstractController{
             int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
             if (randomNum > 7) {
                 carsLeft++;
-                //System.out.println("Time the car left: " + timeController.getTime() + ", Number of cars in the queue that moment " + queue.carsInQueue() + " Total of left Cars " + leftCars());
                 carLeavingQueue();
             }
         }
@@ -247,7 +245,6 @@ public class CarQueueController extends AbstractController{
     }
 
     public void carLeavingQueue(){
-        //System.out.println("Screw you guys, I'm going home!");
         entranceCarQueue.removeCar();
     }
 }

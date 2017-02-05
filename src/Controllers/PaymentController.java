@@ -40,7 +40,7 @@ public class PaymentController extends AbstractController {
     }
 
     /**
-     *
+     * Method to calculate the daily profit
      * @return return the value of dagOmzet
      */
     private double calcDagOmzet() {
@@ -63,7 +63,7 @@ public class PaymentController extends AbstractController {
     }
 
     /**
-     *
+     * Method to calculate the expected daily profit
      * @return return the value of verwachteDagOmzet
      */
     private double calcVerwachteDagOmzet() {
@@ -87,7 +87,7 @@ public class PaymentController extends AbstractController {
     }
 
     /**
-     *
+     * Method to calculate the weekly profit
      * @return return the value of weekOmzet
      */
     private double calcWeekOmzet(){
@@ -96,15 +96,16 @@ public class PaymentController extends AbstractController {
     }
 
     /**
-     *
+     * Method to calculate the monthly profit
      * @return return the value of maandOmzet
      */
     private double calcMaandOmzet(){
         double value;
         for(int i = 1; i <= 4; i++) {
             value = weken.get(i);
-            maandOmzet = maandOmzet + value;
+            maandOmzet = (maandOmzet + value);
         }
+        maandOmzet = maandOmzet + (carController.getPassSpots() * 75);
         return maandOmzet;
     }
 
@@ -112,7 +113,7 @@ public class PaymentController extends AbstractController {
      *
      * @return the HashMap maanden
      */
-    public HashMap<Integer, Double> getMaanden() {
+    private HashMap<Integer, Double> getMaanden() {
         return maanden;
     }
 
@@ -120,7 +121,7 @@ public class PaymentController extends AbstractController {
      *
      * @return the HashMap weken
      */
-    public HashMap<Integer, Double> getWeken() {
+    private HashMap<Integer, Double> getWeken() {
         return weken;
     }
 
@@ -223,8 +224,6 @@ public class PaymentController extends AbstractController {
             } else if (timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
                 calcWeekOmzet();
                 putWeekOmzet();
-
-//                System.out.println("weeknr: " + timeController.getWeek() + " Omzet: " + weken.get(timeController.getWeek()));
 
                 resetFields("Week");
 

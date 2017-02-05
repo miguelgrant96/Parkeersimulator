@@ -128,6 +128,9 @@ public class ProfitTableView extends AbstractView {
         return output;
     }
 
+    /**
+     * Method to remove all rows from the table
+     */
     private void clearTable(){
         int rowCount = model.getRowCount();
         for(int i = rowCount - 1; i >= 0; i--) {
@@ -143,19 +146,24 @@ public class ProfitTableView extends AbstractView {
     private Object[] createData(int dataSet){
         paymentController = (PaymentController) super.registeryController.getObjectInstance("PaymentController");
 
-        Object[] data = {"","", "", ""};
+        Object[] data;
         switch(dataSet){
+            //Case 1: Add year and month name to the table
             case 1:
                 data = new Object[] {timeController.getYear(),getMonthName(timeController.getMonth()+1), "", ""};
                 break;
 
+            //Case 2: Add week number and weekly profits to the table
             case 2:
                 data = new Object[] {"", "", timeController.getWeek(), getDecimalProfit(1)};
                 break;
 
+            //Case 3: Add monthly profit to the table
             case 3:
                 data = new Object[] {"", "", "", getDecimalProfit(2)};
                 break;
+
+            //Default: Add blank line to the table
             default:
                 data = new Object[] {"","", "", ""};
                 break;
