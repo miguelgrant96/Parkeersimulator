@@ -65,7 +65,7 @@ public class ProfitTableView extends AbstractView {
      * Method to add the choses data to the JTable
      * @param i Integer to choose which dataSet is created and thus which row is added
      */
-    public void addRow(int i){
+    private void addRow(int i){
         model.addRow(createData(i));
     }
 
@@ -169,7 +169,7 @@ public class ProfitTableView extends AbstractView {
      */
     private void saveData(){
         try {
-            File file = new File("C:\\Users\\jop\\Documents\\Table.txt"); //Loaction to save file + filename.extention
+            File file = new File("C:\\Users\\Jop\\Documents\\Table.txt"); //Loaction to save file + filename.extention
             if(!file.exists()){
                 file.createNewFile();
             }
@@ -215,9 +215,9 @@ public class ProfitTableView extends AbstractView {
                 addRow(2);
                 addRow(3);
 
-                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
-                    saveData();
-                }
+//                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
+//                    saveDataToMap();
+//                }
 
                 addRow(0);
                 addRow(1);

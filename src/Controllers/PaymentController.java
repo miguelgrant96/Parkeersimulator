@@ -206,7 +206,7 @@ public class PaymentController extends AbstractController {
     /**
      * Method to save the profit fields
      */
-    public void doStuff() {
+    public void saveDataToMap() {
         called++;
         String resetTime = "23:30";
         if (called == 2) {

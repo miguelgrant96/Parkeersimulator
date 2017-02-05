@@ -74,6 +74,10 @@ public class SimulatorView  extends AbstractView{
             }
         }
 
+        /**
+         *
+         * Method to update or change data when needed
+         */
         public void updateView() {
             // Create a new car park image if the size has changed.
             //garage.tick();

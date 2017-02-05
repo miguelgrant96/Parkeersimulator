@@ -1,7 +1,6 @@
 package Controllers;
 
 import Models.*;
-import Views.TimeView;
 
 import java.awt.*;
 import java.util.Random;
@@ -195,7 +194,7 @@ public class CarQueueController extends AbstractController{
                 i < enterSpeed) {
             Car car = queue.removeCar();
             if (car.getColor() == Color.blue) {
-                Location freeLocation = carController.getFirstFreeLocation();
+                Location freeLocation = carController.getFirstPassLocation();
                 carController.setCarAt(freeLocation, car);
                 carController.getPass().increment();
             } else {
