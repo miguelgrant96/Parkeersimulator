@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Arjen on 25-1-2017.
+ * Created by Jop on 25-1-2017.
  */
 public class ButtonView  extends AbstractView{
 
@@ -19,16 +19,20 @@ public class ButtonView  extends AbstractView{
 
     public ButtonView(){
 
+        //Connecting to the "Main" TimeController
         this.simController = (SimulatorController) super.registeryController.getObjectInstance("SimulatorController");
 
+        // Setting the size of the butoon panel
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
 
+        //Calling the methods for creating the buttons
         startButton();
         stopButton();
         add1Button();
         add100Button();
 
+        //Adding the buttons to the panel
         add(start);
         add(stop);
         add(add1);
@@ -36,6 +40,9 @@ public class ButtonView  extends AbstractView{
         setVisible(true);
     }
 
+    /**
+     * Method to create the stop button and its ActionListener
+     */
     private void stopButton(){
         stop = new JButton("stop");
         stop.addActionListener(new ActionListener() {
@@ -53,6 +60,9 @@ public class ButtonView  extends AbstractView{
         });
     }
 
+    /**
+     * Method to create the start button and its ActionListener
+     */
     private void startButton() {
         start = new JButton("start");
         start.addActionListener(new ActionListener() {
@@ -71,6 +81,9 @@ public class ButtonView  extends AbstractView{
         });
     }
 
+    /**
+     * Method to create the asdd1 step button and its ActionListener
+     */
     private void add1Button(){
         add1 = new JButton("add1");
         add1.addActionListener(new ActionListener() {
@@ -81,6 +94,9 @@ public class ButtonView  extends AbstractView{
         });
     }
 
+    /**
+     * Method to create the add100 button and its ActionListener
+     */
     private void add100Button(){
         add100 = new JButton("ad100");
         add100.addActionListener(new ActionListener() {
@@ -105,12 +121,12 @@ public class ButtonView  extends AbstractView{
         });
     }
 
-
-
+    /**
+     * Method to update data when called
+     */
     public void updateView()
     {
         repaint();
     }
-
 }
 

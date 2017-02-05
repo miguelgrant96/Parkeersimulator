@@ -65,7 +65,7 @@ public class ProfitTableView extends AbstractView {
      * Method to add the choses data to the JTable
      * @param i Integer to choose which dataSet is created and thus which row is added
      */
-    public void addRow(int i){
+    private void addRow(int i){
         model.addRow(createData(i));
     }
 
@@ -128,6 +128,9 @@ public class ProfitTableView extends AbstractView {
         return output;
     }
 
+    /**
+     * Method to remove all rows from the table
+     */
     private void clearTable(){
         int rowCount = model.getRowCount();
         for(int i = rowCount - 1; i >= 0; i--) {
@@ -143,19 +146,24 @@ public class ProfitTableView extends AbstractView {
     private Object[] createData(int dataSet){
         paymentController = (PaymentController) super.registeryController.getObjectInstance("PaymentController");
 
-        Object[] data = {"","", "", ""};
+        Object[] data;
         switch(dataSet){
+            //Case 1: Add year and month name to the table
             case 1:
                 data = new Object[] {timeController.getYear(),getMonthName(timeController.getMonth()+1), "", ""};
                 break;
 
+            //Case 2: Add week number and weekly profits to the table
             case 2:
                 data = new Object[] {"", "", timeController.getWeek(), getDecimalProfit(1)};
                 break;
 
+            //Case 3: Add monthly profit to the table
             case 3:
                 data = new Object[] {"", "", "", getDecimalProfit(2)};
                 break;
+
+            //Default: Add blank line to the table
             default:
                 data = new Object[] {"","", "", ""};
                 break;
@@ -169,7 +177,7 @@ public class ProfitTableView extends AbstractView {
      */
     private void saveData(){
         try {
-            File file = new File("C:\\Users\\jop\\Documents\\Table.txt"); //Loaction to save file + filename.extention
+            File file = new File("C:\\Users\\Jop\\Documents\\Table.txt"); //Loaction to save file + filename.extention
             if(!file.exists()){
                 file.createNewFile();
             }
@@ -215,9 +223,9 @@ public class ProfitTableView extends AbstractView {
                 addRow(2);
                 addRow(3);
 
-                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
-                    saveData();
-                }
+//                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
+//                    saveDataToMap();
+//                }
 
                 addRow(0);
                 addRow(1);
