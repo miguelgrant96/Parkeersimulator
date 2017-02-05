@@ -79,7 +79,7 @@ public class TimeController extends AbstractController{
      *
      * @return return the value of dayOfYear
      */
-    protected int getDayOfYear(){
+    public int getDayOfYear(){
         return dayOfYear;
     }
 
