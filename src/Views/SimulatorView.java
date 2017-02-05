@@ -82,12 +82,14 @@ public class SimulatorView  extends AbstractView{
                 carParkImage = createImage(size.width, size.height);
             }
             Graphics graphics = carParkImage.getGraphics();
+            int passCounter = 0;
             for(int floor = 0; floor < carController.getNumberOfFloors(); floor++) {
                 for(int row = 0; row < carController.getNumberOfRows(); row++) {
                     for(int place = 0; place < carController.getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
                         Car car = carController.getCarAt(location);
-                        if (floor == 0) {
+                        passCounter++;
+                        if (passCounter <= carController.getPassSpots()) {
                             Color color = car == null ? Color.lightGray : car.getColor();
                             drawPlace(graphics, location, color);
                         } else {

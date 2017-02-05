@@ -169,7 +169,7 @@ public class ProfitTableView extends AbstractView {
      */
     private void saveData(){
         try {
-            File file = new File("C:\\Users\\Jop\\Documents\\Table.txt"); //Loaction to save file + filename.extention
+            File file = new File("C:\\Users\\jop\\Documents\\Table.txt"); //Loaction to save file + filename.extention
             if(!file.exists()){
                 file.createNewFile();
             }
@@ -214,8 +214,14 @@ public class ProfitTableView extends AbstractView {
             else if (timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
                 addRow(2);
                 addRow(3);
+
+                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
+                    saveData();
+                }
+
                 addRow(0);
                 addRow(1);
+
 
                 paymentController.clearWeken();
             }
