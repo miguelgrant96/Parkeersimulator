@@ -105,7 +105,7 @@ public class PaymentController extends AbstractController {
             value = weken.get(i);
             maandOmzet = (maandOmzet + value);
         }
-        maandOmzet = maandOmzet + (carController.getPassSpots() * 75);
+        maandOmzet = maandOmzet + (carController.getPassSpots() * 150);
         return maandOmzet;
     }
 

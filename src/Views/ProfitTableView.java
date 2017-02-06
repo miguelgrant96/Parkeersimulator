@@ -1,9 +1,6 @@
 package Views;
 
-import Controllers.PaymentController;
-
 import Controllers.ProfitTableController;
-import Controllers.TimeController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,10 +20,14 @@ public class ProfitTableView extends AbstractView {
 
         setSize(250, 50);
         setLayout(new GridLayout(0,1));
+
+        //Creating the table from the controller
         JTable table = profitTableController.createProfitTable();
+
+        //Adding a scrollpane to the table
         JScrollPane scrollPane = new JScrollPane(table);
 
-
+        //Adding the scrollpane to the view
         add(scrollPane);
 
         setVisible(true);

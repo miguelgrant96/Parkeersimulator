@@ -28,7 +28,7 @@ public class CarController extends AbstractController {
         adhoc = new Counter("adhoc");
         pass = new Counter("pass");
 
-        passSpots = 56;
+        passSpots = 81;
         passHolder = 0;
     }
     public Counter getAdhoc(){

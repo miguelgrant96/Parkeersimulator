@@ -1,8 +1,5 @@
 package Controllers;
 
-import Views.ProfitTableView;
-import Controllers.PaymentController;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
