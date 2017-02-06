@@ -5,7 +5,7 @@ import Models.*;
 /**
  * Created by Bessel on 1/24/2017.
  */
-
+//Fields
 public class CarController extends AbstractController {
     private int numberOfFloors;
     private int numberOfRows;
@@ -17,6 +17,7 @@ public class CarController extends AbstractController {
     private int passSpots;
     private int passHolder;
 
+    //Constructor
     public CarController(int numberOfFloors, int numberOfRows, int numberOfPlaces){
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
@@ -31,46 +32,87 @@ public class CarController extends AbstractController {
         passSpots = 56;
         passHolder = 0;
     }
+
+    //Methods
+
+    /**
+     * @return The Counter of AdHoc cars
+     */
     public Counter getAdhoc(){
         return adhoc;
     }
 
+    /**
+     * @return The Counter of ParkingPass cars
+     */
     public Counter getPass(){
         return pass;
     }
 
+    /**
+     * @return the number of ParkingPass cars
+     */
     protected int getPassHolder(){
         return passHolder;
     }
 
+    /**
+     * @return The number of floors in the parking lot
+     */
     public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
+    /**
+     * @return The number of rows on each floor
+     */
     public int getNumberOfRows() {
         return numberOfRows;
     }
 
+    /**
+     * @return The number of places on each row
+     */
     public int getNumberOfPlaces() {
         return numberOfPlaces;
     }
 
+    /**
+     * @return the number of open spots
+     */
     public int getNumberOfOpenSpots(){
         return numberOfOpenSpots;
     }
 
+    /**
+     * @return the number of spots that are reserved for ParkingPass cars
+     */
     public int getPassSpots() {return passSpots; }
 
 
+    /**
+     * Sets the number of reserved ParkingPass cars
+     * @param passSpots number of spots that are reserved for ParkingPass cars
+     */
     public void setPassSpots(int passSpots)
     {
         this.passSpots = passSpots;
     }
-    protected Car[][][] getAllCars()
+
+    /**
+     * Gets all cars to calculate the sales volume
+     * @return
+     */
+    public Car[][][] getAllCars()
     {
         return cars;
     }
 
+    /**
+     * get the location where a car can park
+     * @param location location where a entered car has to park
+     * @return the exact floor, row and spot where to park
+     */
     public Car getCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -78,12 +120,25 @@ public class CarController extends AbstractController {
         return cars[location.getFloor()][location.getRow()][location.getPlace()];
     }
 
+    /**
+     * Can be used if you want to get a car from a certain spot
+     * @param floor the floor you want the car from
+     * @param row the row you want the car from
+     * @param places the spot you want the car from
+     * @return the car at that spot
+     */
     public Car getCarAt(int floor, int row, int places) {
 
         return cars[floor][row][places];
     }
 
-    public boolean setCarAt(Location location, Car car) {
+    /**
+     * Sets the car to an exact location
+     * @param location Location where a entered car has to park
+     * @param car A car that wants to park
+     * @return true if there is a valid location, false if not
+     */
+    protected boolean setCarAt(Location location, Car car) {
         if (!locationIsValid(location)) {
             return false;
         }
@@ -98,6 +153,12 @@ public class CarController extends AbstractController {
         return false;
     }
 
+    /**
+     * removes cars from a spot
+     * @param   location location where a car leaves his place
+     * @return  null if a location is not valid or already empty
+     *          car is car that want to leave
+     */
     protected Car removeCarAt(Location location) {
         if (!locationIsValid(location)) {
             return null;
@@ -128,8 +189,13 @@ public class CarController extends AbstractController {
             return car;
 
         }
+
     }
 
+    /**
+     * checks for the first possible spot for a ParkingPass car to park
+     * @return The spot where a car can park
+     */
     protected Location getFirstPassLocation() {
         if (passHolder < getPassSpots()) {
             for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -147,6 +213,10 @@ public class CarController extends AbstractController {
         return null;
     }
 
+    /**
+     * checks for the first possible spot for a AdHoc car to park
+     * @return The spot where a car can park
+     */
     protected Location getFirstPaidLocation() {
         int paid = 0;
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -167,6 +237,10 @@ public class CarController extends AbstractController {
         return null;
     }
 
+    /**
+     * Checks the first leaving car in the Parking Lot
+     * @return the first leaving car
+     */
     protected Car getFirstLeavingCar() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -182,6 +256,9 @@ public class CarController extends AbstractController {
         return null;
     }
 
+    /**
+     *??
+     */
     protected void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -196,6 +273,11 @@ public class CarController extends AbstractController {
         }
     }
 
+    /**
+     * Checks if the location where a car want to park is valid or not
+     * @param location location where a car can park
+     * @return true if it is a valid location, false if not
+     */
     private boolean locationIsValid(Location location) {
         int floor = location.getFloor();
         int row = location.getRow();
@@ -206,6 +288,9 @@ public class CarController extends AbstractController {
         return true;
     }
 
+    /**
+     * Used to resed the simulator with an empty Parking Lot
+     */
     public void resetCars()
     {
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;

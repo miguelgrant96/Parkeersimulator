@@ -9,6 +9,8 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by Arjen on 23-1-2017.
  */
+
+//Fields
 public class CarQueueController extends AbstractController{
 
     private SimulatorController simulatorController;
@@ -37,6 +39,7 @@ public class CarQueueController extends AbstractController{
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
 
+    //Constructor
     public CarQueueController() {
 
         this.simulatorController = (SimulatorController) super.registeryController.getObjectInstance("SimulatorController");
@@ -55,15 +58,20 @@ public class CarQueueController extends AbstractController{
 
     }
 
-    private void setArrivals() {
-        if (timeController.getDay() < 5) {
-            //Niet druk
+    //Methods
+    /**
+     * Set the number of arriving cars every hour between certain times
+     */
+    protected void setArrivals() {
+            //Not busy
             if (timeController.getHour() >= 22 && timeController.getHour() <= 5) {
 
                 weekDayArrivals = 10; // average number of arriving cars per hour
                 weekDayPassArrivals = 1; // average number of arriving cars per hour
+                weekendArrivals = 15; // average number of arriving cars per hour
+                weekendPassArrivals = 1; // average number of arriving cars per hour
 
-                //Beetje druk
+                //A little busy
             } else if (timeController.getHour() < 7 ||
                     timeController.getHour() > 9 && timeController.getHour() < 12 ||
                     timeController.getHour() > 14 && timeController.getHour() < 17 ||
@@ -71,19 +79,22 @@ public class CarQueueController extends AbstractController{
 
                 weekDayArrivals = 25; // average number of arriving cars per hour
                 weekDayPassArrivals = 10; // average number of arriving cars per hour
+                weekendArrivals = 100; // average number of arriving cars per hour
+                weekendPassArrivals = 5; // average number of arriving cars per hour
 
-                // Druk
+                // Very Busy
             } else{
                 weekDayArrivals = 100; // average number of arriving cars per hour
                 weekDayPassArrivals = 50; // average number of arriving cars per hour
+                weekendArrivals = 200; // average number of arriving cars per hour
+                weekendPassArrivals = 5; // average number of arriving cars per hour
             }
-        } else {
-            weekendArrivals = 200; // average number of arriving cars per hour
-            weekendPassArrivals = 5; // average number of arriving cars per hour
-        }
     }
 
-    public void handleEntrance(){
+    /**
+     * Set the required method needed for the incoming cars
+     */
+    protected void handleEntrance(){
         carsArriving();
         setArrivals();
         carsLeavingQueue(entranceCarQueue);
@@ -91,14 +102,21 @@ public class CarQueueController extends AbstractController{
         carsEntering(entranceCarQueue);
     }
 
-    public void handleExit(){
+
+
+    /**
+     * Set the required method needed for the exiting cars
+     */
+    protected void handleExit(){
         carsReadyToLeave();
         carsPaying();
         carsLeaving();
-
     }
 
-    public void carsReadyToLeave(){
+    /**
+     * Determines if a car has to pay or not, if it has, it is added to the payment queue
+     */
+    protected void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
         Car car = carController.getFirstLeavingCar();
         while (car!=null) {
@@ -110,11 +128,16 @@ public class CarQueueController extends AbstractController{
                 carLeavesSpot(car);
             }
             car = carController.getFirstLeavingCar();
-
         }
     }
 
-    public int getNumberOfCars(int weekDay, int weekend){
+    /**
+     * Check the average number of cars every hour and every minute
+     * @param weekDay checks the day if it is a weekday
+     * @param weekend checks the day if it is in the weekend
+     * @return the number of cars every minute
+     */
+    protected int getNumberOfCars(int weekDay, int weekend){
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
@@ -128,8 +151,10 @@ public class CarQueueController extends AbstractController{
         return (int)Math.round(numberOfCarsPerHour / 60);
     }
 
+    /**
+     * Let the cars pay
+     */
     private void carsPaying(){
-        // Let cars pay.
         int i=0;
         while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
             Car car = paymentCarQueue.removeCar();
@@ -139,25 +164,33 @@ public class CarQueueController extends AbstractController{
         }
     }
 
+    /**
+     * Let the cars leave
+     */
     private void carsLeaving(){
-        // Let cars leave.
         int i=0;
         while (exitCarQueue.carsInQueue()>0 && i < exitSpeed){
             exitCarQueue.removeCar();
             i++;
             leftCarsToday++;
         }
-
     }
 
+    /**
+     * removes the car from a spot and adds it to a queue of exiting cars
+     * @param car a car in the parkinglot
+     */
     private void carLeavesSpot(Car car){
         carController.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
-
     }
 
 
-
+    /**
+     * Add the arriving cars to a queue where it has to wait till it can enter
+     * @param numberOfCars the number of cars in the parkinglot
+     * @param type the type of the cars (pass holders or non passholders)
+     */
     private void addArrivingCars(int numberOfCars, String type) {
         // Add the cars to the back of the queue.
         switch (type) {
@@ -176,18 +209,24 @@ public class CarQueueController extends AbstractController{
         }
     }
 
+    /**
+     * Add the cars to the numberOfCars total of each type of car
+     */
     private void carsArriving(){
-        int numberOfCars= getNumberOfCars(weekDayArrivals, weekendArrivals);
+        int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
         addArrivingCars(numberOfCars, AD_HOC);
 
         numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
-
     }
 
+    /**
+     * Remove car from the front of the queue and assign to a parking space.
+     * It divides the cars between passholders and non passholders
+     * @param queue the queue of waiting cars till they can enter the parking lot
+     */
     private void carsEntering(CarQueue queue) {
         int i = 0;
-        // Remove car from the front of the queue and assign to a parking space.
         while (queue.carsInQueue() > 0 &&
                 carController.getNumberOfOpenSpots() > 0 &&
                 i < enterSpeed) {
@@ -206,48 +245,93 @@ public class CarQueueController extends AbstractController{
         }
     }
 
-    public void carsLeavingQueue(CarQueue queue){
+    /**
+     * Let cars random leave the queue if they don't want to wait too long.
+     * The more cars in the queue the bigger the chance that they leave
+     * @param queue The queue of waiting cars till they can enter the parking lot
+     */
+
+
+    protected void carsLeavingQueue(CarQueue queue) {
         numberOfCarsInQueue = queue.carsInQueue();
-        if (queue.carsInQueue() >= 3) {
-            int randomNum = ThreadLocalRandom.current().nextInt(0,10 +1);
-            if (randomNum > 7) {
+        System.out.println(numberOfCarsInQueue);
+        int randomNum = ThreadLocalRandom.current().nextInt(1, 10 + 1);
+        if (queue.carsInQueue() >= 20) {
+            if (randomNum > 1) {
+                carsLeft++;
+                carLeavingQueue();
+            }
+        } else if (queue.carsInQueue() >= 15) {
+            if (randomNum > 3) {
+                carsLeft++;
+                carLeavingQueue();
+            }
+        } else if (queue.carsInQueue() >= 10) {
+            if (randomNum > 5) {
+                carsLeft++;
+                carLeavingQueue();
+            }
+        } else if (queue.carsInQueue() >= 5) {
+            if (randomNum > 8) {
+                carsLeft++;
+                carLeavingQueue();
+            }
+        } else if (queue.carsInQueue() >= 3) {
+            if (randomNum > 9) {
                 carsLeft++;
                 carLeavingQueue();
             }
         }
     }
 
+    /**
+     * @return The number of current cars waiting in the queue
+     */
     public int getWaitingCars() {
         return numberOfCarsInQueue;
     }
 
+    /**
+     * @return The number of cars that have left the queue
+     */
     public int getLeftCars(){
-        return leftCars();
-    }
-
-    public int leftCars() {
         return carsLeft;
     }
 
+    /**
+     * @return The number of cars that have entered the Parking Lot today
+     */
     public int getCarsToday(){
         return carsToday;
     }
 
+    /**
+     * @return The number of cars that have left the Parking Lot today
+     */
     public int getLeavingCarsToday(){
         return leftCarsToday;
     }
 
+    /**
+     * This method is used to reset the counter of left cars, entered cars, waiting cars and left cars.
+     * This is used every day at 0:00
+     */
     public void resetCars(){
         carsLeft = 0;
         carsToday = 0;
-        numberOfCarsInQueue = 0;
         leftCarsToday = 0;
     }
 
-    public void carLeavingQueue(){
+    /**
+     * When a car wants to leave the queue, the car gets removed from the queue
+     */
+    protected void carLeavingQueue(){
         entranceCarQueue.removeCar();
     }
 
+    /**
+     * The queue of cars is resetted
+     */
     public void resetQueue()
     {
         entranceCarQueue = new CarQueue();
