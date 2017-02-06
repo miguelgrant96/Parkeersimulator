@@ -7,7 +7,11 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by Arjen on 23-1-2017.
+ * Controls the CarQueue of the parking lot
+ *
+ * @author Marnick
+ * @Version 1.4
+ * @since 23-01-2017
  */
 
 //Fields
@@ -116,7 +120,7 @@ public class CarQueueController extends AbstractController{
     /**
      * Determines if a car has to pay or not, if it has, it is added to the payment queue
      */
-    protected void carsReadyToLeave(){
+    private void carsReadyToLeave(){
         // Add leaving cars to the payment queue.
         Car car = carController.getFirstLeavingCar();
         while (car!=null) {
@@ -137,7 +141,7 @@ public class CarQueueController extends AbstractController{
      * @param weekend checks the day if it is in the weekend
      * @return the number of cars every minute
      */
-    protected int getNumberOfCars(int weekDay, int weekend){
+    private int getNumberOfCars(int weekDay, int weekend){
         Random random = new Random();
 
         // Get the average number of cars that arrive per hour.
@@ -250,9 +254,7 @@ public class CarQueueController extends AbstractController{
      * The more cars in the queue the bigger the chance that they leave
      * @param queue The queue of waiting cars till they can enter the parking lot
      */
-
-
-    protected void carsLeavingQueue(CarQueue queue) {
+    private void carsLeavingQueue(CarQueue queue) {
         numberOfCarsInQueue = queue.carsInQueue();
         System.out.println(numberOfCarsInQueue);
         int randomNum = ThreadLocalRandom.current().nextInt(1, 10 + 1);
@@ -325,7 +327,7 @@ public class CarQueueController extends AbstractController{
     /**
      * When a car wants to leave the queue, the car gets removed from the queue
      */
-    protected void carLeavingQueue(){
+    private void carLeavingQueue(){
         entranceCarQueue.removeCar();
     }
 

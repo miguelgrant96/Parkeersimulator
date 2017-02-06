@@ -3,7 +3,11 @@ package Controllers;
 import Models.*;
 
 /**
- * Created by Bessel on 1/24/2017.
+ * Controls the cars in the parking lot
+ *
+ * @author Marnick
+ * @Version 1.6
+ * @since 24-01-2017
  */
 //Fields
 public class CarController extends AbstractController {
@@ -103,7 +107,7 @@ public class CarController extends AbstractController {
      * Gets all cars to calculate the sales volume
      * @return
      */
-    public Car[][][] getAllCars()
+    protected Car[][][] getAllCars()
     {
         return cars;
     }
@@ -259,7 +263,7 @@ public class CarController extends AbstractController {
     /**
      *??
      */
-    protected void tick() {
+    public void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
                 for (int place = 0; place < getNumberOfPlaces(); place++) {
