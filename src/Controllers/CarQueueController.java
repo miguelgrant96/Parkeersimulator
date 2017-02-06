@@ -6,6 +6,7 @@ import java.awt.*;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 /**
  * Controls the CarQueue of the parking lot
  *
@@ -25,20 +26,22 @@ public class CarQueueController extends AbstractController{
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
+
     private int carsLeft;
     private int numberOfCarsInQueue;
     private int carsToday;
     private int leftCarsToday;
 
+    private int randomNum;
 
-    int weekDayArrivals; // average number of arriving cars per hour
-    int weekendArrivals; // average number of arriving cars per hour
-    int weekDayPassArrivals; // average number of arriving cars per hour
-    int weekendPassArrivals; // average number of arriving cars per hour
+    private int weekDayArrivals; // average number of arriving cars per hour
+    private int weekendArrivals; // average number of arriving cars per hour
+    private int weekDayPassArrivals; // average number of arriving cars per hour
+    private int weekendPassArrivals; // average number of arriving cars per hour
 
-    int enterSpeed = 3; // number of cars that can enter per minute
-    int paymentSpeed = 7; // number of cars that can pay per minute
-    int exitSpeed = 5; // number of cars that can leave per minute
+    private int enterSpeed = 3; // number of cars that can enter per minute
+    private int paymentSpeed = 7; // number of cars that can pay per minute
+    private int exitSpeed = 5; // number of cars that can leave per minute
 
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
@@ -320,7 +323,6 @@ public class CarQueueController extends AbstractController{
     public void resetCars(){
         carsLeft = 0;
         carsToday = 0;
-        leftCarsToday = 0;
     }
 
     /**
