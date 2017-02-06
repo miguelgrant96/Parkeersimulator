@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="61fb00ce-73f3-47ea-a8d3-9d55e5ec1778" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controllers/CarController.java" afterPath="$PROJECT_DIR$/src/Controllers/CarController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controllers/CarQueueController.java" afterPath="$PROJECT_DIR$/src/Controllers/CarQueueController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controllers/PaymentController.java" afterPath="$PROJECT_DIR$/src/Controllers/PaymentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controllers/ProfitTableController.java" afterPath="$PROJECT_DIR$/src/Controllers/ProfitTableController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controllers/TimeController.java" afterPath="$PROJECT_DIR$/src/Controllers/TimeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/ButtonView.java" afterPath="$PROJECT_DIR$/src/Views/ButtonView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/CarLeavingView.java" afterPath="$PROJECT_DIR$/src/Views/CarLeavingView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/PaymentView.java" afterPath="$PROJECT_DIR$/src/Views/PaymentView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/ProfitTableView.java" afterPath="$PROJECT_DIR$/src/Views/ProfitTableView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/SimulatorView.java" afterPath="$PROJECT_DIR$/src/Views/SimulatorView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Views/TimeView.java" afterPath="$PROJECT_DIR$/src/Views/TimeView.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,7 +18,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="BuildGUI.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BuildGUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BuildGUI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -37,19 +26,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="132">
-                <caret line="6" column="77" lean-forward="true" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
-                <folding />
-              </first_editor>
-              <second_editor />
             </state>
           </provider>
         </entry>
@@ -671,7 +647,7 @@
       <workItem from="1486397337753" duration="6000" />
       <workItem from="1486397408304" duration="26000" />
       <workItem from="1486397557909" duration="410000" />
-      <workItem from="1486398202692" duration="346000" />
+      <workItem from="1486398202692" duration="539000" />
     </task>
     <task id="LOCAL-00001" summary="Working files + new Branch Jop">
       <created>1486071389751</created>
@@ -729,11 +705,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486333150556</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added @author.&#10;Combined with last update from @marnickV2">
+      <created>1486398577690</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1486398577690</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55998000" />
+    <option name="totallyTimeSpent" value="56191000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="2418" height="1318" extended-state="6" />
@@ -748,7 +731,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32454363" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286004" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32853514" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -803,7 +786,8 @@
     <MESSAGE value="Added comments, changed visibility modifiers" />
     <MESSAGE value="Added ProfitTableController" />
     <MESSAGE value="Added resetTable method.&#10;Added resetTable option to reset simulator." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added resetTable method.&#10;Added resetTable option to reset simulator." />
+    <MESSAGE value="Added @author.&#10;Combined with last update from @marnickV2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added @author.&#10;Combined with last update from @marnickV2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1351,6 +1335,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="132">
+            <caret line="6" column="62" lean-forward="false" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/BuildGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1358,17 +1353,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="132">
-            <caret line="6" column="77" lean-forward="true" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
-            <folding />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
