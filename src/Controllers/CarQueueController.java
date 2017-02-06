@@ -256,7 +256,6 @@ public class CarQueueController extends AbstractController{
      */
     private void carsLeavingQueue(CarQueue queue) {
         numberOfCarsInQueue = queue.carsInQueue();
-        System.out.println(numberOfCarsInQueue);
         int randomNum = ThreadLocalRandom.current().nextInt(1, 10 + 1);
         if (queue.carsInQueue() >= 20) {
             if (randomNum > 1) {
