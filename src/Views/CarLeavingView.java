@@ -6,13 +6,21 @@ import Controllers.TimeController;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * Shows information about the entering and leaving cars
+ *
+ * @author Marnick
+ * @version 1.2
+ * @since 27-01-2016
+ */
+//fields
 public class CarLeavingView extends AbstractView {
     private CarQueueController carQueueController;
     private TimeController timeController;
     private JLabel queueLabel, queueLeftLabel, carsEnteredLabel, carsLeftLabel;
 
 
+    //Constructor
     public CarLeavingView(){
 
         carQueueController = (CarQueueController) super.registeryController.getObjectInstance("CarQueueController");
@@ -34,7 +42,11 @@ public class CarLeavingView extends AbstractView {
 
         setVisible(true);
     }
-
+    //Methods
+    /**
+     * Shows the number of waiting,left,entered and cars who had to wait to long
+     * Will be resetted every day at 23:30
+     */
     public void updateView(){
         int queue = carQueueController.getWaitingCars();
         int queueLeft = carQueueController.getLeftCars();
