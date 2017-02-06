@@ -8,7 +8,11 @@ import java.awt.*;
 
 
 /**
- * Created by Jop on 1-2-2017.
+ * Shows the table in the GUI
+ *
+ * @author Jop Bakker
+ * @version 1.1
+ * @since 1-02-2016
  */
 public class ProfitTableView extends AbstractView {
 

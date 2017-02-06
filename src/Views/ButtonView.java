@@ -8,7 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Jop on 25-1-2017.
+ * Shows the buttons in the GUI
+ *
+ * @author Jop Bakker
+ * @version 1.5
+ * @since 25-01-2016
  */
 public class ButtonView  extends AbstractView{
 

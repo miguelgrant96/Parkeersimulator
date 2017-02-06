@@ -9,7 +9,11 @@ import java.io.FileWriter;
 import java.text.DecimalFormat;
 
 /**
- * Created by Jop on 5-2-2017.
+ * Creates the table and its methods
+ *
+ * @author Jop Bakker
+ * @version 1
+ * @since 5-02-2016
  */
 public class ProfitTableController extends AbstractController {
 
