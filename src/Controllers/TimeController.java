@@ -25,7 +25,7 @@ public class TimeController extends AbstractController{
      */
     public void advanceTime() {
         // Advance the time by 1 minutes.
-        minute+=10;
+        minute+=1;
         while (minute > 59) {
             minute -= 60;
             hour++;
