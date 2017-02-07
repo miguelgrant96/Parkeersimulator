@@ -37,7 +37,7 @@ public class ProfitTableController extends AbstractController {
         model.addColumn("Profit");
 
         JTable profitTable = new JTable(model);
-        profitTable.setPreferredScrollableViewportSize(new Dimension(500,150));
+        profitTable.setPreferredScrollableViewportSize(new Dimension(590,150));
         profitTable.setFillsViewportHeight(false);
 
         model.addRow(new Object[]{timeController.getYear(),getMonthName(timeController.getMonth()), "", ""});

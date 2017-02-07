@@ -48,7 +48,11 @@ public class ButtonView  extends AbstractView{
      * Method to create the stop button and its ActionListener
      */
     private void stopButton(){
-        stop = new JButton("stop");
+        ImageIcon stopimg = new ImageIcon("C:\\Sources\\Parkeersimv3\\Parkeersimulator\\src\\images\\stop.png");
+        stop = new JButton(stopimg);
+        stop.setOpaque(false);
+        stop.setContentAreaFilled(false);
+        stop.setBorderPainted(false);
         stop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,7 +67,11 @@ public class ButtonView  extends AbstractView{
      * Method to create the start button and its ActionListener
      */
     private void startButton() {
-        start = new JButton("start");
+        ImageIcon startimg = new ImageIcon("C:\\Sources\\Parkeersimv3\\Parkeersimulator\\src\\images\\start.png");
+        start = new JButton(startimg);
+        start.setOpaque(false);
+        start.setContentAreaFilled(false);
+        start.setBorderPainted(false);
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,7 +93,11 @@ public class ButtonView  extends AbstractView{
      * Method to create the add 1 hour and its ActionListener
      */
     private void add1HourButton(){
-        add1Hour = new JButton("add 1 hour");
+        ImageIcon een = new ImageIcon("C:\\Sources\\Parkeersimv3\\Parkeersimulator\\src\\images\\clock1.png");
+        add1Hour = new JButton(een);
+        add1Hour.setOpaque(false);
+        add1Hour.setContentAreaFilled(false);
+        add1Hour.setBorderPainted(false);
         add1Hour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -99,7 +111,11 @@ public class ButtonView  extends AbstractView{
      * Method to create the add 24 hours and its ActionListener
      */
     private void fastforward24hoursButton(){
-        add24Hours = new JButton("add 24 hours");
+        ImageIcon tweevier = new ImageIcon("C:\\Sources\\Parkeersimv3\\Parkeersimulator\\src\\images\\clock24.png");
+        add24Hours = new JButton(tweevier);
+        add24Hours.setOpaque(false);
+        add24Hours.setContentAreaFilled(false);
+        add24Hours.setBorderPainted(false);
         add24Hours.addActionListener(new ActionListener() {
 
             @Override
