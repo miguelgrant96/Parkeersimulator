@@ -13,6 +13,15 @@ public class MenuBarView {
     public JMenuBar CreateMenuBar()
     {
         JMenuBar menuBar = new JMenuBar();
+
+        menuBar.add(options());
+        menuBar.add(view());
+
+        return menuBar;
+    }
+
+    private JMenu options()
+    {
         JMenu menu = new JMenu( "Options");
         JMenuItem settings = settings();
         JMenuItem reservation = reservation();
@@ -21,9 +30,46 @@ public class MenuBarView {
         menu.add(settings);
         menu.add(reservation);
         menu.add(reset);
-        menuBar.add(menu);
+        return menu;
+    }
 
-        return menuBar;
+    private JMenu view()
+    {
+        JMenu menu = new JMenu("View");
+
+        menu.add(infoPanel());
+        menu.add(time());
+
+        return menu;
+    }
+
+
+    private JCheckBoxMenuItem infoPanel()
+    {
+        JCheckBoxMenuItem checkbox = new JCheckBoxMenuItem("Info panel", true);
+        checkbox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AbstractView.updateVisibility(checkbox.getState(), "Views.PieView");
+                AbstractView.updateVisibility(checkbox.getState(), "Views.CarLeavingView");
+                AbstractView.updateVisibility(checkbox.getState(), "Views.PaymentView");
+            }
+        });
+
+        return checkbox;
+    }
+
+    private JCheckBoxMenuItem time()
+    {
+        JCheckBoxMenuItem checkbox = new JCheckBoxMenuItem("Time", true);
+        checkbox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AbstractView.updateVisibility(checkbox.getState(), "Views.TimeView");
+            }
+        });
+
+        return checkbox;
     }
 
     private JMenuItem settings()
@@ -73,4 +119,6 @@ public class MenuBarView {
         });
         return reset;
     }
+
+
 }

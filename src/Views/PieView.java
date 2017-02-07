@@ -124,6 +124,11 @@ public class PieView extends AbstractView{
 
     }
 
+    public void setVisibility(boolean visibility)
+    {
+        setVisible(visibility);
+    }
+
     /**
      * update the view (calls the above function)
      */

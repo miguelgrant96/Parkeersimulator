@@ -70,6 +70,9 @@ public class PaymentView extends AbstractView {
 
 
     }
-
+    public void setVisibility(boolean visibility)
+    {
+        setVisible(visibility);
+    }
 
 }

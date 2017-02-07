@@ -118,5 +118,10 @@ public class ButtonView  extends AbstractView{
     {
         repaint();
     }
+
+    public void setVisibility(boolean visibility)
+    {
+        setVisible(visibility);
+    }
 }
 
