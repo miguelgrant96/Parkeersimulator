@@ -8,13 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Jop on 25-1-2017.
+ * Shows the buttons in the GUI
+ *
+ * @author Jop Bakker
+ * @version 1.5
+ * @since 25-01-2016
  */
 public class ButtonView  extends AbstractView{
 
     SimulatorController simController;
     private Timer guiRunTimer;
     private JButton start, stop, add1Hour, add24Hours;
+
 
     public ButtonView(){
 
@@ -77,7 +82,7 @@ public class ButtonView  extends AbstractView{
     }
 
     /**
-     * Method to create the asdd1 step button and its ActionListener
+     * Method to create the add 1 hour and its ActionListener
      */
     private void add1HourButton(){
         add1Hour = new JButton("add 1 hour");
@@ -108,11 +113,12 @@ public class ButtonView  extends AbstractView{
     }
 
     /**
-     * Method to create the add100 button and its ActionListener
+     * Method to create the add 24 hours and its ActionListener
      */
     private void fastforward24hoursButton(){
         add24Hours = new JButton("add 24 hours");
         add24Hours.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean isrunning = simController.isRunning();

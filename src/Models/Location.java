@@ -38,7 +38,6 @@ public class Location {
     public String toString() {
         return floor + "," + row + "," + place;
     }
-    // Testt!!!
     /**
      * Use the 10 bits for each of the floor, row and place
      * values. Except for very big car parks, this should give

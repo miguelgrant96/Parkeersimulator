@@ -5,8 +5,13 @@ import java.awt.*;
 import java.util.HashMap;
 
 /**
- * Created by Jop on 24-1-2017.
+ * calculates and stores the profits
+ *
+ * @author Jop Bakker
+ * @version 1.5
+ * @since 25-01-2016
  */
+
 public class PaymentController extends AbstractController {
 
     private CarController carController;
@@ -105,7 +110,7 @@ public class PaymentController extends AbstractController {
             value = weken.get(i);
             maandOmzet = (maandOmzet + value);
         }
-        maandOmzet = maandOmzet + (carController.getPassSpots() * 75);
+        maandOmzet = maandOmzet + (carController.getPassSpots() * 150);
         return maandOmzet;
     }
 

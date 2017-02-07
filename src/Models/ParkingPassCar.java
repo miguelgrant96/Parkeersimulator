@@ -1,6 +1,6 @@
 package Models;
 
-import java.util.Random;
+
 import java.awt.*;
 
 public class ParkingPassCar extends Car {
