@@ -38,16 +38,15 @@ public class ProfitTableView extends AbstractView {
     }
 
     /**
-     * Method to create the Table and its column names
-     * @return the table format
-     */
-
-
-    /**
      *
      * Method to update, reset and save data when needed
      */
     public void updateView() {
         profitTableController.updateTable();
+    }
+
+    public void setVisibility(boolean visibility)
+    {
+        setVisible(visibility);
     }
 }

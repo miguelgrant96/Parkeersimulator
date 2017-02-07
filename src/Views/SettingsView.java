@@ -75,14 +75,17 @@ public class SettingsView extends AbstractView{
                 {
                     String passSpots = t1.getText();
                     carCon.setPassSpots(Integer.parseInt(passSpots));
-
+                    AbstractView.notifyViews();
+                    settingsFrame.dispose();
                 }
                 catch(Exception ex)
                 {
-                    // je kunt hier een leuke error message teruggeven.
+                    JOptionPane.showMessageDialog(settingsFrame,
+                            "Geen geldig nummer.",
+                            "OPGELET",
+                            JOptionPane.WARNING_MESSAGE);
                 }
-                AbstractView.notifyViews();
-                settingsFrame.dispose();
+
             }
         });
 
@@ -92,5 +95,10 @@ public class SettingsView extends AbstractView{
     public void updateView()
     {
         repaint();
+    }
+
+    public void setVisibility(boolean visibility)
+    {
+        setVisible(visibility);
     }
 }
