@@ -4,13 +4,6 @@ package Controllers;
  * Created by Bessel on 1/24/2017.
  */
 
-import javax.swing.*;
-
-// importing project classes
-import Views.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class AbstractController
 {

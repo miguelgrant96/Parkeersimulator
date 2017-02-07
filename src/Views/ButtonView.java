@@ -8,11 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Jop on 25-1-2017.
+ * Shows the buttons in the GUI
+ *
+ * @author Jop Bakker
+ * @version 1.5
+ * @since 25-01-2016
  */
 public class ButtonView  extends AbstractView{
 
-    SimulatorController simController;
+    private SimulatorController simController;
     private Timer guiRunTimer, guiAddTimer;
     private int guiAddCounter = 100;
     private JButton start, stop, add1, add100;
@@ -98,7 +102,7 @@ public class ButtonView  extends AbstractView{
      * Method to create the add100 button and its ActionListener
      */
     private void add100Button(){
-        add100 = new JButton("ad100");
+        add100 = new JButton("add100");
         add100.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -1,6 +1,11 @@
 package Controllers;
 
-
+/**
+ *
+ * @author Jop Bakker
+ * @version 1.2
+ * @since 25-01-2016
+ */
 public class TimeController extends AbstractController{
 
     //Starting Day 1 at: 06:30

@@ -2,7 +2,6 @@ package Views;
 
 import Controllers.*;
 import Models.Reservation;
-import com.sun.javafx.scene.layout.region.Margins;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +15,8 @@ public class ReservationView extends AbstractView{
 
     private TimeController timeController;
 
-    JFrame reservationFrame;
-    JTextField f1, f2 , f3;
+    private JFrame reservationFrame;
+    private JTextField f1, f2 , f3;
 
 
     public ReservationView()
@@ -80,7 +79,7 @@ public class ReservationView extends AbstractView{
                 }
                 catch(Exception ex)
                 {
-
+                    //Do nothing
                 }
                 AbstractView.notifyViews();
                 reservationFrame.dispose();

@@ -8,7 +8,11 @@ import java.awt.*;
 import java.text.DecimalFormat;
 
 /**
- * Created by Jop on 26-1-2017.
+ * Shows profits in the GUI
+ *
+ * @author Jop Bakker
+ * @version 1.3
+ * @since 30-01-2016
  */
 public class PaymentView extends AbstractView {
     private PaymentController paymentController;
