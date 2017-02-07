@@ -5,6 +5,8 @@ import Views.AbstractView;
 
 public class SimulatorController extends AbstractController {
 
+
+
     private TimeController timeController;
     private CarQueueController carQueueController;
     private CarController carController;
@@ -12,6 +14,7 @@ public class SimulatorController extends AbstractController {
 
     // private int stepNumber;
     private boolean running;
+    private int tickPause = 100;
 
     public SimulatorController( ) {
         super();
@@ -47,12 +50,12 @@ public class SimulatorController extends AbstractController {
     }
 
     public void tick() {
-        int tickPause = 100;
 
         timeController.advanceTime();
         reservationController.checkReservations();
         carQueueController.handleExit();
         updateViews();
+
 
         // Pause.
         try {
@@ -78,4 +81,6 @@ public class SimulatorController extends AbstractController {
         carController.tick();
         AbstractView.notifyViews();
     }
+
+
 }
