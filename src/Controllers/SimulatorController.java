@@ -82,5 +82,23 @@ public class SimulatorController extends AbstractController {
         AbstractView.notifyViews();
     }
 
+    public void fastforward(int minutes)
+    {
+        boolean isrunning = isRunning();
+        stoprunning();
+        int resetTicks = getTickPause();
+        setTickPause(0);
+        for(int i =0; i < minutes; i++) {
+            try {
+                tick();
+            } catch (Exception e1) {
+            }
+        }
+        setTickPause(resetTicks);
+        updateViews();
+
+        if(isrunning)
+            startRunning();
+    }
 
 }
