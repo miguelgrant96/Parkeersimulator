@@ -76,15 +76,17 @@ public class ButtonView  extends AbstractView{
             @Override
             public void actionPerformed(ActionEvent e) {
                 simController.startRunning();
-                guiRunTimer = new Timer(15, new ActionListener() {
+                if(guiRunTimer == null){
+                    guiRunTimer = new Timer(15, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(simController.isRunning())
                             simController.tick();
                     }
                 });
-                guiRunTimer.setRepeats(true);
-                guiRunTimer.start();
+                    guiRunTimer.setRepeats(true);
+                    guiRunTimer.start();}
+
             }
         });
     }
