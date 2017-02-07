@@ -18,12 +18,15 @@ public class ProfitTableView extends AbstractView {
 
     private ProfitTableController profitTableController;
 
+    private JLabel emptyLabel, emptyLabel2;
 
     public ProfitTableView(){
         profitTableController = (ProfitTableController) super.registeryController.getObjectInstance("ProfitTableController");
 
         setSize(250, 50);
-        setLayout(new GridLayout(0,1));
+        setLayout(new GridLayout(0, 3));
+        emptyLabel = new JLabel();
+        emptyLabel2 = new JLabel();
 
         //Creating the table from the controller
         JTable table = profitTableController.createProfitTable();
@@ -32,6 +35,8 @@ public class ProfitTableView extends AbstractView {
         JScrollPane scrollPane = new JScrollPane(table);
 
         //Adding the scrollpane to the view
+        add(emptyLabel);
+        add(emptyLabel2);
         add(scrollPane);
 
         setVisible(true);

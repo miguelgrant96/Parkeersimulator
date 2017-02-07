@@ -1,6 +1,7 @@
 package Views;
 
 import Controllers.CarController;
+import Controllers.SimulatorController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,13 +13,17 @@ import java.awt.event.ActionListener;
  */
 public class SettingsView extends AbstractView{
 
-    CarController carCon;
-    JFrame settingsFrame;
-    JTextField t1;
+    private CarController carCon;
+    private SimulatorController simulatorController;
+
+    private JFrame settingsFrame;
+    private JTextField t1, t2;
 
     public SettingsView()
     {
         carCon = (CarController) super.registeryController.getObjectInstance("CarController");
+        simulatorController = (SimulatorController) super.registeryController.getObjectInstance("SimulatorController");
+
         this.CreateView();
 
     }
@@ -37,13 +42,19 @@ public class SettingsView extends AbstractView{
 
     private JPanel CreatePanel()
     {
-        JPanel content = new JPanel(new GridLayout(2,2));
+        JPanel content = new JPanel(new GridLayout(3,2));
 
         JLabel l1 = new JLabel("Abbonementen");
         t1 = new JTextField(String.valueOf(carCon.getPassSpots()) ,12);
 
+        JLabel l2 = new JLabel("Snelheid");
+        t2 = new JTextField(String.valueOf(simulatorController.getTickPause()+"") ,5);
+
         content.add(l1);
         content.add(t1);
+        content.add(l2);
+        content.add(t2);
+
 
         content.add(updateButton());
         content.add(cancelButton());
@@ -75,6 +86,10 @@ public class SettingsView extends AbstractView{
                 {
                     String passSpots = t1.getText();
                     carCon.setPassSpots(Integer.parseInt(passSpots));
+
+                    String speed = t2.getText();
+                    simulatorController.setTickPause(Integer.parseInt(speed));
+
                     AbstractView.notifyViews();
                     settingsFrame.dispose();
                 }
@@ -85,7 +100,6 @@ public class SettingsView extends AbstractView{
                             "OPGELET",
                             JOptionPane.WARNING_MESSAGE);
                 }
-
             }
         });
 

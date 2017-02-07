@@ -57,7 +57,7 @@ public class CarLeavingView extends AbstractView {
         carsEnteredLabel.setText("Auto's ingereden vandaag: "+carsEntered);
         carsLeftLabel.setText("Auto's uitgereden vandaag: " +carsLeft);
 
-        if (timeController.getTime().equals("23:30")) {
+        if (timeController.getTime().equals("23:50")) {
             carQueueController.resetCars();
         }
 

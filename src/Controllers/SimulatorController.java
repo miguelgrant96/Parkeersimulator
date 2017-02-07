@@ -14,7 +14,7 @@ public class SimulatorController extends AbstractController {
 
     // private int stepNumber;
     private boolean running;
-    private int tickPause = 100;
+    private int tickPause = 10;
 
     public SimulatorController( ) {
         super();
@@ -50,7 +50,7 @@ public class SimulatorController extends AbstractController {
     }
 
     public void tick() {
-
+        try {
         timeController.advanceTime();
         reservationController.checkReservations();
         carQueueController.handleExit();
@@ -58,9 +58,9 @@ public class SimulatorController extends AbstractController {
 
 
         // Pause.
-        try {
+
             Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
