@@ -27,17 +27,18 @@ public class PaymentView extends AbstractView {
         timeController =(TimeController) super.registeryController.getObjectInstance("TimeController");
 
 
-        setSize(250, 50);
+        setSize(250, 5);
         setLayout(new GridLayout(0,1));
 
         //Creating labels to show the profits
-        JLabel title = new JLabel("<html><bold>Omzet: </bold></html>");
+        JLabel title = new JLabel("Omzet:");
         JLabel label1 = new JLabel("");
+
         dagOmzetLabel = new JLabel("dagomzet: ");
         verwachteDagOmzetLabel = new JLabel("verwachteDagOmzet: ");
         weekOmzetLabel = new JLabel("weekOmzet: ");
+
         add(title);
-        add(label1);
         add(dagOmzetLabel);
         add(verwachteDagOmzetLabel);
         add(weekOmzetLabel);
