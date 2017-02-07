@@ -15,7 +15,7 @@ import java.awt.*;
 public class TimeView extends AbstractView {
 
     private TimeController timeController;
-    private JLabel month,week,day,time,emptyLabel;
+    private JLabel month,week,day,time,emptyLabel, emptyLabel2;
     private JPanel Time;
 
     /**
@@ -32,10 +32,10 @@ public class TimeView extends AbstractView {
 
 
         setSize(250, 50);
-        setLayout(new GridLayout(0,2));
+        setLayout(new GridLayout(0,3));
 
         //Creating the Time panel and the date/time JLabels
-        Time = new JPanel(new GridLayout(0,1));
+        Time = new JPanel(new GridLayout(0,4));
         month = new JLabel(monthString);
         week = new JLabel(weekString);
         day = new JLabel(dayString);
@@ -49,10 +49,12 @@ public class TimeView extends AbstractView {
 
         //Adding an empty label in order to get the DayTime panel in the center of the screen
         emptyLabel = new JLabel();
+        emptyLabel2 = new JLabel();
 
         //Adding the empty label and the Time Panel
         add(emptyLabel);
         add(Time);
+        add(emptyLabel2);
 
         setVisible(true);
     }
@@ -65,7 +67,7 @@ public class TimeView extends AbstractView {
         day.setText("Day: " + timeController.getDay());
         week.setText("Week: " + timeController.getWeek());
         month.setText("Month: " + timeController.getMonth());
-        time.setText(timeController.getTime());
+        time.setText("Hour: " + timeController.getTime());
     }
 
     public void setVisibility(boolean visibility)

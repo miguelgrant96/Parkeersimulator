@@ -28,7 +28,7 @@ public class ButtonView  extends AbstractView{
 
         // Setting the size of the butoon panel
         setSize(250, 50);
-        setLayout(new GridLayout(0,1));
+        setLayout(new GridLayout(4,1));
 
         //Calling the methods for creating the buttons
         startButton();

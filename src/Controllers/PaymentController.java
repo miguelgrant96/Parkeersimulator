@@ -214,9 +214,7 @@ public class PaymentController extends AbstractController {
      */
     public void saveDataToMap() {
         called++;
-        String resetTime = "23:30";
-        if (called == 2) {
-            called = 0;
+        String resetTime = "23:50";
             if(timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)
                 || timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
                 calcWeekOmzet();
@@ -240,7 +238,6 @@ public class PaymentController extends AbstractController {
                 //Do nothing!!
             }
         }
-    }
 
     /**
      *

@@ -27,8 +27,6 @@ public class ProfitTableController extends AbstractController {
     public ProfitTableController(){
         //Connecting to the "Main" TimeController
         timeController = (TimeController) super.registeryController.getObjectInstance("TimeController");
-         //Connecting to the "Main" TimeController
-        timeController = (TimeController) super.registeryController.getObjectInstance("TimeController");
 
     }
 
@@ -39,7 +37,7 @@ public class ProfitTableController extends AbstractController {
         model.addColumn("Profit");
 
         JTable profitTable = new JTable(model);
-        profitTable.setPreferredScrollableViewportSize(new Dimension(600,150));
+        profitTable.setPreferredScrollableViewportSize(new Dimension(500,150));
         profitTable.setFillsViewportHeight(false);
 
         model.addRow(new Object[]{timeController.getYear(),getMonthName(timeController.getMonth()), "", ""});
@@ -186,10 +184,8 @@ public class ProfitTableController extends AbstractController {
 
     public void updateTable() {
         called++;
-        String resetTime = "23:30";
-        if (called == 2) {
-            called = 0;
-            if (timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
+        String resetTime = "23:50";
+        if (timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
                 addRow(2);
                 addRow(3);
                 saveData();
@@ -203,9 +199,9 @@ public class ProfitTableController extends AbstractController {
                 addRow(2);
                 addRow(3);
 
-                //                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
-                //                    saveData();
-                //                }
+                                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
+                                    saveData();
+                                }
 
                 addRow(0);
                 addRow(1);
@@ -216,7 +212,6 @@ public class ProfitTableController extends AbstractController {
                 addRow(2);
             }
         }
-    }
 
     public void resetTable(){
         clearTable();

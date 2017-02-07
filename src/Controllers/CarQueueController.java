@@ -88,14 +88,14 @@ public class CarQueueController extends AbstractController {
             weekDayArrivals = 25; // average number of arriving cars per hour
             weekDayPassArrivals = 10; // average number of arriving cars per hour
             weekendArrivals = 100; // average number of arriving cars per hour
-            weekendPassArrivals = 5; // average number of arriving cars per hour
+            weekendPassArrivals = 25; // average number of arriving cars per hour
 
             // Very Busy
         } else {
             weekDayArrivals = 100; // average number of arriving cars per hour
             weekDayPassArrivals = 50; // average number of arriving cars per hour
             weekendArrivals = 200; // average number of arriving cars per hour
-            weekendPassArrivals = 5; // average number of arriving cars per hour
+            weekendPassArrivals = 30; // average number of arriving cars per hour
         }
     }
 
@@ -325,8 +325,8 @@ public class CarQueueController extends AbstractController {
      * This is used every day at 0:00
      */
     public void resetCars() {
-        carsLeft = 0;
         carsToday = 0;
+        leftCarsToday = 0;
     }
 
     /**
@@ -345,6 +345,7 @@ public class CarQueueController extends AbstractController {
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         setArrivals();
+        carsLeft = 0;
         resetCars();
     }
 }
