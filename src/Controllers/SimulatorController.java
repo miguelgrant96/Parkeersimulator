@@ -11,6 +11,7 @@ public class SimulatorController extends AbstractController {
     private CarQueueController carQueueController;
     private CarController carController;
     private ReservationController reservationController;
+    private Boolean fastForward = false;
 
     // private int stepNumber;
     private boolean running;
@@ -44,26 +45,41 @@ public class SimulatorController extends AbstractController {
         tick();
     }
 
+    public void startRunning()
+    {
+        this.running = true;
+    }
+
     public void tick() {
 
         timeController.advanceTime();
         reservationController.checkReservations();
         carQueueController.handleExit();
-        AbstractView.notifyViews();
         updateViews();
+
+
         // Pause.
         try {
             Thread.sleep(tickPause);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         carQueueController.handleEntrance();
+    }
+
+    public int getTickPause()
+    {
+        return this.tickPause;
+    }
+
+    public void setTickPause(int ticks)
+    {
+        this.tickPause = ticks;
     }
 
     public void updateViews(){
         carController.tick();
-
-        // Update the car park view.
         AbstractView.notifyViews();
     }
 

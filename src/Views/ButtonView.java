@@ -13,9 +13,8 @@ import java.awt.event.ActionListener;
 public class ButtonView  extends AbstractView{
 
     SimulatorController simController;
-    private Timer guiRunTimer, guiAddTimer;
-    private int guiAddCounter = 100;
-    private JButton start, stop, add1, add100;
+    private Timer guiRunTimer;
+    private JButton start, stop, add1Hour, add24Hours;
 
     public ButtonView(){
 
@@ -29,14 +28,14 @@ public class ButtonView  extends AbstractView{
         //Calling the methods for creating the buttons
         startButton();
         stopButton();
-        add1Button();
-        add100Button();
+        add1HourButton();
+        fastforward24hoursButton();
 
         //Adding the buttons to the panel
         add(start);
         add(stop);
-        add(add1);
-        add(add100);
+        add(add1Hour);
+        add(add24Hours);
         setVisible(true);
     }
 
@@ -50,11 +49,6 @@ public class ButtonView  extends AbstractView{
             public void actionPerformed(ActionEvent e) {
                 if(simController.isRunning()) {
                     simController.stoprunning();
-                }else if(guiAddCounter > 0 && guiAddCounter != 100){
-                    guiAddTimer.setRepeats(false);
-                    guiAddCounter = 100;
-                } else {
-                    guiRunTimer.setRepeats(false);
                 }
             }
         });
@@ -68,11 +62,12 @@ public class ButtonView  extends AbstractView{
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                simController.startRunning();
                 guiRunTimer = new Timer(15, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        simController.tick();
+                        if(simController.isRunning())
+                            simController.tick();
                     }
                 });
                 guiRunTimer.setRepeats(true);
@@ -84,12 +79,24 @@ public class ButtonView  extends AbstractView{
     /**
      * Method to create the asdd1 step button and its ActionListener
      */
-    private void add1Button(){
-        add1 = new JButton("add1");
-        add1.addActionListener(new ActionListener() {
+    private void add1HourButton(){
+        add1Hour = new JButton("add 1 hour");
+        add1Hour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                simController.add1();
+                int resetTicks = simController.getTickPause();
+                simController.setTickPause(1);
+                for(int i =0; i < 60; i++)
+                {
+                    try{
+                        simController.tick();
+                    }catch(Exception e1)
+                    {
+                    }
+                }
+                simController.setTickPause(resetTicks);
+                add24Hours.setEnabled(true);
+                simController.updateViews();
             }
         });
     }
@@ -97,27 +104,24 @@ public class ButtonView  extends AbstractView{
     /**
      * Method to create the add100 button and its ActionListener
      */
-    private void add100Button(){
-        add100 = new JButton("ad100");
-        add100.addActionListener(new ActionListener() {
+    private void fastforward24hoursButton(){
+        add24Hours = new JButton("add 24 hours");
+        add24Hours.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                guiAddTimer = new Timer(15, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
+                int resetTicks = simController.getTickPause();
+                simController.setTickPause(1);
+                for(int i =0; i < 1440; i++) {
+                    try {
                         simController.tick();
-                        guiAddCounter--;
-                        if(guiAddCounter != 0){
-                            guiAddTimer.setRepeats(true);
-                        }else {
-                            guiAddTimer.setRepeats(false);
-                            guiAddCounter = 100;
-                        }
+                    } catch (Exception e1) {
                     }
-                });
-                guiAddTimer.start();
+                }
+                simController.setTickPause(resetTicks);
+                add24Hours.setEnabled(true);
+                simController.updateViews();
             }
+
         });
     }
 
