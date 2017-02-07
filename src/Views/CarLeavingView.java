@@ -29,15 +29,19 @@ public class CarLeavingView extends AbstractView {
         setLayout(new GridLayout(0,1));
 
         //Create Labels
+        JLabel title = new JLabel("Wachtrij: ");
+        JLabel label1 = new JLabel("");
         queueLabel = new JLabel("Auto's in de rij: ");
         queueLeftLabel = new JLabel("Auto's weggereden uit de wachtrij: ");
         carsEnteredLabel = new JLabel("Auto's ingereden vandaag: ");
         carsLeftLabel = new JLabel("Auto's uitgereden vandaag: ");
-
+        add(title);
+        add(label1);
         add(queueLabel);
         add(queueLeftLabel);
         add(carsEnteredLabel);
         add(carsLeftLabel);
+        add(label1);
 
         setVisible(true);
     }

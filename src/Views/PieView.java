@@ -30,19 +30,24 @@ public class PieView extends AbstractView{
 
         legend = new JPanel(new GridLayout(0,2));
         open = new JLabel();
-        orange = new JLabel("Orange: Free spaces");
+        orange = new JLabel("<html><font color=orange>Orange: </font>Free spaces</html> ");
         adhoclb = new JLabel();
-        red = new JLabel("Red: Paying cars");
+        red = new JLabel("<html><font color=red>Red: </font>Paying cars</html>");
         passlb = new JLabel();
-        blue = new JLabel("Blue: Subscription holders");
-
-
+        blue = new JLabel("<html><font color=blue>Blue: </font>Subscription holders</html>");
+        JLabel title = new JLabel("Bezetting: ");
+        JLabel legenda = new JLabel("legenda: ");
+        JLabel label1 = new JLabel("");
+        JLabel label2 = new JLabel("");
+        legend.add(title);
+        legend.add(legenda);
         legend.add(open);
         legend.add(orange);
         legend.add(adhoclb);
         legend.add(red);
         legend.add(passlb);
         legend.add(blue);
+        legend.add(label1);
 
         add(legend,BorderLayout.SOUTH);
         setVisible(true);

@@ -31,13 +31,17 @@ public class PaymentView extends AbstractView {
         setLayout(new GridLayout(0,1));
 
         //Creating labels to show the profits
+        JLabel title = new JLabel("<html><bold>Omzet: </bold></html>");
+        JLabel label1 = new JLabel("");
         dagOmzetLabel = new JLabel("dagomzet: ");
         verwachteDagOmzetLabel = new JLabel("verwachteDagOmzet: ");
         weekOmzetLabel = new JLabel("weekOmzet: ");
-
+        add(title);
+        add(label1);
         add(dagOmzetLabel);
         add(verwachteDagOmzetLabel);
         add(weekOmzetLabel);
+        add(label1);
 
         setVisible(true);
 
