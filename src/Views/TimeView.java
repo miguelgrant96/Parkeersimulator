@@ -6,7 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Jop on 27-1-2017.
+ * Shows date/time in de GUI
+ *
+ * @author Jop Bakker
+ * @version 1
+ * @since 27-01-2016
  */
 public class TimeView extends AbstractView {
 

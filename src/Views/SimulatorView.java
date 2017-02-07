@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SimulatorView  extends AbstractView{
-    //extra uitbreiding op de GUI tijd en omzet
 
     private CarParkView carParkView;
     private CarController carController;

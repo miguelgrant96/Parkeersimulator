@@ -61,7 +61,6 @@ public class PieView extends AbstractView{
 
 
         int count = 2;
-        int index = 0;
         int[] array = new int[3];
         int oldDegrees=0;
         String[] klasse = new String[3];
@@ -83,14 +82,14 @@ public class PieView extends AbstractView{
         for(int i=0;i<array.length;i++)
         {
             double x = array[i];
-            percentage = (x / count * 100);
+            percentage = (x / count * 100) +1;
 
 
 
             //als percentage / 2 een restwaarde heeft, percentage +1, zodat de PieView goed uitlijnd
             if((percentage % 2) != 0 && (percentage % 2) <= 0.5)
             {
-                percentage += 1;
+                percentage +=1;
             }
 
             double graden = (percentage*3.6);
@@ -115,7 +114,7 @@ public class PieView extends AbstractView{
             }
 
             // if the degrees is lower than 1, then make it 1 or else it won't show
-            if(graden<1 && graden > 0) graden=1;
+            if(graden < 1 && graden > 0) graden=1;
             g.fillArc(10,10,200,200,oldDegrees,(int)graden);
             oldDegrees += graden; // keep track of the current position
 
