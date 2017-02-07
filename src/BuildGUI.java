@@ -77,7 +77,7 @@ public class BuildGUI extends JFrame {
         setVisible(true);
         setResizable(false);
 
-        simulatorController.updateViews();
+        AbstractView.notifyViews();
 
     }
 
