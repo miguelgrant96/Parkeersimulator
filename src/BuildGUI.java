@@ -53,10 +53,15 @@ public class BuildGUI extends JFrame {
         JPanel infoPane = new JPanel();
         infoPane.setLayout(new BorderLayout());
 
+        JPanel infoText = new JPanel();
+        infoText.setLayout(new GridLayout(1,2));
+        infoText.add(carLeavingView);
+        infoText.add(paymentView);
+
+
         //Adding the information views in one panel
         infoPane.add(pieView, BorderLayout.NORTH);
-        infoPane.add(carLeavingView, BorderLayout.CENTER);
-        infoPane.add(paymentView, BorderLayout.SOUTH);
+        infoPane.add(infoText, BorderLayout.CENTER);
 
         //Adding all views to the GUI
         getContentPane().add(simulatorView, BorderLayout.CENTER);

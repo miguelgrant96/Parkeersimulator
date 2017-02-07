@@ -87,7 +87,7 @@ public class PieView extends AbstractView{
         for(int i=0;i<array.length;i++)
         {
             double x = array[i];
-            percentage = (x / count * 100) +1;
+            percentage = (x / count * 100);
 
 
 
@@ -97,7 +97,7 @@ public class PieView extends AbstractView{
                 percentage +=1;
             }
 
-            double graden = (percentage*3.6);
+            double graden = (percentage*3.65);
             // set the colour corresponding to the class name
             if(klasse[i].equals("pass"))
             {

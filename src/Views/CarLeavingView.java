@@ -14,9 +14,12 @@ import java.awt.*;
  * @since 27-01-2016
  */
 public class CarLeavingView extends AbstractView {
+
     private CarQueueController carQueueController;
     private TimeController timeController;
     private JLabel queueLabel, queueLeftLabel, carsEnteredLabel, carsLeftLabel;
+
+    private boolean melding;
 
 
     //Constructor
@@ -30,28 +33,34 @@ public class CarLeavingView extends AbstractView {
 
         //Create Labels
         JLabel title = new JLabel("Wachtrij: ");
-        JLabel label1 = new JLabel("");
+
         queueLabel = new JLabel("Auto's in de rij: ");
         queueLeftLabel = new JLabel("Auto's weggereden uit de wachtrij: ");
         carsEnteredLabel = new JLabel("Auto's ingereden vandaag: ");
         carsLeftLabel = new JLabel("Auto's uitgereden vandaag: ");
+
         add(title);
-        add(label1);
         add(queueLabel);
         add(queueLeftLabel);
         add(carsEnteredLabel);
         add(carsLeftLabel);
-        add(label1);
 
         setVisible(true);
     }
     
     /**
      * Shows the number of waiting,left,entered and cars who had to wait to long
-     * Will be resetted every day at 23:30
+     * Will be resetted every day at 23:59
      */
     public void updateView(){
         int queue = carQueueController.getWaitingCars();
+        if(queue > 10 && melding){
+            JOptionPane.showMessageDialog(this,
+                    "Wachtrij is momenteel meer dan 10 auto's.",
+                    "OPGELET",
+                    JOptionPane.WARNING_MESSAGE);
+            melding = false;
+        }
         int queueLeft = carQueueController.getLeftCars();
         int carsEntered = carQueueController.getCarsToday();
         int carsLeft = carQueueController.getLeavingCarsToday();
@@ -60,9 +69,13 @@ public class CarLeavingView extends AbstractView {
         queueLeftLabel.setText("Auto's weggereden uit de wachtrij: "+queueLeft);
         carsEnteredLabel.setText("Auto's ingereden vandaag: "+carsEntered);
         carsLeftLabel.setText("Auto's uitgereden vandaag: " +carsLeft);
+        if(queue < 5){
+            melding = true;
+        }
 
         if (timeController.getTime().equals("23:50")) {
             carQueueController.resetCars();
+
         }
 
     }
