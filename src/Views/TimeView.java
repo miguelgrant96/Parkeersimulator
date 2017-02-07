@@ -67,4 +67,9 @@ public class TimeView extends AbstractView {
         month.setText("Month: " + timeController.getMonth());
         time.setText(timeController.getTime());
     }
+
+    public void setVisibility(boolean visibility)
+    {
+        setVisible(visibility);
+    }
 }

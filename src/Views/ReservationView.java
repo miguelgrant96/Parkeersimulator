@@ -76,13 +76,17 @@ public class ReservationView extends AbstractView{
                     String time = f2.getText();
                     Reservation res = new Reservation(day, time);
                     resCon.addReservation(res);
+                    AbstractView.notifyViews();
+                    reservationFrame.dispose();
                 }
                 catch(Exception ex)
                 {
-                    //Do nothing
+                    JOptionPane.showMessageDialog(reservationFrame,
+                            "Geen geldig nummer.",
+                            "OPGELET",
+                            JOptionPane.WARNING_MESSAGE);
+
                 }
-                AbstractView.notifyViews();
-                reservationFrame.dispose();
 
             }
         });
@@ -105,5 +109,10 @@ public class ReservationView extends AbstractView{
     public void updateView()
     {
         repaint();
+    }
+
+    public void setVisibility(boolean visibility)
+    {
+        setVisible(visibility);
     }
 }

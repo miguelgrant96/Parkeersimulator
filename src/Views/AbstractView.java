@@ -30,6 +30,19 @@ public abstract class AbstractView extends JPanel {
         views.add(view);
     }
 
+    public abstract void setVisibility(boolean visibility);
+
+    public static void updateVisibility(boolean visibility, String viewName){
+            for(AbstractView v: views)
+            {
+                if(v.getClass().getName() == viewName)
+                {
+                    v.setVisibility(visibility);
+                    return;
+                }
+            }
+    }
+
 
     public static void notifyViews() {
         for(AbstractView v: views) v.updateView();
