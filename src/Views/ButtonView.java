@@ -84,8 +84,10 @@ public class ButtonView  extends AbstractView{
         add1Hour.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean isrunning = simController.isRunning();
+                simController.stoprunning();
                 int resetTicks = simController.getTickPause();
-                simController.setTickPause(1);
+                simController.setTickPause(0);
                 for(int i =0; i < 60; i++)
                 {
                     try{
@@ -97,6 +99,10 @@ public class ButtonView  extends AbstractView{
                 simController.setTickPause(resetTicks);
                 add24Hours.setEnabled(true);
                 simController.updateViews();
+
+                if(isrunning)
+                    simController.startRunning();
+
             }
         });
     }
@@ -109,8 +115,10 @@ public class ButtonView  extends AbstractView{
         add24Hours.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean isrunning = simController.isRunning();
+                simController.stoprunning();
                 int resetTicks = simController.getTickPause();
-                simController.setTickPause(1);
+                simController.setTickPause(0);
                 for(int i =0; i < 1440; i++) {
                     try {
                         simController.tick();
@@ -120,6 +128,9 @@ public class ButtonView  extends AbstractView{
                 simController.setTickPause(resetTicks);
                 add24Hours.setEnabled(true);
                 simController.updateViews();
+
+                if(isrunning)
+                    simController.startRunning();
             }
 
         });

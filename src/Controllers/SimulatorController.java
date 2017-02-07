@@ -11,7 +11,6 @@ public class SimulatorController extends AbstractController {
     private CarQueueController carQueueController;
     private CarController carController;
     private ReservationController reservationController;
-    private Boolean fastForward = false;
 
     // private int stepNumber;
     private boolean running;
