@@ -82,7 +82,7 @@ public class ButtonView  extends AbstractView{
     }
 
     /**
-     * Method to create the asdd1 step button and its ActionListener
+     * Method to create the add 1 hour and its ActionListener
      */
     private void add1HourButton(){
         add1Hour = new JButton("add 1 hour");
@@ -107,7 +107,7 @@ public class ButtonView  extends AbstractView{
     }
 
     /**
-     * Method to create the add100 button and its ActionListener
+     * Method to create the add 24 hours and its ActionListener
      */
     private void fastforward24hoursButton(){
         add24Hours = new JButton("add 24 hours");
