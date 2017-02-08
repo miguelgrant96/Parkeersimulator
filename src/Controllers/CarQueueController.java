@@ -72,7 +72,7 @@ public class CarQueueController extends AbstractController {
      */
     protected void setArrivals() {
         //Not busy
-        if (timeController.getHour() >= 22 && timeController.getHour() <= 5) {
+        if (timeController.getHour() >= 22 && timeController.getHour() >= 5) {
 
             weekDayArrivals = 10; // average number of arriving cars per hour
             weekDayPassArrivals = 1; // average number of arriving cars per hour

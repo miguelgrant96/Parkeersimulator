@@ -14,7 +14,7 @@ public class SimulatorController extends AbstractController {
 
     // private int stepNumber;
     private boolean running;
-    private int tickPause = 10;
+    private int tickPause = 100;
 
     public SimulatorController( ) {
         super();

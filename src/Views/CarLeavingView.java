@@ -54,13 +54,6 @@ public class CarLeavingView extends AbstractView {
      */
     public void updateView(){
         int queue = carQueueController.getWaitingCars();
-        if(queue > 10 && melding){
-            JOptionPane.showMessageDialog(this,
-                    "Wachtrij is momenteel meer dan 10 auto's.",
-                    "OPGELET",
-                    JOptionPane.WARNING_MESSAGE);
-            melding = false;
-        }
         int queueLeft = carQueueController.getLeftCars();
         int carsEntered = carQueueController.getCarsToday();
         int carsLeft = carQueueController.getLeavingCarsToday();
@@ -73,7 +66,7 @@ public class CarLeavingView extends AbstractView {
             melding = true;
         }
 
-        if (timeController.getTime().equals("23:50")) {
+        if (timeController.getTime().equals(timeController.globalResetTime())) {
             carQueueController.resetCars();
 
         }
