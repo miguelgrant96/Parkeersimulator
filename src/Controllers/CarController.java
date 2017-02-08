@@ -261,7 +261,7 @@ public class CarController extends AbstractController {
     }
 
     /**
-     *??
+     *Sets a car at a new place
      */
     public void tick() {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
