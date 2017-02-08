@@ -82,7 +82,7 @@ public class ReservationView extends AbstractView{
                 catch(Exception ex)
                 {
                     JOptionPane.showMessageDialog(reservationFrame,
-                            "Geen geldig nummer.",
+                            "Geen geldig dagnummer of aankomsttijd.",
                             "OPGELET",
                             JOptionPane.WARNING_MESSAGE);
 

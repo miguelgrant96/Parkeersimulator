@@ -17,6 +17,8 @@ public class TimeController extends AbstractController{
     private int year = 2017;
     private int dayOfYear = 1;
 
+    private String resetTime = "23:59";
+
     public TimeController() {
     }
 
@@ -102,6 +104,10 @@ public class TimeController extends AbstractController{
      */
     protected int getMinute(){
         return minute;
+    }
+
+    public String globalResetTime(){
+        return resetTime;
     }
 
 

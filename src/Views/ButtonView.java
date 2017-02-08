@@ -48,7 +48,7 @@ public class ButtonView  extends AbstractView{
      * Method to create the stop button and its ActionListener
      */
     private void stopButton(){
-        ImageIcon stopimg = new ImageIcon("E:\\intelliJWorkspace\\Parkeersimulator\\src\\images\\stop.png");
+        ImageIcon stopimg = new ImageIcon(" (C:\\test\\test) \\Parkeersimulator\\src\\images\\stop.png");
         stop = new JButton(stopimg);
         stop.setOpaque(false);
         stop.setContentAreaFilled(false);
@@ -67,7 +67,7 @@ public class ButtonView  extends AbstractView{
      * Method to create the start button and its ActionListener
      */
     private void startButton() {
-        ImageIcon startimg = new ImageIcon("E:\\intelliJWorkspace\\Parkeersimulator\\src\\images\\start.png");
+        ImageIcon startimg = new ImageIcon(" (C:\\test\\test) \\Parkeersimulator\\src\\images\\start.png");
         start = new JButton(startimg);
         start.setOpaque(false);
         start.setContentAreaFilled(false);
@@ -89,7 +89,6 @@ public class ButtonView  extends AbstractView{
                 });
                     guiRunTimer.setRepeats(true);
                     guiRunTimer.start();}
-
             }
         });
     }
@@ -98,7 +97,7 @@ public class ButtonView  extends AbstractView{
      * Method to create the add 1 hour and its ActionListener
      */
     private void add1HourButton(){
-        ImageIcon een = new ImageIcon("E:\\intelliJWorkspace\\Parkeersimulator\\src\\images\\clock1.png");
+        ImageIcon een = new ImageIcon(" (C:\\test\\test) \\Parkeersimulator\\src\\images\\clock1.png");
         add1Hour = new JButton(een);
         add1Hour.setOpaque(false);
         add1Hour.setContentAreaFilled(false);
@@ -116,7 +115,7 @@ public class ButtonView  extends AbstractView{
      * Method to create the add 24 hours and its ActionListener
      */
     private void fastforward24hoursButton(){
-        ImageIcon tweevier = new ImageIcon("E:\\intelliJWorkspace\\Parkeersimulator\\src\\images\\clock24.png");
+        ImageIcon tweevier = new ImageIcon(" (C:\\test\\test) \\Parkeersimulator\\src\\images\\clock24.png");
         add24Hours = new JButton(tweevier);
         add24Hours.setOpaque(false);
         add24Hours.setContentAreaFilled(false);

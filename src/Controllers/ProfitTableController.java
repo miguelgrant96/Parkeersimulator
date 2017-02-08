@@ -182,9 +182,12 @@ public class ProfitTableController extends AbstractController {
         }
     }
 
+    /**
+     * Method that calls the requirred metods at specific times to update the table and add rows
+     */
     public void updateTable() {
         called++;
-        String resetTime = "23:59";
+        String resetTime = timeController.globalResetTime();
         if (timeController.getMonth() == 12 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
                 addRow(2);
                 addRow(3);
@@ -199,10 +202,6 @@ public class ProfitTableController extends AbstractController {
                 addRow(2);
                 addRow(3);
 
-                                if(timeController.getMonth() == 1 && timeController.getWeek() == 4 && timeController.getDay() == 7 && timeController.getTime().equals(resetTime)){
-                                    saveData();
-                                }
-
                 addRow(0);
                 addRow(1);
 
@@ -210,8 +209,10 @@ public class ProfitTableController extends AbstractController {
                 paymentController.clearWeken();
             } else if (timeController.getDay() == 7 && timeController.getTime().equals(resetTime)) {
                 addRow(2);
-            }
+            }else {
+            //Do nothing
         }
+    }
 
     public void resetTable(){
         clearTable();

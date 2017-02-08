@@ -1,5 +1,12 @@
 # Parkeersimulator
 
-Do not forget to update the save data location in: 
+**This project was made using IntelliJ**
 
-    ProfitTableController -- Line 163;
+**Do not forget to update the save data location in:** 
+
+    ProfitTableController.java -- Line 163;
+    
+**To add the button images please change to location in:**
+    
+    ButtonView.java -- line 51, 70, 100 and 118;
+    
